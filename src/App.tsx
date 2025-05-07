@@ -1,24 +1,8 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import LayoutClassic from "./layout"
 
-function App() {
-  let [num, setNum] = useState(1)
-
-  console.log('okkkkkkk')
-
-  useEffect(() => {
-    console.log('wwww')
-  }, [num])
-
-  const test = () => {
-    let newNum = num + 1
-    setNum(newNum)
-  }
-
+const App = () => {
   return (
-    <>
-      <div onClick={test}>点击</div>
-    </>
+    <LayoutClassic />
   )
 }
 
