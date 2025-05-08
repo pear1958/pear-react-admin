@@ -1,5 +1,7 @@
-const LayoutClassic = () => {
-  return <div>LayoutClassic</div>
+import LayoutClassic from './LayoutClassic'
+
+const Layout: React.FC = () => {
+  return <LayoutClassic />
 }
 
-export default LayoutClassic;
+export default Layout
