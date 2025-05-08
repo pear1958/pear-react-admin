@@ -1,8 +1,15 @@
-import { ConfigProvider, theme } from 'antd'
-import LayoutClassic from './layout'
-import { useSystemStore } from './store'
+import { useEffect } from 'react'
+import { ConfigProvider, theme, App as AppProvider } from 'antd'
+import { I18nextProvider } from 'react-i18next'
 import zhCN from 'antd/locale/zh_CN'
 import enUS from 'antd/locale/en_US'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import { getBrowserLang } from 'pear-common-utils'
+import LayoutClassic from './layout'
+import { useSystemStore } from './store'
+import i18n from './languages'
+import { RefreshProvider } from './context/refresh'
 
 const App = () => {
   const {
@@ -29,6 +36,13 @@ const App = () => {
     return algorithm
   }
 
+  useEffect(() => {
+    const lang = language ?? getBrowserLang()
+    setSystemState('language', lang)
+    i18n.changeLanguage(language)
+    dayjs.locale(language === 'zh' ? 'zh-cn' : 'en')
+  }, [language])
+
   return (
     <ConfigProvider
       locale={language === 'zh' ? zhCN : enUS}
@@ -38,7 +52,13 @@ const App = () => {
         algorithm: getAlgorithm()
       }}
     >
-      <LayoutClassic />
+      <AppProvider>
+        <I18nextProvider i18n={i18n}>
+          <RefreshProvider>
+            <LayoutClassic />
+          </RefreshProvider>
+        </I18nextProvider>
+      </AppProvider>
     </ConfigProvider>
   )
 }

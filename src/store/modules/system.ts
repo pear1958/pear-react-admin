@@ -1,7 +1,7 @@
 import { createWithEqualityFn } from 'zustand/traditional'
 import { immer } from 'zustand/middleware/immer'
 import { persist } from 'zustand/middleware'
-import { shallow } from 'zustand/shallow'
+import { shallow } from 'zustand/vanilla/shallow'
 import { SystemState, SystemStore } from '../types'
 
 export const useSystemStore = createWithEqualityFn<SystemStore>()(
@@ -13,7 +13,7 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
         componentSize: 'middle',
         compactAlgorithm: false,
         borderRadius: 6,
-        language: 'zh',
+        language: null, // 默认为浏览器的默认语言
         setSystemState: (key, value) =>
           set((state: SystemState) => {
             state[key] = value

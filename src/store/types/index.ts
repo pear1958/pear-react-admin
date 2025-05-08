@@ -1,5 +1,5 @@
 export type ComponentSize = 'small' | 'middle' | 'large'
-export type LanguageType = 'zh' | 'en'
+export type LanguageType = 'zh' | 'en' | null
 
 export interface SystemState {
   isDark: boolean
