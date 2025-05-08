@@ -14,5 +14,9 @@ export const RefreshProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setMainShow(val)
   }
 
-  return <RefreshContext.Provider value={{ mainShow, updateMainShow }}></RefreshContext.Provider>
+  return (
+    <RefreshContext.Provider value={{ mainShow, updateMainShow }}>
+      {children}
+    </RefreshContext.Provider>
+  )
 }

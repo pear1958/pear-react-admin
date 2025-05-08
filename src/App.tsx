@@ -6,7 +6,7 @@ import enUS from 'antd/locale/en_US'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import { getBrowserLang } from 'pear-common-utils'
-import LayoutClassic from './layout'
+import Layout from './layout'
 import { useSystemStore } from './store'
 import i18n from './languages'
 import { RefreshProvider } from './context/refresh'
@@ -55,7 +55,7 @@ const App = () => {
       <AppProvider>
         <I18nextProvider i18n={i18n}>
           <RefreshProvider>
-            <LayoutClassic />
+            <Layout />
           </RefreshProvider>
         </I18nextProvider>
       </AppProvider>
