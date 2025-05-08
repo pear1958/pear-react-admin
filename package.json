@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "antd": "^5.25.0",
+    "axios": "^1.9.0",
     "dayjs": "^1.11.13",
     "i18next": "^25.1.1",
     "immer": "^10.1.1",
@@ -25,9 +26,12 @@
     "zustand": "^5.0.4"
   },
   "devDependencies": {
+    "@types/node": "^22.15.17",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "axios-mock-adapter": "^2.1.0",
+    "less": "^4.3.0",
     "typescript": "~5.7.2",
     "vite": "^6.3.1"
   }

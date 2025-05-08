@@ -15,3 +15,15 @@ export interface SystemAction {
 }
 
 export type SystemStore = SystemState & SystemAction
+
+export interface UserState {
+  token: string
+  userInfo: Recordable | null
+}
+
+export interface UserAction {
+  setToken: (token: UserState['token']) => void
+  setUserInfo: (userInfo: UserState['userInfo']) => void
+}
+
+export type UserStore = UserState & UserAction
