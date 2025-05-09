@@ -23,7 +23,25 @@ export interface UserState {
 
 export interface UserAction {
   setToken: (token: UserState['token']) => void
+  getUserInfo: () => Promise<boolean>
   setUserInfo: (userInfo: UserState['userInfo']) => void
 }
 
 export type UserStore = UserState & UserAction
+
+export interface AuthState {
+  curRouteName: string
+  buttonData: Recordable<string[]> | null
+  menuList: Recordable[]
+  flatMenuList: Recordable[]
+  showMenuList: Recordable[]
+}
+
+export interface AuthAction {
+  getMenuList: () => Promise<boolean>
+  setMenuList: (menuList: AuthState['menuList']) => void
+  getButtonData: () => Promise<boolean>
+  setButtonData: (data: AuthState['buttonData']) => void
+}
+
+export type AuthStore = AuthState & AuthAction

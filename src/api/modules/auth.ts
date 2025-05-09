@@ -7,5 +7,5 @@ export const getMenuList = () => {
 
 // 获取按钮权限列表
 export const getButtonData = () => {
-  return http.get<Recordable<string[]>>('/auth/button')
+  return http.get('/auth/button')
 }
