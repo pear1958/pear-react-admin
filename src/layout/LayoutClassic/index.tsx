@@ -1,5 +1,9 @@
+import { useOutlet } from 'react-router-dom'
+
 const LayoutClassic = () => {
-  return <div>LayoutClassic</div>
+  const outlet = useOutlet()
+
+  return <div>{outlet}</div>
 }
 
-export default LayoutClassic;
+export default LayoutClassic

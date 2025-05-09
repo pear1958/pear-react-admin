@@ -2,7 +2,7 @@ export const menuList = [
   {
     path: '/home',
     name: 'home',
-    component: '/home/index',
+    element: '/home/index',
     meta: {
       title: '首页',
       icon: 'ep:home-filled'
@@ -19,7 +19,7 @@ export const menuList = [
       {
         path: '/components/jsonForm',
         name: 'jsonForm',
-        component: '/components/jsonForm/index',
+        element: '/components/jsonForm/index',
         meta: {
           title: 'jsonForm'
         }
@@ -27,7 +27,7 @@ export const menuList = [
       {
         path: '/components/jsonTable',
         name: 'jsonTable',
-        component: '/components/jsonTable/index',
+        element: '/components/jsonTable/index',
         meta: {
           title: 'jsonTable'
         }
@@ -35,7 +35,7 @@ export const menuList = [
       {
         path: '/components/jsxDialog',
         name: 'jsxDialog',
-        component: '/components/jsxDialog',
+        element: '/components/jsxDialog',
         meta: {
           title: 'jsxDialog'
         }
@@ -43,7 +43,7 @@ export const menuList = [
       {
         path: '/components/upload',
         name: 'upload',
-        component: '/components/upload',
+        element: '/components/upload',
         meta: {
           title: '图片上传(支持裁剪)'
         }
@@ -51,7 +51,7 @@ export const menuList = [
       {
         path: '/components/area',
         name: 'area',
-        component: '/components/area',
+        element: '/components/area',
         meta: {
           title: '省市区选择(接口数据)'
         }
@@ -59,7 +59,7 @@ export const menuList = [
       {
         path: '/components/progress',
         name: 'progress',
-        component: '/components/progress',
+        element: '/components/progress',
         meta: {
           title: 'Progress动画'
         }
@@ -67,7 +67,7 @@ export const menuList = [
       {
         path: '/components/chooseArea',
         name: 'chooseArea',
-        component: '/components/chooseArea',
+        element: '/components/chooseArea',
         meta: {
           title: '省市区选择(前端数据)'
         }
@@ -75,7 +75,7 @@ export const menuList = [
       {
         path: '/components/wangEditor',
         name: 'wangEditor',
-        component: '/components/wangEditor',
+        element: '/components/wangEditor',
         meta: {
           title: '富文本编辑器'
         }
@@ -100,7 +100,7 @@ export const menuList = [
           {
             path: '/map/aMap/mapAddrDrawer',
             name: 'MapAddrDrawer',
-            component: '/map/aMap/mapAddrDrawer',
+            element: '/map/aMap/mapAddrDrawer',
             meta: {
               title: '地图选点'
             }
@@ -117,7 +117,7 @@ export const menuList = [
           {
             path: '/map/echarts/base',
             name: 'EChartsMapBase',
-            component: '/map/echarts/base/index',
+            element: '/map/echarts/base/index',
             meta: {
               title: '地图',
               mainFull: true
@@ -138,7 +138,7 @@ export const menuList = [
       {
         path: '/echarts/base',
         name: 'EChartsBase',
-        component: '/echarts/base/index',
+        element: '/echarts/base/index',
         meta: {
           title: '基本使用'
         }
@@ -146,7 +146,7 @@ export const menuList = [
       {
         path: '/echarts/theme',
         name: 'EChartsTheme',
-        component: '/echarts/theme/index',
+        element: '/echarts/theme/index',
         meta: {
           title: '自定义主题'
         }
@@ -164,7 +164,7 @@ export const menuList = [
       {
         path: '/ui/drawer',
         name: 'Drawer',
-        component: '/ui/drawer',
+        element: '/ui/drawer',
         meta: {
           title: '抽屉'
         }
@@ -172,7 +172,7 @@ export const menuList = [
       {
         path: '/ui/tabs',
         name: 'Tabs',
-        component: '/ui/tabs',
+        element: '/ui/tabs',
         meta: {
           title: '标签页'
         }
@@ -180,7 +180,7 @@ export const menuList = [
       {
         path: '/ui/dialog',
         name: 'Dialog',
-        component: '/ui/dialog',
+        element: '/ui/dialog',
         meta: {
           title: '对话框'
         }
@@ -188,7 +188,7 @@ export const menuList = [
       {
         path: '/ui/collapse',
         name: 'Collapse',
-        component: '/ui/collapse',
+        element: '/ui/collapse',
         meta: {
           title: '折叠面板'
         }
@@ -196,7 +196,7 @@ export const menuList = [
       {
         path: '/ui/upload',
         name: 'Upload',
-        component: '/ui/upload',
+        element: '/ui/upload',
         meta: {
           title: '图片上传(自定义)'
         }
@@ -214,7 +214,7 @@ export const menuList = [
       {
         path: '/able/canvas',
         name: 'canvasPage',
-        component: '/able/canvas/index',
+        element: '/able/canvas/index',
         meta: {
           title: 'canvas'
         }
@@ -222,7 +222,7 @@ export const menuList = [
       {
         path: '/able/table',
         name: 'infiniteScrollTable',
-        component: '/able/infiniteScroll',
+        element: '/able/infiniteScroll',
         meta: {
           title: '表格无限滚动'
         }
@@ -230,7 +230,7 @@ export const menuList = [
       {
         path: '/able/contextMenu',
         name: 'contextMenu',
-        component: '/able/contextMenu',
+        element: '/able/contextMenu',
         meta: {
           title: '右键菜单'
         }
@@ -238,7 +238,7 @@ export const menuList = [
       {
         path: '/able/fileDownload',
         name: 'fileDownload',
-        component: '/able/fileDownload',
+        element: '/able/fileDownload',
         meta: {
           title: '文件下载'
         }
@@ -246,7 +246,7 @@ export const menuList = [
       {
         path: '/able/waterMark',
         name: 'waterMark',
-        component: '/able/waterMark',
+        element: '/able/waterMark',
         meta: {
           title: '水印'
         }
@@ -264,7 +264,7 @@ export const menuList = [
       {
         path: '/systemManage/account',
         name: 'systemManageAccount',
-        component: '/systemManage/account/index',
+        element: '/systemManage/account/index',
         meta: {
           title: '账号管理'
         },
@@ -272,7 +272,7 @@ export const menuList = [
           {
             path: '/systemManage/account/page1',
             name: 'systemManageAccountPage1',
-            component: '/systemManage/account/childs/page1',
+            element: '/systemManage/account/childs/page1',
             meta: {
               title: '子页面1',
               showInMenu: false
@@ -281,7 +281,7 @@ export const menuList = [
               {
                 path: '/systemManage/account/pageOuter',
                 name: 'systemManageAccountPageOuter',
-                component: '/systemManage/account/childs/pageOuter',
+                element: '/systemManage/account/childs/pageOuter',
                 meta: {
                   title: '嵌套最外层子页面-Outer',
                   showInMenu: false
@@ -294,7 +294,7 @@ export const menuList = [
       {
         path: '/systemManage/user',
         name: 'systemManageUser',
-        component: '/systemManage/user/index',
+        element: '/systemManage/user/index',
         meta: {
           title: '用户管理'
         }
@@ -302,7 +302,7 @@ export const menuList = [
       {
         path: '/systemManage/role',
         name: 'systemManageRole',
-        component: '/systemManage/role/index',
+        element: '/systemManage/role/index',
         meta: {
           title: '角色管理'
         }
@@ -310,7 +310,7 @@ export const menuList = [
       {
         path: '/systemManage/menu',
         name: 'systemManageMenu',
-        component: '/systemManage/menu/index',
+        element: '/systemManage/menu/index',
         meta: {
           title: '菜单管理'
         }
@@ -328,7 +328,7 @@ export const menuList = [
       {
         path: '/menu/menu1',
         name: 'menu1',
-        component: '/menu/menu1/index',
+        element: '/menu/menu1/index',
         meta: {
           title: '菜单1'
         }
@@ -343,7 +343,7 @@ export const menuList = [
           {
             path: '/menu/menu2/menu21',
             name: 'menu21',
-            component: '/menu/menu2/menu21/index',
+            element: '/menu/menu2/menu21/index',
             meta: {
               title: '菜单2-1'
             }
@@ -358,7 +358,7 @@ export const menuList = [
               {
                 path: '/menu/menu2/menu22/menu221',
                 name: 'menu221',
-                component: '/menu/menu2/menu22/menu221/index',
+                element: '/menu/menu2/menu22/menu221/index',
                 meta: {
                   title: '菜单2-2-1'
                 }
@@ -366,7 +366,7 @@ export const menuList = [
               {
                 path: '/menu/menu2/menu22/menu222',
                 name: 'menu222',
-                component: '/menu/menu2/menu22/menu222/index',
+                element: '/menu/menu2/menu22/menu222/index',
                 meta: {
                   title: '菜单2-2-2'
                 }
@@ -376,7 +376,7 @@ export const menuList = [
           {
             path: '/menu/menu2/menu23',
             name: 'menu23',
-            component: '/menu/menu2/menu23/index',
+            element: '/menu/menu2/menu23/index',
             meta: {
               title: '菜单2-3'
             }
@@ -386,7 +386,7 @@ export const menuList = [
       {
         path: '/menu/menu3',
         name: 'menu3',
-        component: '/menu/menu3/index',
+        element: '/menu/menu3/index',
         meta: {
           title: '菜单3'
         }
@@ -404,7 +404,7 @@ export const menuList = [
       {
         path: '/error/403',
         name: 'Error403',
-        component: '/error/403',
+        element: '/error/403',
         meta: {
           title: '403'
         }
@@ -412,7 +412,7 @@ export const menuList = [
       {
         path: '/error/404',
         name: 'Error404',
-        component: '/error/404',
+        element: '/error/404',
         meta: {
           title: '404'
         }
@@ -430,7 +430,7 @@ export const menuList = [
       {
         path: '/link/vue',
         name: 'vue',
-        component: '/iframeView',
+        element: '/iframeView',
         meta: {
           title: 'Vue官方文档 ( 内嵌 )',
           iframeSrc: 'https://cn.vuejs.org/guide/introduction.html',
@@ -440,7 +440,7 @@ export const menuList = [
       {
         path: '/link/bing',
         name: 'bing',
-        component: '/iframeView',
+        element: '/iframeView',
         meta: {
           title: '必应 ( 内嵌 )',
           iframeSrc: 'https://cn.bing.com/',
@@ -450,7 +450,7 @@ export const menuList = [
       {
         path: '/link/checkPdf',
         name: 'linkCheckPdf',
-        component: '/iframeView',
+        element: '/iframeView',
         meta: {
           title: '查看PDF ( 内嵌 )',
           iframeSrc: 'http://static.shanhuxueyuan.com/test.pdf',

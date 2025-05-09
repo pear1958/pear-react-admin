@@ -30,9 +30,7 @@ export const getFormatRouter = (flatMenuList: MenuList) => {
       item.element = <RouterGuard>{Component}</RouterGuard>
     }
 
-    item.loader = () => {
-      return { ...item.meta, redirect: !!item.redirect };
-    };
+    item.loader = () => item.meta
 
     return item
   })

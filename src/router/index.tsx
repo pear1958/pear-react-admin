@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import useMessage from '@/hooks/useMessage'
 import { useAuthStore, useUserStore } from '@/store'
+import { getFormatRouter } from './utils'
+import { staticRouter } from './modules/staticRouter'
 
 const getAuthData = (callback?: Function) => {
   const getMenuList = useAuthStore(state => state.getMenuList)
@@ -22,8 +24,8 @@ const getAuthData = (callback?: Function) => {
 
 const Router: React.FC = () => {
   useMessage()
-  const [authReqed, setAuthReqed] = useState(false)
   const [routes, setRoutes] = useState([])
+  const [authReqed, setAuthReqed] = useState(false)
   const token = useUserStore(state => state.token)
   const menuList = useAuthStore(state => state.menuList)
 
@@ -33,11 +35,18 @@ const Router: React.FC = () => {
       getAuthData(() => setAuthReqed(true))
       return
     }
+
     // 获取到数据以后继续执行以下逻辑
     const flatMenuList = useAuthStore(state => state.flatMenuList)
+
+    const dynamicRouter = getFormatRouter(flatMenuList)
+    const allRouter = [...staticRouter, ...dynamicRouter]
+    allRouter.forEach(item => item.path === '*' && (item.element = <div>404</div>))
+
+    setRoutes(allRouter)
   }, [authReqed])
 
-  return <RouterProvider />
+  return <RouterProvider router={createBrowserRouter(routes)} />
 }
 
 export default Router
