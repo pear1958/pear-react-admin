@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Pear-React-Admin</title>
   </head>
   <body>
     <div id="root">
@@ -40,7 +40,7 @@
           display: inline-block;
           width: 14px;
           height: 14px;
-          background-color: #409eff;
+          background-color: #e61010;
           border-radius: 100%;
           opacity: 0.3;
           transform: scale(0.75);
@@ -95,8 +95,8 @@
 
       <script>
         // 保持和主题相同的Loading
-        const primary = JSON.parse(localStorage.getItem('pear-system'))?.primary // String || undefined
-        const isDark = JSON.parse(localStorage.getItem('pear-system'))?.isDark // Boolean || undefined
+        const primary = JSON.parse(localStorage.getItem('pear-system'))?.state?.primary // String || undefined
+        const isDark = JSON.parse(localStorage.getItem('pear-system'))?.state?.isDark // Boolean || undefined
         const html = document.querySelector('html')
         const dot = document.querySelectorAll('.dot i')
         if (isDark) {

@@ -1,15 +1,9 @@
-import React, { Suspense, useEffect } from 'react'
-import { Loading } from '../Loading'
-import NProgress from '@/config/nprogress'
+import React, { Suspense } from 'react'
+import { PageLoading } from '../Loading'
 
 const Lazy = (Component: React.LazyExoticComponent<React.ComponentType>) => {
-  useEffect(() => {
-    NProgress.start()
-    return () => NProgress.done()
-  }, [])
-
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<PageLoading />}>
       <Component />
     </Suspense>
   )

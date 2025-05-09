@@ -9,7 +9,7 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
     persist(
       set => ({
         isDark: false,
-        primary: '#1677ff',
+        primary: '#e61010',
         componentSize: 'middle',
         compactAlgorithm: false,
         borderRadius: 6,

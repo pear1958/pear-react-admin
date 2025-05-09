@@ -26,7 +26,7 @@ class Http {
     // 请求拦截器
     this.service.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
-        const { token } = useUserStore()
+        const token = useUserStore.getState().token
 
         // showLoading: 默认为false, 即不显示全局Loading
         config.showLoading && showFullScreenLoading()

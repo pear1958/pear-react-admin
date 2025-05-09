@@ -21,7 +21,7 @@ export const useAuthStore = createWithEqualityFn<AuthStore>()(
         buttonData: null,
         // 当前页面的 route name, 用来做按钮权限筛选
         curRouteName: '',
-        getMenuList() {
+        getMenuList: () => {
           return new Promise((resolve, reject) => {
             getMenuList()
               .then(data => {
