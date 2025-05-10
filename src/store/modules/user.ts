@@ -14,7 +14,8 @@ export const useUserStore = createWithEqualityFn<UserStore>()(
         setToken: token =>
           set((state: UserState) => {
             state.token = token
-            localStorage.setItem('token', token)
+            if (token) localStorage.setItem('token', token)
+            else localStorage.removeItem(token)
           }),
         getUserInfo: async () => {
           return new Promise((resolve, reject) => {

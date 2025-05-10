@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
+import { Button } from 'antd'
 import { HOME_URL } from '@/config/constant'
 import { useUserStore } from '@/store'
 import './index.less'
-import { Button } from 'antd'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -15,8 +15,10 @@ const Login = () => {
   }
 
   return (
-    <div className="login-btn" >
-      <Button type="primary" onClick={handleLogin}>登录</Button>
+    <div className="login-btn">
+      <Button type="primary" onClick={handleLogin}>
+        登录
+      </Button>
     </div>
   )
 }

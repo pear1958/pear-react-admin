@@ -21,8 +21,11 @@ export const getFormatRouter = (flatMenuList: MenuList) => {
   const dynamicRouter: Recordable[] = [{ element: <Layout />, children: [] }]
 
   const newMenuList = flatMenuList.map(item => {
+    // const item = cloneDeep(flatItem)
+
     item.children && delete item.children
 
+    // eg: 简写路由重定向到第一个子路由
     if (item.redirect) item.element = <Navigate to={item.redirect} />
 
     if (item.element && typeof item.element == 'string') {

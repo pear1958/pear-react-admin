@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { cloneDeep } from 'lodash-es'
 import useMessage from '@/hooks/useMessage'
+import useAuth from '@/hooks/useAuth'
 import { useAuthStore, useUserStore } from '@/store'
 import { getFormatRouter } from './utils'
 import { staticRouter } from './modules/staticRouter'
@@ -11,35 +13,21 @@ const Router: React.FC = () => {
   const [authReqed, setAuthReqed] = useState(false)
   const token = useUserStore(state => state.token)
   const menuList = useAuthStore(state => state.menuList)
-
-  const getMenuList = useAuthStore(state => state.getMenuList)
-  const getButtonData = useAuthStore(state => state.getButtonData)
   const flatMenuList = useAuthStore(state => state.flatMenuList)
-  const getUserInfo = useUserStore(state => state.getUserInfo)
+  const { initAuth } = useAuth(() => setAuthReqed(true))
 
-  const getAuthData = () => {
-    return new Promise((resolve, reject) => {
-      Promise.all([getMenuList(), getButtonData(), getUserInfo()])
-        .then(([res1, res2, res3]) => {
-          setAuthReqed(true)
-          resolve(!res1 || !res2 || !res3 ? false : true)
-        })
-        .catch(err => {
-          console.log('err', err)
-          reject(false)
-        })
-    })
-  }
-
+  // 刷新页面时, 没有菜单数据
   if (token && !menuList.length) {
-    getAuthData()
+    initAuth()
   }
 
   // 会执行两次
   useEffect(() => {
     // 获取到数据以后继续执行以下逻辑
-    const dynamicRouter = getFormatRouter(flatMenuList)
+    const dynamicRouter = getFormatRouter(cloneDeep(flatMenuList))
+
     const allRouter = [...staticRouter, ...dynamicRouter]
+
     allRouter.forEach(item => item.path === '*' && (item.element = <div>404</div>))
 
     console.log('allRouter', allRouter)
