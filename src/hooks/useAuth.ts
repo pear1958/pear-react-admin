@@ -1,31 +1,46 @@
-import { useNavigate } from 'react-router-dom'
 import { useAuthStore, useUserStore } from '@/store'
-import { LOGIN_URL } from '@/config/constant'
+import { getButtonData, getMenuList } from '@/api/modules/auth'
+import { getUserInfo } from '@/api/modules/user'
+import { notification } from '@/hooks/useMessage'
+import { removeToken } from '@/utils/auth'
 
-const useAuth = (callback: Function) => {
-  // const navigate = useNavigate()
-  const getMenuList = useAuthStore(state => state.getMenuList)
-  const getButtonData = useAuthStore(state => state.getButtonData)
-  const getUserInfo = useUserStore(state => state.getUserInfo)
-  const setToken = useUserStore(state => state.setToken)
+const useAuth = () => {
+  const { setMenuList, setButtonData } = useAuthStore(state => ({
+    setMenuList: state.setMenuList,
+    setButtonData: state.setButtonData
+  }))
+  const setUserInfo = useUserStore(state => state.setUserInfo)
 
-  const handleError = () => {
-    setToken(null)
-    console.log('handleError')
-    // navigate(LOGIN_URL, { replace: true })
-  }
+  const initAuth = () =>
+    new Promise((resolve, reject) => {
+      const handleError = () => {
+        removeToken()
+        reject(false)
+      }
+      Promise.all([getMenuList(), getButtonData(), getUserInfo()])
+        .then(([menuList, buttonData, userInfo]) => {
+          if (!menuList?.length) {
+            notification.warning({
+              message: '无权限访问',
+              description: '当前账号无任何菜单权限，请联系系统管理员！'
+            })
+            handleError()
+          }
 
-  const initAuth = () => {
-    Promise.all([getMenuList(), getButtonData(), getUserInfo()])
-      .then(([res1, res2, res3]) => {
-        if (res1 && res2 && res3) callback && callback()
-        else handleError()
-      })
-      .catch(err => {
-        console.log('err', err)
-        handleError()
-      })
-  }
+          if (menuList?.length && buttonData && userInfo) {
+            setButtonData(buttonData)
+            setUserInfo(userInfo)
+            setMenuList(menuList)
+            resolve(true)
+          } else {
+            handleError()
+          }
+        })
+        .catch(err => {
+          console.log('err', err)
+          reject(false)
+        })
+    })
 
   return { initAuth }
 }

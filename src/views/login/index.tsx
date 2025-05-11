@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 import { HOME_URL } from '@/config/constant'
-import { useUserStore } from '@/store'
+import useAuth from '@/hooks/useAuth'
+import { setToken } from '@/utils/auth'
 import './index.less'
 
 const Login = () => {
   const navigate = useNavigate()
-  const setToken = useUserStore(state => state.setToken)
+  const { initAuth } = useAuth()
 
-  const handleLogin = () => {
-    console.log('点击登录')
-    setToken('dpoawjdmvfmdawld')
+  const handleLogin = async () => {
+    setToken(`${Math.random()}`)
+    await initAuth()
     navigate(HOME_URL)
   }
 

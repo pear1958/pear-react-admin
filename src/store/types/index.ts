@@ -17,13 +17,10 @@ export interface SystemAction {
 export type SystemStore = SystemState & SystemAction
 
 export interface UserState {
-  token: string
   userInfo: Recordable | null
 }
 
 export interface UserAction {
-  setToken: (token: UserState['token']) => void
-  getUserInfo: () => Promise<boolean>
   setUserInfo: (userInfo: UserState['userInfo']) => void
 }
 
@@ -38,9 +35,7 @@ export interface AuthState {
 }
 
 export interface AuthAction {
-  getMenuList: () => Promise<boolean>
   setMenuList: (menuList: AuthState['menuList']) => void
-  getButtonData: () => Promise<boolean>
   setButtonData: (data: AuthState['buttonData']) => void
 }
 

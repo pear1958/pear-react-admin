@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom'
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/constant'
-import { useUserStore } from '@/store'
+import { getToken } from '@/utils/auth'
 
 const RouterGuard = ({ children }) => {
   const navigate = useNavigate()
   const meta = useLoaderData()
   const { pathname } = useLocation()
-  const token = useUserStore(state => state.token)
+  const token = getToken()
   const isLogin = pathname === LOGIN_URL
 
   if (!window.$navigate) {
@@ -15,6 +15,8 @@ const RouterGuard = ({ children }) => {
   }
 
   useEffect(() => {
+    console.log('RouterGuard-Effect')
+
     if (meta) {
       const title = import.meta.env.VITE_TITLE
       document.title = meta.title ? `${meta.title} - ${title}` : title

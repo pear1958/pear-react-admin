@@ -1,7 +1,7 @@
-import { Spin } from 'antd'
-import './index.less'
 import { useEffect } from 'react'
+import { Spin } from 'antd'
 import NProgress from '@/config/nprogress'
+import './index.less'
 
 export const Loading = () => (
   <div className="loading-box">

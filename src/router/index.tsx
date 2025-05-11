@@ -3,26 +3,37 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { cloneDeep } from 'lodash-es'
 import useMessage from '@/hooks/useMessage'
 import useAuth from '@/hooks/useAuth'
-import { useAuthStore, useUserStore } from '@/store'
+import { useAuthStore } from '@/store'
 import { getFormatRouter } from './utils'
 import { staticRouter } from './modules/staticRouter'
+import { getToken } from '@/utils/auth'
 
 const Router: React.FC = () => {
   useMessage()
   const [routeList, setRouteList] = useState<Recordable[]>(staticRouter)
-  const [authReqed, setAuthReqed] = useState(false)
-  const token = useUserStore(state => state.token)
-  const menuList = useAuthStore(state => state.menuList)
-  const flatMenuList = useAuthStore(state => state.flatMenuList)
-  const { initAuth } = useAuth(() => setAuthReqed(true))
+  const { initAuth } = useAuth()
 
-  // 刷新页面时, 没有菜单数据
-  if (token && !menuList.length) {
-    initAuth()
-  }
+  const { menuList, flatMenuList } = useAuthStore(state => ({
+    menuList: state.menuList,
+    flatMenuList: state.flatMenuList
+  }))
+
+  const token = getToken()
+
+  console.log('路由挂载重渲染')
 
   // 会执行两次
   useEffect(() => {
+    console.log('路由挂载effect', token)
+
+    if (!token) return
+
+    // 刷新页面时, 没有菜单数据
+    if (token && !menuList.length) {
+      initAuth()
+      return
+    }
+
     // 获取到数据以后继续执行以下逻辑
     const dynamicRouter = getFormatRouter(cloneDeep(flatMenuList))
 
@@ -33,7 +44,7 @@ const Router: React.FC = () => {
     console.log('allRouter', allRouter)
 
     setRouteList(allRouter)
-  }, [authReqed])
+  }, [menuList])
 
   return <RouterProvider router={createBrowserRouter(routeList)} />
 }
