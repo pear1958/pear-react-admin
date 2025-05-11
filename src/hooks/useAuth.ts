@@ -28,10 +28,13 @@ const useAuth = () => {
           }
 
           if (menuList?.length && buttonData && userInfo) {
-            setButtonData(buttonData)
-            setUserInfo(userInfo)
-            setMenuList(menuList)
-            resolve(true)
+            setTimeout(() => {
+              // console.log('---------------------')
+              setButtonData(buttonData)
+              setUserInfo(userInfo)
+              setMenuList(menuList)
+              resolve(true)
+            }, 1.5 * 1000)
           } else {
             handleError()
           }

@@ -20,15 +20,16 @@ const Router: React.FC = () => {
 
   const token = getToken()
 
-  console.log('路由挂载重渲染')
+  // console.log('路由挂载重渲染')
 
   // 会执行两次
   useEffect(() => {
-    console.log('路由挂载effect', token)
+    // console.log('路由挂载effect', token)
 
     if (!token) return
 
     // 刷新页面时, 没有菜单数据
+    // 加载期间会走到 path: '*' -> <Loading />
     if (token && !menuList.length) {
       initAuth()
       return
@@ -41,7 +42,7 @@ const Router: React.FC = () => {
 
     allRouter.forEach(item => item.path === '*' && (item.element = <div>404</div>))
 
-    console.log('allRouter', allRouter)
+    // console.log('allRouter', allRouter)
 
     setRouteList(allRouter)
   }, [menuList])

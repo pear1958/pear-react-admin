@@ -15,7 +15,7 @@ const RouterGuard = ({ children }) => {
   }
 
   useEffect(() => {
-    console.log('RouterGuard-Effect')
+    // console.log('RouterGuard-Effect')
 
     if (meta) {
       const title = import.meta.env.VITE_TITLE

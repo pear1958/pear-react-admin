@@ -19,7 +19,11 @@ export const list = [
   // Set <Loading /> here first to prevent page refresh 404
   {
     path: '*',
-    element: <Loading />
+    element: (
+      <div style={{ height: '100vh' }}>
+        <Loading />
+      </div>
+    )
   }
 ]
 
