@@ -10,7 +10,7 @@ const LayoutClassic = () => {
       <Header />
       <div className="classic">
         <Menu />
-        <div className="flex-1">{outlet}</div>
+        <div className="flex-1 p-4">{outlet}</div>
       </div>
     </div>
   )

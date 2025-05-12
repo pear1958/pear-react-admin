@@ -1,8 +1,17 @@
 export const getMockInsData = (params: Recordable) => {
+  const mockStatus = ['all', 'open', 'processing', 'closed']
+
   return new Array(params.pageSize).fill('').map((_, index) => {
     return {
-      index,
+      index: index + 1,
       id: Math.random(),
+      title: '张三',
+      status: mockStatus[index] ?? 'all',
+      introduce:
+        'https://pro-components.antdigital.dev/components/table?tab=api&current=1&pageSize=5',
+      individualText:
+        '路虽远, 行则将至, 的【陪娃尽快安居网【 金达旺【就看到【啊我觉得【【未打卡肯定啊我看到',
+      created_at: '2025-02-22T00:00:00+0800',
       shopId: null,
       shopName: '投保测试4S店',
       benefitKey: 'SXX_2',
@@ -17,9 +26,7 @@ export const getMockInsData = (params: Recordable) => {
       vehicleRegisterDate: '2025-02-21T00:00:00+0800',
       vehiclePurchasePrice: 20,
       vehicleInvoiceDate: '2025-02-21T00:00:00+0800',
-      status: 'INSURE_SUCCESS',
-      insureTime: '2025-02-21T13:45:53+0800',
-      effectDate: '2025-02-22T00:00:00+0800'
+      insureTime: '2025-02-21T13:45:53+0800'
     }
   })
 }
