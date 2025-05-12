@@ -8,6 +8,7 @@ export interface SystemState {
   compactAlgorithm: boolean
   borderRadius: number
   language: LanguageType
+  accordion: boolean
 }
 
 export interface SystemAction {

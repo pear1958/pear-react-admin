@@ -14,6 +14,7 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
         compactAlgorithm: false,
         borderRadius: 6,
         language: null, // 默认为浏览器的默认语言
+        accordion: true,
         setSystemState: (key, value) =>
           set((state: SystemState) => {
             state[key] = value

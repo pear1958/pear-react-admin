@@ -1,13 +1,25 @@
 // nprogress样式
 #nprogress .bar {
-  background: #E61010 !important;
+  background: #e61010 !important;
 }
-
 #nprogress .spinner-icon {
-  border-top-color: #E61010 !important;
-  border-left-color: #E61010 !important;
+  border-top-color: #e61010 !important;
+  border-left-color: #e61010 !important;
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #e61010, 0 0 5px #e61010 !important;
 }
 
-#nprogress .peg {
-  box-shadow: 0 0 10px #E61010, 0 0 5px #E61010 !important;
+// 修改默认的滚动条颜色
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  // background-color: var(--hooks-scrollbarThumb);
+  background-color: #334353;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
