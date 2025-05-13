@@ -41,3 +41,22 @@ export interface AuthAction {
 }
 
 export type AuthStore = AuthState & AuthAction
+
+export interface TabItem {
+  title: string
+  path: string
+  closable: boolean
+}
+
+export type TabList = TabItem[]
+
+export interface TabsState {
+  tabsList: TabList
+}
+
+export interface TabsAction {
+  addTab: (tab: TabItem) => void
+  setTabsList: (tabsList: TabsState['tabsList']) => void
+}
+
+export type TabsStore = TabsState & TabsAction

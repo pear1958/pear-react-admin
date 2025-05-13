@@ -143,7 +143,8 @@ const columns: ProColumns<TableListItem>[] = [
       }
 
       return defaultRender(_)
-    }
+    },
+    colSize: 2
   },
   {
     title: '操作',
@@ -177,7 +178,7 @@ const customSearchTable = () => {
         }}
         search={{
           defaultCollapsed: false,
-          span,
+          // span,
           labelWidth: 'auto'
         }}
         editable={{
