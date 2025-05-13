@@ -19,9 +19,10 @@ const Tabs: React.FC = () => {
   const { redirect, title = '' } = meta as Recordable
 
   const flatMenuList = useAuthStore(state => state.flatMenuList)
-  const { tabsList, addTab } = useTabsStore(state => ({
+  const { tabsList, addTab, removeTab } = useTabsStore(state => ({
     tabsList: state.tabsList,
-    addTab: state.addTab
+    addTab: state.addTab,
+    removeTab: state.removeTab
   }))
 
   useEffect(() => initTabs(), [])
@@ -67,9 +68,11 @@ const Tabs: React.FC = () => {
     navigate(path)
   }
 
+  // 新增或编辑
   const onEdit = (targetKey: TargetKey, action: 'add' | 'remove') => {
     if (action === 'remove') {
-      // removeTab(targetKey, targetKey == path)
+      const isCurrent = targetKey == path
+      removeTab(targetKey as string, isCurrent)
     }
   }
 
@@ -79,6 +82,7 @@ const Tabs: React.FC = () => {
         type="editable-card"
         activeKey={path}
         items={items}
+        onEdit={onEdit}
         onChange={onChange}
         renderTabBar={renderTabBar}
       />

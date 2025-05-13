@@ -56,6 +56,7 @@ export interface TabsState {
 
 export interface TabsAction {
   addTab: (tab: TabItem) => void
+  removeTab: (path: string, isCurrent: boolean) => void
   setTabsList: (tabsList: TabsState['tabsList']) => void
 }
 
