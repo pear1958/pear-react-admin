@@ -61,30 +61,34 @@ const useColumns = () => {
       title: '操作',
       key: 'option',
       align: 'center',
-      render: (text, record, _, action) => (
-        <div className="flex-c gap-3">
-          <a
-            key="editable"
-            onClick={() => {
-              action?.startEditable?.(record.id)
-            }}
-          >
-            编辑
-          </a>
-          <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
-            查看
-          </a>
-          <TableDropdown
-            key="actionGroup"
-            // name="更多"
-            onSelect={() => action?.reload()}
-            menus={[
-              { key: 'copy', name: '复制' },
-              { key: 'delete', name: '删除' }
-            ]}
-          />
-        </div>
-      )
+      render: (text, record, index, action) => {
+        // console.log('action', action)
+        return (
+          <div className="flex-c gap-3">
+            <a
+              key="editable"
+              onClick={() => {
+                action?.startEditable?.(record.id)
+              }}
+            >
+              编辑
+            </a>
+            <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+              查看
+            </a>
+            <TableDropdown
+              key="actionGroup"
+              onSelect={() => action?.reload()}
+              menus={[
+                { key: 'copy', name: '复制' },
+                { key: 'delete', name: '删除' }
+              ]}
+            >
+              更多
+            </TableDropdown>
+          </div>
+        )
+      }
     }
   ]
 

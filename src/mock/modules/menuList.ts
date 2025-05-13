@@ -33,6 +33,14 @@ export const menuList = [
         }
       },
       {
+        path: '/components/customSearchTable',
+        name: 'customSearchTable',
+        element: '/components/customSearchTable/index',
+        meta: {
+          title: 'customSearchTable'
+        }
+      },
+      {
         path: '/components/jsxDialog',
         name: 'jsxDialog',
         element: '/components/jsxDialog',
