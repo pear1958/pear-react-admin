@@ -80,6 +80,7 @@ const Tabs: React.FC = () => {
     <div className="pear-tabs">
       <AntdTabs
         type="editable-card"
+        hideAdd
         activeKey={path}
         items={items}
         onEdit={onEdit}

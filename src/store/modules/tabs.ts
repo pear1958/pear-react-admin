@@ -26,6 +26,7 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
           set((draft: TabsState) => {
             // 不能删除的tab
             if (!draft.tabsList.find(item => item.path === path)?.closable) return
+
             // 删除当前tab -> 需要处理路由跳转
             if (isCurrent) {
               draft.tabsList.forEach((item, index) => {
@@ -34,8 +35,10 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
                 nextTab && window.$navigate(nextTab.path)
               })
             }
+
             // 实现真正删除
             draft.tabsList = draft.tabsList.filter(item => item.path !== path)
+
             if (!draft.tabsList.length) {
               window.$navigate(HOME_URL)
             }

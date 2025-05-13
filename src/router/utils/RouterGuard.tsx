@@ -8,15 +8,12 @@ const RouterGuard = ({ children }) => {
   const meta = useLoaderData()
   const { pathname } = useLocation()
   const token = getToken()
+
+  window.$navigate = navigate
+
   const isLogin = pathname === LOGIN_URL
 
-  if (!window.$navigate) {
-    window.$navigate = navigate
-  }
-
   useEffect(() => {
-    // console.log('RouterGuard-Effect')
-
     if (meta) {
       const title = import.meta.env.VITE_TITLE
       document.title = meta.title ? `${meta.title} - ${title}` : title
