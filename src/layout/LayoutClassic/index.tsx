@@ -11,9 +11,9 @@ const LayoutClassic = () => {
       <Header />
       <div className="classic">
         <Menu />
-        <div>
+        <div className="flex-1">
           <Tabs />
-          <div className="flex-1 p-4">{outlet}</div>
+          <div className="p-4">{outlet}</div>
         </div>
       </div>
     </div>
