@@ -5,6 +5,7 @@ import { useUpdateEffect } from 'ahooks'
 import { useAuthStore, useTabsStore } from '@/store'
 import './index.less'
 import useDragTab from './useDragTab'
+import MoreButton from './MoreButton'
 
 type TargetKey = string | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
 
@@ -85,6 +86,7 @@ const Tabs: React.FC = () => {
         onEdit={onEdit}
         onChange={onChange}
         renderTabBar={renderTabBar}
+        tabBarExtraContent={<MoreButton path={path} />}
       />
     </div>
   )
