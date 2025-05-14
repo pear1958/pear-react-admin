@@ -3,6 +3,8 @@ import { ExclamationCircleOutlined, PoweroffOutlined, UserOutlined } from '@ant-
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 import { useUserStore } from '@/store'
 import { modal } from '@/hooks/useMessage'
+import { logout as logoutApi } from '@/api/modules/user'
+import Breadcrumb from './components/Breadcrumb'
 import './index.less'
 
 const Header: React.FC = () => {
@@ -16,7 +18,7 @@ const Header: React.FC = () => {
       cancelText: '取消',
       maskClosable: true,
       onOk: async () => {
-        // await logoutApi();
+        await logoutApi()
         logout()
       }
     })
@@ -38,7 +40,10 @@ const Header: React.FC = () => {
 
   return (
     <div className="pear-header">
-      <div className="title">Pear物联网管理平台</div>
+      <div className="flex-c gap-4">
+        <div className="title">Pear物联网管理平台</div>
+        <Breadcrumb className="ml-2" />
+      </div>
       <Dropdown menu={{ items }}>
         {/* pr-[14px]  */}
         <div className="pl-[8px] cursor-pointer flex-c outline-none">

@@ -1,5 +1,6 @@
 import { createWithEqualityFn } from 'zustand/traditional'
 import { immer } from 'zustand/middleware/immer'
+import { devtools } from 'zustand/middleware'
 import { shallow } from 'zustand/vanilla/shallow'
 import { cloneDeep } from 'lodash-es'
 import { getFlatArr } from 'pear-common-utils'
@@ -19,23 +20,25 @@ const initialState = {
 }
 
 export const useAuthStore = createWithEqualityFn<AuthStore>()(
-  immer(set => ({
-    ...initialState,
-    setMenuList(menuList) {
-      set((state: AuthState) => {
-        state.menuList = menuList
-        state.flatMenuList = getFlatArr(menuList)
-        state.showMenuList = filterMenuList(menuList)
-      })
-    },
-    setButtonData(data) {
-      set((state: AuthState) => {
-        state.buttonData = data
-      })
-    },
-    reset() {
-      set(cloneDeep(initialState))
-    }
-  })),
+  devtools(
+    immer(set => ({
+      ...initialState,
+      setMenuList(menuList) {
+        set((state: AuthState) => {
+          state.menuList = menuList
+          state.flatMenuList = getFlatArr(menuList)
+          state.showMenuList = filterMenuList(menuList)
+        })
+      },
+      setButtonData(data) {
+        set((state: AuthState) => {
+          state.buttonData = data
+        })
+      },
+      reset() {
+        set(cloneDeep(initialState))
+      }
+    }))
+  ),
   shallow
 )

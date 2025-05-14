@@ -1,5 +1,6 @@
 import { createWithEqualityFn } from 'zustand/traditional'
 import { immer } from 'zustand/middleware/immer'
+import { devtools } from 'zustand/middleware'
 import { shallow } from 'zustand/vanilla/shallow'
 import { cloneDeep } from 'lodash-es'
 import { UserState, UserStore } from '../types'
@@ -14,26 +15,28 @@ const initialState = {
 }
 
 export const useUserStore = createWithEqualityFn<UserStore>()(
-  immer((set, get) => ({
-    ...initialState,
-    setUserInfo(userInfo) {
-      set((state: UserState) => {
-        state.userInfo = userInfo
-      })
-    },
-    logout() {
-      removeToken()
-      window.$navigate(LOGIN_URL, { replace: true })
-      message.success('退出成功')
-      setTimeout(() => {
-        get().reset()
-        useAuthStore.getState().reset()
-        useTabsStore.getState().reset()
-      }, 100)
-    },
-    reset() {
-      set(cloneDeep(initialState))
-    }
-  })),
+  devtools(
+    immer((set, get) => ({
+      ...initialState,
+      setUserInfo(userInfo) {
+        set((state: UserState) => {
+          state.userInfo = userInfo
+        })
+      },
+      logout() {
+        removeToken()
+        window.$navigate(LOGIN_URL, { replace: true })
+        message.success('退出成功')
+        setTimeout(() => {
+          get().reset()
+          useAuthStore.getState().reset()
+          useTabsStore.getState().reset()
+        }, 100)
+      },
+      reset() {
+        set(cloneDeep(initialState))
+      }
+    }))
+  ),
   shallow
 )

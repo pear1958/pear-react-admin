@@ -14,10 +14,13 @@ const Menu = () => {
     accordion: state.accordion
   }))
 
-  const { showMenuList, flatMenuList } = useAuthStore(state => ({
-    showMenuList: state.showMenuList,
-    flatMenuList: state.flatMenuList
-  }))
+  const { showMenuList, flatMenuList } = useAuthStore(state => {
+    console.log('state1', state)
+    return {
+      showMenuList: state.showMenuList,
+      flatMenuList: state.flatMenuList
+    }
+  })
 
   // 当前展开的 SubMenu 菜单项 key 数组
   const [openKeys, setOpenKeys] = useState<string[]>([])
