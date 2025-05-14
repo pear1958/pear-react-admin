@@ -14,14 +14,26 @@ const Home = () => {
     window.$navigate(url)
   }
 
+  const data = Array(120)
+    .fill('')
+    .map(_ => Math.random())
+
   return (
-    <div>
-      <Button onClick={handleClick} type="primary">
-        测试
-      </Button>
-      <Button onClick={handleClick2} type="primary">
-        测试2
-      </Button>
+    <div className="page-box">
+      <div>
+        <Button onClick={handleClick} type="primary">
+          测试
+        </Button>
+        <Button onClick={handleClick2} type="primary" className="ml-3">
+          测试2
+        </Button>
+      </div>
+
+      <div className="mt-3">
+        {data.map(_ => (
+          <div key={_}>{_}</div>
+        ))}
+      </div>
     </div>
   )
 }

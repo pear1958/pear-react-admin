@@ -1,19 +1,25 @@
 import { useEffect } from 'react'
-import { useLoaderData, useLocation, useNavigate } from 'react-router-dom'
+import { useLoaderData, useLocation, useMatches, useNavigate } from 'react-router-dom'
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/constant'
 import { getToken } from '@/utils/auth'
 
 const RouterGuard = ({ children }) => {
   const navigate = useNavigate()
-  const meta = useLoaderData()
+  const matches = useMatches()
   const { pathname } = useLocation()
+  const meta = useLoaderData()
   const token = getToken()
 
   window.$navigate = navigate
 
   const isLogin = pathname === LOGIN_URL
 
+  console.log('1111111')
+
+  // bug: 有token 访问登录页 登录页会闪动一下
   useEffect(() => {
+    console.log('2222222')
+
     if (meta) {
       const title = import.meta.env.VITE_TITLE
       document.title = meta.title ? `${meta.title} - ${title}` : title
@@ -32,7 +38,7 @@ const RouterGuard = ({ children }) => {
       navigate(LOGIN_URL, { replace: true })
       return
     }
-  }, [])
+  }, [matches])
 
   return children
 }

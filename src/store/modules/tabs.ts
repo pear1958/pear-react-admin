@@ -1,28 +1,33 @@
 import { createWithEqualityFn } from 'zustand/traditional'
 import { immer } from 'zustand/middleware/immer'
-import { persist } from 'zustand/middleware'
+import { createJSONStorage, persist } from 'zustand/middleware'
 import { shallow } from 'zustand/shallow'
+import { cloneDeep } from 'lodash-es'
 import { TabsState, TabsStore } from '../types'
 import { HOME_URL } from '@/config/constant'
+
+const initialState = {
+  tabsList: []
+}
 
 export const useTabsStore = createWithEqualityFn<TabsStore>()(
   immer(
     persist(
       set => ({
-        tabsList: [],
-        addTab: tab => {
+        ...initialState,
+        addTab(tab) {
           set((draft: TabsState) => {
             if (draft.tabsList.every(item => item.path !== tab.path)) {
               draft.tabsList.push(tab)
             }
           })
         },
-        setTabsList: tabsList => {
+        setTabsList(tabsList) {
           set((draft: TabsState) => {
             draft.tabsList = tabsList
           })
         },
-        removeTab: (path, isCurrent) => {
+        removeTab(path, isCurrent) {
           set((draft: TabsState) => {
             // 不能删除的tab
             if (!draft.tabsList.find(item => item.path === path)?.closable) return
@@ -43,11 +48,17 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
               window.$navigate(HOME_URL)
             }
           })
+        },
+        reset() {
+          set(cloneDeep(initialState))
+          // useTabsStore.persist.clearStorage()
+          sessionStorage.clear()
         }
       }),
       {
         name: 'pear-tabs',
-        version: 1.0
+        version: 1.0,
+        storage: createJSONStorage(() => sessionStorage)
       }
     )
   ),

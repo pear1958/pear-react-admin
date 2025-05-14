@@ -4,8 +4,8 @@ import { httpResEnum } from '@/enums/httpEnum'
 import { checkStatus } from './utils/checkStatus'
 import { Config, CustomAxiosRequestConfig } from './types'
 import { showFullScreenLoading, hideFullScreenLoading } from '@/components/Loading/fullScreen'
-import { useUserStore } from '@/store'
 import { LOGIN_URL } from '@/config/constant'
+import { getToken, setToken } from '@/utils/auth'
 
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -26,7 +26,7 @@ class Http {
     // 请求拦截器
     this.service.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
-        const token = useUserStore.getState().token
+        const token = getToken()
 
         // showLoading: 默认为false, 即不显示全局Loading
         config.showLoading && showFullScreenLoading()
@@ -59,7 +59,7 @@ class Http {
         // token过期
         if (data.code == httpResEnum.OVERDUE) {
           message.error(data.msg)
-          useUserStore().setToken(null)
+          setToken(null)
           window.$navigate(LOGIN_URL)
           return Promise.reject(data)
         }

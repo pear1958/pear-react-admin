@@ -1,6 +1,10 @@
 export type ComponentSize = 'small' | 'middle' | 'large'
 export type LanguageType = 'zh' | 'en' | null
 
+interface BaseAction {
+  reset: () => void
+}
+
 export interface SystemState {
   isDark: boolean
   primary: string
@@ -21,8 +25,9 @@ export interface UserState {
   userInfo: Recordable | null
 }
 
-export interface UserAction {
+export interface UserAction extends BaseAction {
   setUserInfo: (userInfo: UserState['userInfo']) => void
+  logout: () => void
 }
 
 export type UserStore = UserState & UserAction
@@ -35,7 +40,7 @@ export interface AuthState {
   showMenuList: Recordable[]
 }
 
-export interface AuthAction {
+export interface AuthAction extends BaseAction {
   setMenuList: (menuList: AuthState['menuList']) => void
   setButtonData: (data: AuthState['buttonData']) => void
 }
@@ -54,7 +59,7 @@ export interface TabsState {
   tabsList: TabList
 }
 
-export interface TabsAction {
+export interface TabsAction extends BaseAction {
   addTab: (tab: TabItem) => void
   removeTab: (path: string, isCurrent: boolean) => void
   setTabsList: (tabsList: TabsState['tabsList']) => void
