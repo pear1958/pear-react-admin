@@ -20,7 +20,8 @@ export function filterMenuList(menuList: MenuList) {
 export const getFormatRouter = (flatMenuList: MenuList) => {
   const dynamicRouter: Recordable[] = [{ element: <Layout />, children: [] }]
 
-  const newMenuList = flatMenuList.map(item => {
+  const newMenuList = flatMenuList.map(flatItem => {
+    const item = cloneDeep(flatItem)
     item.children && delete item.children
 
     // eg: 简写路由重定向到第一个子路由

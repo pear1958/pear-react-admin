@@ -14,12 +14,8 @@ const RouterGuard = ({ children }) => {
 
   const isLogin = pathname === LOGIN_URL
 
-  console.log('1111111')
-
   // bug: 有token 访问登录页 登录页会闪动一下
   useEffect(() => {
-    console.log('2222222')
-
     if (meta) {
       const title = import.meta.env.VITE_TITLE
       document.title = meta.title ? `${meta.title} - ${title}` : title

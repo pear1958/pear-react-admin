@@ -15,7 +15,7 @@ const Menu = () => {
   }))
 
   const { showMenuList, flatMenuList } = useAuthStore(state => {
-    console.log('state1', state)
+    // console.log('state1', state)
     return {
       showMenuList: state.showMenuList,
       flatMenuList: state.flatMenuList
