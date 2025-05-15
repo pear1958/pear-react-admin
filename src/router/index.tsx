@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import useMessage from '@/hooks/useMessage'
 import useAuth from '@/hooks/useAuth'
 import { useAuthStore } from '@/store'
 import { getFormatRouter } from './utils'
 import { staticRouter } from './modules/staticRouter'
 import { getToken } from '@/utils/auth'
+import { ERROR_404_URL } from '@/config/constant'
 
 const Router: React.FC = () => {
   useMessage()
@@ -35,7 +36,9 @@ const Router: React.FC = () => {
 
     const allRouter = [...staticRouter, ...dynamicRouter]
 
-    allRouter.forEach(item => item.path === '*' && (item.element = <div>404</div>))
+    allRouter.forEach(item => {
+      if (item.path === '*') item.element = <Navigate to={ERROR_404_URL} />
+    })
 
     setRouteList(allRouter)
   }, [menuList])
