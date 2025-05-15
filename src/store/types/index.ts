@@ -13,6 +13,7 @@ export interface SystemState {
   borderRadius: number
   language: LanguageType
   accordion: boolean
+  watermark: boolean
 }
 
 export interface SystemAction {
