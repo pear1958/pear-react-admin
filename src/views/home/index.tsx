@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
+import useAuthButton from '@/hooks/useAuthButton'
 
 const Home = () => {
   const navigate = useNavigate()
+  const { BUTTONS } = useAuthButton()
 
   const url = '/components/jsonForm'
 
@@ -21,9 +23,11 @@ const Home = () => {
   return (
     <div className="page-box">
       <div>
-        <Button onClick={handleClick} type="primary">
-          测试
-        </Button>
+        {BUTTONS.test1 && (
+          <Button onClick={handleClick} type="primary">
+            测试
+          </Button>
+        )}
         <Button onClick={handleClick2} type="primary" className="ml-3">
           测试2
         </Button>

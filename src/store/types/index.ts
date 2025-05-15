@@ -33,8 +33,8 @@ export interface UserAction extends BaseAction {
 export type UserStore = UserState & UserAction
 
 export interface AuthState {
-  curRouteName: string
-  buttonData: Recordable<string[]> | null
+  routeName: string
+  buttonData: Recordable<string[]>
   menuList: Recordable[]
   flatMenuList: Recordable[]
   showMenuList: Recordable[]
@@ -43,6 +43,7 @@ export interface AuthState {
 export interface AuthAction extends BaseAction {
   setMenuList: (menuList: AuthState['menuList']) => void
   setButtonData: (data: AuthState['buttonData']) => void
+  setRouteName: (data: AuthState['routeName']) => void
 }
 
 export type AuthStore = AuthState & AuthAction

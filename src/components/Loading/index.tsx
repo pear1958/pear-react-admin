@@ -14,10 +14,6 @@ export const Loading = ({ nprogress = false }) => {
 
 export const PageLoading = () => {
   useEffect(() => {
-    if (document.getElementById('nprogress')) {
-      NProgress.done()
-      return
-    }
     NProgress.start()
     return () => NProgress.done()
   }, [])

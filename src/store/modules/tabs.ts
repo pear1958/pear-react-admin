@@ -53,8 +53,7 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
           },
           reset() {
             set(cloneDeep(initialState))
-            // useTabsStore.persist.clearStorage()
-            sessionStorage.clear()
+            useTabsStore.persist.clearStorage()
           }
         }),
         {
