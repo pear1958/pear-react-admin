@@ -21,7 +21,7 @@ export const list = [
   {
     path: '*',
     element: (
-      <div style={{ height: '100vh' }}>
+      <div className="h-screen">
         <Loading nprogress />
       </div>
     )

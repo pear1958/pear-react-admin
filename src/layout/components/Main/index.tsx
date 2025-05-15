@@ -31,7 +31,9 @@ const Main = () => {
           exit={false}
           unmountOnExit
         >
-          <div ref={nodeRef}>{mainShow && outlet}</div>
+          <div ref={nodeRef} className="outlet-box">
+            {mainShow && outlet}
+          </div>
         </CSSTransition>
       </SwitchTransition>
     </div>
