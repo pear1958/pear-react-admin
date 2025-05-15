@@ -64,7 +64,7 @@ const Menu = () => {
   }, [matches])
 
   return (
-    <div className="menu">
+    <div className="pear-menu">
       <AntdMenu
         mode="inline"
         theme="dark"
