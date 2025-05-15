@@ -3,6 +3,12 @@ import { useLoaderData, useLocation, useMatches, useNavigate } from 'react-route
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/constant'
 import { getToken } from '@/utils/auth'
 
+// 验证以下行为即可
+// 没有 token -> 访问 Login 页
+// 没有 token -> 访问 home 页 (重定向到 Login) Bug
+// 有 token -> 访问 Login 页 (重定向到 Home)
+// 有 token -> 访问 home 页
+
 const RouterGuard = ({ children }) => {
   const navigate = useNavigate()
   const matches = useMatches()
@@ -14,7 +20,8 @@ const RouterGuard = ({ children }) => {
 
   const isLogin = pathname === LOGIN_URL
 
-  // bug: 有token 访问登录页 登录页会闪动一下
+  // useNavigate() 返回的 navigate 函数 必须在组件挂载以后调用
+  // You should call navigate() in a React.useEffect(), not when your component is first rendered.
   useEffect(() => {
     if (meta) {
       const title = import.meta.env.VITE_TITLE
@@ -30,11 +37,16 @@ const RouterGuard = ({ children }) => {
     }
 
     // 没有token进入系统, 强制退出
-    if (!token && !isLogin) {
+    if (!isLogin && !token) {
       navigate(LOGIN_URL, { replace: true })
       return
     }
   }, [matches])
+
+  // 修复bug: 有token 访问登录页 登录页会闪动一下
+  if (isLogin && token) {
+    return <></>
+  }
 
   return children
 }

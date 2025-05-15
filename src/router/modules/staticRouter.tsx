@@ -17,11 +17,12 @@ export const list = [
     }
   },
   // Set <Loading /> here first to prevent page refresh 404
+  // 动态路由还在请求的时候, 显示的组件
   {
     path: '*',
     element: (
       <div style={{ height: '100vh' }}>
-        <Loading />
+        <Loading nprogress />
       </div>
     )
   }
