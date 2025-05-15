@@ -10,7 +10,7 @@ const Error404 = () => {
       <div className="flex flex-col ml-[120px] text-base-color">
         <h2 className="text-[26px]">404</h2>
         <h4 className="mt-[25px] mb-5">抱歉, 你访问的页面不存在。</h4>
-        <Button type="primary" onClick={() => navigate(-1)}>
+        <Button type="primary" onClick={() => navigate(-2)}>
           返回
         </Button>
       </div>
