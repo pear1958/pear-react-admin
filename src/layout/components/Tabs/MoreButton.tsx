@@ -81,7 +81,7 @@ const MoreButton = ({ path }) => {
   return (
     <Dropdown menu={{ items }}>
       <div className="more-button">
-        <SvgIcon name="arrow-down" width="17px" height="17px" />
+        <SvgIcon name="arrow-down" size={21} />
       </div>
     </Dropdown>
   )
