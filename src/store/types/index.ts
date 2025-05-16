@@ -14,6 +14,7 @@ export interface SystemState {
   language: LanguageType
   accordion: boolean
   watermark: boolean
+  maximize: boolean
 }
 
 export interface SystemAction {
@@ -62,9 +63,11 @@ export interface TabsState {
 }
 
 export interface TabsAction extends BaseAction {
+  setTabsList: (tabsList: TabsState['tabsList']) => void
   addTab: (tab: TabItem) => void
   removeTab: (path: string, isCurrent: boolean) => void
-  setTabsList: (tabsList: TabsState['tabsList']) => void
+  removeTabsSide: (path: string, type: 'left' | 'right') => void
+  closeMultipleTab: (path?: string) => void
 }
 
 export type TabsStore = TabsState & TabsAction

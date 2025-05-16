@@ -32,9 +32,7 @@
       ],
     },
     "types": [
-      // "node",
-      // "vite/client",
-      // "element-plus/global",
+      "vite-plugin-svg-icons/client"
     ],
     "allowImportingTsExtensions": true
   },

@@ -10,6 +10,8 @@ import '@/styles/tailwind.css'
 import { isDev } from './utils/index.ts'
 import { startMock } from './mock/index.ts'
 
+import 'virtual:svg-icons-register'
+
 createRoot(document.getElementById('root')!).render(<App />)
 
 if (isDev) startMock()
