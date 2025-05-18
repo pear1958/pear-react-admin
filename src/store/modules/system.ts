@@ -10,6 +10,10 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
     immer(
       persist(
         set => ({
+          sideBar: {
+            isCollapse: false,
+            width: 210
+          },
           isDark: false,
           primary: '#e61010',
           componentSize: 'middle',
@@ -18,10 +22,16 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
           language: null, // 默认为浏览器的默认语言
           accordion: true,
           watermark: true,
-          maximize: false,
+          mainMaximize: false,
           setSystemState: (key, value) => {
             set((state: SystemState) => {
               state[key] = value
+            })
+          },
+          setCollapse: (isCollapse: boolean) => {
+            set((state: SystemState) => {
+              state.sideBar.isCollapse = isCollapse
+              state.sideBar.width = isCollapse ? 64 : 210
             })
           }
         }),

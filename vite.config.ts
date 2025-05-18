@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import svgr from 'vite-plugin-svgr'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { exclude, include } from './build/optimize'
 
 export default defineConfig({
   resolve: {
@@ -30,6 +31,11 @@ export default defineConfig({
       symbolId: 'icon-[dir]-[name]'
     })
   ],
+  // 解决 Vite 启动完之后首页加载慢的问题
+  optimizeDeps: {
+    include, // 启动时 预加载这些包
+    exclude
+  },
   server: {
     host: '0.0.0.0',
     open: true

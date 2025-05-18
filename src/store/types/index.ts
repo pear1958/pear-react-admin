@@ -6,6 +6,10 @@ interface BaseAction {
 }
 
 export interface SystemState {
+  sideBar: {
+    isCollapse: boolean
+    width: 64 | 210
+  }
   isDark: boolean
   primary: string
   componentSize: ComponentSize
@@ -14,11 +18,12 @@ export interface SystemState {
   language: LanguageType
   accordion: boolean
   watermark: boolean
-  maximize: boolean
+  mainMaximize: boolean
 }
 
 export interface SystemAction {
   setSystemState: <T extends keyof SystemState>(key: T, value: SystemState[T]) => void
+  setCollapse: (isCollapse: boolean) => void
 }
 
 export type SystemStore = SystemState & SystemAction

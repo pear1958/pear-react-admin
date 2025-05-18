@@ -35,10 +35,10 @@ const MoreButton = ({ path }) => {
       }
     },
     {
-      key: 'maximizeMain',
+      key: 'mainMaximize',
       label: <span>{t('tabs.maximize')}</span>,
       icon: <FullscreenOutlined />,
-      onClick: () => setSystemState('maximize', true)
+      onClick: () => setSystemState('mainMaximize', true)
     },
     {
       type: 'divider'
