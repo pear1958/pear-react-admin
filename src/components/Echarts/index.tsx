@@ -30,7 +30,11 @@ const Echarts: FC<ChartProps> = ({ ref = null, options = {}, renderer = 'canvas'
 
   useEffect(() => {
     updateChart()
-  }, [options, mainMaximize, isCollapse])
+  }, [options])
+
+  useEffect(() => {
+    resizeChart()
+  }, [mainMaximize, isCollapse])
 
   useEffect(() => {
     chart.current = echarts.init(chartRef.current, null, { renderer })
