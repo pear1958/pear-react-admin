@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import useTheme from '@/hooks/useTheme'
 import useMessage from '@/hooks/useMessage'
 import useAuth from '@/hooks/useAuth'
 import { useAuthStore } from '@/store'
@@ -8,7 +9,8 @@ import { staticRouter } from './modules/staticRouter'
 import { getToken } from '@/utils/auth'
 import { ERROR_404_URL } from '@/config/constant'
 
-const Router: React.FC = () => {
+const Router: FC = () => {
+  useTheme()
   useMessage()
   const [routeList, setRouteList] = useState<Recordable[]>(staticRouter)
   const { initAuth } = useAuth()

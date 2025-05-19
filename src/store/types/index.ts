@@ -12,9 +12,10 @@ export interface SystemState {
   }
   isDark: boolean
   primary: string
+  grayMode: boolean
+  weakMode: boolean
   componentSize: ComponentSize
   compactAlgorithm: boolean
-  borderRadius: number
   language: LanguageType
   accordion: boolean
   watermark: boolean
