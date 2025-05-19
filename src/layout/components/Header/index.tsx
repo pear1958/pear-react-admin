@@ -5,8 +5,9 @@ import { useUserStore } from '@/store'
 import { modal } from '@/hooks/useMessage'
 import { logout as logoutApi } from '@/api/modules/user'
 import Breadcrumb from './components/Breadcrumb'
-import './index.less'
 import Collapse from './components/Collapse'
+import Logo from '@/assets/imgs/logo.svg?react'
+import './index.less'
 
 const Header: React.FC = () => {
   const logout = useUserStore(state => state.logout)
@@ -42,7 +43,8 @@ const Header: React.FC = () => {
   return (
     <div className="pear-header">
       <div className="flex-c">
-        <div className="title">Pear物联网管理平台</div>
+        <Logo className="mt-[-3px]" />
+        <div className="title">梨子物联网管理平台</div>
         <Collapse className="collapse-icon" />
         <Breadcrumb className="ml-4" />
       </div>

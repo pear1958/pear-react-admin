@@ -1,4 +1,4 @@
-import { FC, useEffect, useImperativeHandle, useRef } from 'react'
+import { FC, memo, useEffect, useImperativeHandle, useRef } from 'react'
 import * as echarts from 'echarts'
 import { EChartsType } from 'echarts'
 import { useThrottleFn } from 'ahooks'
@@ -54,4 +54,4 @@ const Echarts: FC<ChartProps> = ({ ref = null, options = {}, renderer = 'canvas'
   return <div ref={chartRef} className="chart w-full h-full" />
 }
 
-export default Echarts
+export default memo(Echarts)

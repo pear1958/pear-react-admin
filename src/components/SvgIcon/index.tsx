@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 const SvgIcon = ({ name, prefix = 'icon', color = '#333', size = null, ...props }) => {
   const symbolId = `#${prefix}-${name}`
 
@@ -13,4 +15,4 @@ const SvgIcon = ({ name, prefix = 'icon', color = '#333', size = null, ...props 
   )
 }
 
-export default SvgIcon
+export default memo(SvgIcon)
