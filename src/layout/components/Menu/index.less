@@ -1,12 +1,8 @@
-.pear-sider {
+.pear-menu {
   height: 100%;
   overflow-y: auto;
-  // background-color: #001529;
+  background-color: var(--pear-menu-bg);
   transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-  // 火狐的 scrollbar-color 仅支持颜色设置，不支持圆角、阴影等更复杂的样式
-  // 会影响 -webkit-scrollbar-thumb:hover 的颜色, 不生效 to-do
-  // scrollbar-width: thin;
-  // scrollbar-color: #334353 transparent;
 
   // 修改默认的滚动条颜色
   &::-webkit-scrollbar {
@@ -14,17 +10,23 @@
     height: 6px; // 水平滚动条高度
   }
   &::-webkit-scrollbar-thumb {
-    // background-color: var(--hooks-scrollbarThumb);
-    background-color: #334353;
+    background-color: var(--pear-menu-scrollbar-thumb-bg);
     border-radius: 20px;
   }
   &::-webkit-scrollbar-track {
     background: transparent; // 轨道背景
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: #485461; // 悬停时滑块颜色
+    background: var(--pear-menu-scrollbar-thumb-hover-bg); // 悬停时滑块颜色
   }
   &::-webkit-scrollbar-corner {
     background-color: transparent;
+  }
+
+  .ant-menu {
+    background-color: var(--pear-menu-bg) !important;
+    &-sub {
+      background-color: var(--pear-sub-menu-bg) !important;
+    }
   }
 }

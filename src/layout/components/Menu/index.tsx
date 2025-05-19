@@ -66,7 +66,7 @@ const Menu = () => {
   }, [matches])
 
   return (
-    <div className="pear-sider" style={{ width: width + 'px' }}>
+    <div className="pear-menu" style={{ width: width + 'px' }}>
       <ConfigProvider
         theme={{
           components: {

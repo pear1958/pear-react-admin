@@ -3,5 +3,19 @@
   padding: 16px;
   box-sizing: border-box;
   overflow-y: auto;
-  background-color: #f0f2f5;
+  background-color: var(--pear-main-bg);
+}
+
+.dark .pear-main {
+  &::-webkit-scrollbar {
+    width: 10px; // 垂直滚动条宽度
+    height: 10px; // 水平滚动条高度
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #8b8b8b;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #2c2c2c; // 轨道背景
+  }
 }
