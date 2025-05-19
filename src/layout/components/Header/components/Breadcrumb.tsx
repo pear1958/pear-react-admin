@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { Link, useMatches } from 'react-router-dom'
 import { Breadcrumb as AntdBreadcrumb } from 'antd'
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb'
-import classNames from 'classnames'
 import { useAuthStore } from '@/store'
 
 const getBreadcrumbMap = (
@@ -17,7 +16,7 @@ const getBreadcrumbMap = (
   return result
 }
 
-const Breadcrumb = ({ className }: Recordable) => {
+const Breadcrumb = (props: Recordable) => {
   const matches = useMatches()
   const authMenuList = useAuthStore(state => state.menuList)
   const [breadcrumbList, setBreadcrumbList] = useState<ItemType[]>([])
@@ -40,10 +39,10 @@ const Breadcrumb = ({ className }: Recordable) => {
   }, [matches])
 
   return (
-    <div className={classNames('pear-breadcrumb', className)}>
+    <div {...props}>
       <AntdBreadcrumb items={breadcrumbList} />
     </div>
   )
 }
 
-export default Breadcrumb
+export default memo(Breadcrumb)

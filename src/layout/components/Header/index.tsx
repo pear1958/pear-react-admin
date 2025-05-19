@@ -6,7 +6,9 @@ import { modal } from '@/hooks/useMessage'
 import { logout as logoutApi } from '@/api/modules/user'
 import Breadcrumb from './components/Breadcrumb'
 import Collapse from './components/Collapse'
+import DarkIcon from './components/DarkIcon'
 import Logo from '@/assets/imgs/logo.svg?react'
+import Setting from './components/Setting'
 import './index.less'
 
 const Header: React.FC = () => {
@@ -45,16 +47,19 @@ const Header: React.FC = () => {
       <div className="flex-c">
         <Logo className="mt-[-3px]" />
         <div className="title">梨子物联网管理平台</div>
-        <Collapse className="collapse-icon" />
+        <Collapse className="ml-6" />
         <Breadcrumb className="ml-4" />
       </div>
-      <Dropdown menu={{ items }}>
-        {/* pr-[14px]  */}
-        <div className="pl-[8px] cursor-pointer flex-c outline-none">
-          <Avatar size={26} src={avatarUrl} />
-          <span className="pl-[5px] inline-block max-w-[100px] ellipsis">Admin</span>
-        </div>
-      </Dropdown>
+      <div className="flex-c">
+        <DarkIcon />
+        <Dropdown menu={{ items }}>
+          <div className="pl-[18px] pr-4 cursor-pointer flex-c outline-none">
+            <Avatar size={26} src={avatarUrl} />
+            <span className="pl-[5px] inline-block max-w-[100px] ellipsis">Admin</span>
+          </div>
+        </Dropdown>
+        <Setting />
+      </div>
     </div>
   )
 }

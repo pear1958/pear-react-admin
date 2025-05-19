@@ -11,7 +11,7 @@ import { LOGIN_URL } from '@/config/constant'
 import { message } from '@/hooks/useMessage'
 
 const initialState = {
-  userInfo: null
+  userInfo: {}
 }
 
 export const useUserStore = createWithEqualityFn<UserStore>()(

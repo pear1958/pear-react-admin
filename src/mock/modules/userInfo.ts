@@ -1,6 +1,7 @@
 export const userInfo = {
-  name: 'ep-admin',
+  name: 'Pear-Admin',
+  mobile: '18270993095',
+  apartment: 'IT服务部',
   avatar: 'xxx',
-  salary: 4500,
-  apartment: 'IT服务部'
+  salary: 4500
 }

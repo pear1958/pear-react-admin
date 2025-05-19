@@ -1,9 +1,37 @@
 @import './reset.less';
-@import './common.less';
 @import './transition.less';
+@import './dark.less';
 
 body {
   font-size: 14px;
   font-family: Inter, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+.page-box {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+  box-sizing: border-box;
+}
+
+.primary {
+  cursor: pointer;
+  &:hover {
+    color: #e61010;
+    transition: all 0.3s;
+  }
+}
+
+// nprogress样式
+#nprogress .bar {
+  background: #e61010 !important;
+}
+#nprogress .spinner-icon {
+  border-top-color: #e61010 !important;
+  border-left-color: #e61010 !important;
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #e61010, 0 0 5px #e61010 !important;
 }

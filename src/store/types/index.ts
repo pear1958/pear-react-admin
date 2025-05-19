@@ -19,6 +19,7 @@ export interface SystemState {
   accordion: boolean
   watermark: boolean
   mainMaximize: boolean
+  settingVisible: boolean
 }
 
 export interface SystemAction {
@@ -29,7 +30,7 @@ export interface SystemAction {
 export type SystemStore = SystemState & SystemAction
 
 export interface UserState {
-  userInfo: Recordable | null
+  userInfo: Recordable
 }
 
 export interface UserAction extends BaseAction {

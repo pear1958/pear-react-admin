@@ -23,6 +23,7 @@ export const useSystemStore = createWithEqualityFn<SystemStore>()(
           accordion: true,
           watermark: true,
           mainMaximize: false,
+          settingVisible: false,
           setSystemState: (key, value) => {
             set((state: SystemState) => {
               state[key] = value
