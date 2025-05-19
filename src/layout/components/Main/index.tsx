@@ -21,22 +21,20 @@ const Main = () => {
   const { nodeRef } = menuList.find((route: MenuItem) => route.path === pathname) ?? {}
 
   return (
-    <div className="pear-main">
-      <SwitchTransition>
-        <CSSTransition
-          classNames="fade"
-          key={pathname}
-          nodeRef={nodeRef}
-          timeout={300}
-          exit={false}
-          unmountOnExit
-        >
-          <div ref={nodeRef} className="outlet-box">
-            {mainShow && outlet}
-          </div>
-        </CSSTransition>
-      </SwitchTransition>
-    </div>
+    <SwitchTransition>
+      <CSSTransition
+        classNames="fade"
+        key={pathname}
+        nodeRef={nodeRef}
+        timeout={300}
+        exit={false}
+        unmountOnExit
+      >
+        <div ref={nodeRef} className="pear-main">
+          {mainShow && outlet}
+        </div>
+      </CSSTransition>
+    </SwitchTransition>
   )
 }
 

@@ -1,3 +1,20 @@
-.dark .page-box {
-  background-color: #1f1f1f;
+html.dark {
+  .pear {
+    &-header,
+    &-main,
+    &-tabs {
+      background-color: var(--pear-dark-main) !important;
+    }
+
+    &-header {
+      .title {
+        color: #ffffffd9;
+      }
+    }
+  }
+
+  .pear-sider,
+  .page-box {
+    background-color: var(--pear-dark-content) !important;
+  }
 }
