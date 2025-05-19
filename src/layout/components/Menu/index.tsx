@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useMatches, useNavigate } from 'react-router-dom'
-import { Menu as AntdMenu } from 'antd'
+import { Menu as AntdMenu, ConfigProvider } from 'antd'
 import { useAuthStore, useSystemStore } from '@/store'
 import { formatMenuList, getOpenKeys } from './utils'
 import './index.less'
@@ -10,7 +10,9 @@ const Menu = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
-  const { accordion } = useSystemStore(state => ({
+  const { isCollapse, accordion, width } = useSystemStore(state => ({
+    isCollapse: state.sideBar.isCollapse,
+    width: state.sideBar.width,
     accordion: state.accordion
   }))
 
@@ -64,15 +66,24 @@ const Menu = () => {
   }, [matches])
 
   return (
-    <div className="pear-menu">
-      <AntdMenu
-        mode="inline"
-        theme="dark"
-        items={antdMenuList}
-        selectedKeys={selectedKeys}
-        onClick={handleMenuClick}
-        {...(accordion && { openKeys, onOpenChange })}
-      />
+    <div className="pear-menu" style={{ width: width + 'px' }}>
+      <ConfigProvider
+        theme={{
+          components: {
+            Menu: { collapsedWidth: width }
+          }
+        }}
+      >
+        <AntdMenu
+          mode="inline"
+          theme="dark"
+          items={antdMenuList}
+          selectedKeys={selectedKeys}
+          onClick={handleMenuClick}
+          inlineCollapsed={isCollapse}
+          {...(accordion && { openKeys, onOpenChange })}
+        />
+      </ConfigProvider>
     </div>
   )
 }

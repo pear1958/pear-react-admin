@@ -40,7 +40,7 @@ const Breadcrumb = ({ className }: Recordable) => {
   }, [matches])
 
   return (
-    <div className={classNames('breadcrumb', className)}>
+    <div className={classNames('pear-breadcrumb', className)}>
       <AntdBreadcrumb items={breadcrumbList} />
     </div>
   )
