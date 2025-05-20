@@ -1,40 +1,36 @@
-import { createRef, useContext } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
-import { SwitchTransition, CSSTransition } from 'react-transition-group'
-import { useAuthStore } from '@/store'
+import KeepAlive, { useKeepAliveRef } from 'keepalive-for-react'
 import { RefreshContext } from '@/context/refresh'
 import './index.less'
 
 const Main = () => {
   const outlet = useOutlet()
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const { mainShow } = useContext(RefreshContext)
-  const flatMenuList = useAuthStore(state => state.flatMenuList)
+  const keepAliveRef = useKeepAliveRef()
 
-  const menuList = flatMenuList.map(item => ({
-    ...item,
-    nodeRef: createRef()
-  })) as Recordable[]
+  // 确定哪个路由组件处于活动状态
+  const currentKey = useMemo(() => pathname + search, [pathname, search])
 
-  // 解决导致useEffect多次执行的过渡动画
-  // @see: http://reactcommunity.org/react-transition-group/with-react-router
-  const { nodeRef } = menuList.find((route: MenuItem) => route.path === pathname) ?? {}
+  const cacheKeys = ['/home', '/components/jsonForm']
+
+  // console.log('currentKey', currentKey)
+  // useEffect(() => {
+  //   console.log('keepAliveRef', keepAliveRef.current.getCacheNodes())
+  // })
 
   return (
-    <SwitchTransition>
-      <CSSTransition
-        classNames="fade"
-        key={pathname}
-        nodeRef={nodeRef}
-        timeout={300}
-        exit={false}
-        unmountOnExit
-      >
-        <div ref={nodeRef} className="pear-main">
-          {mainShow && outlet}
-        </div>
-      </CSSTransition>
-    </SwitchTransition>
+    <KeepAlive
+      transition
+      aliveRef={keepAliveRef}
+      activeCacheKey={currentKey}
+      include={cacheKeys}
+      containerClassName="pear-keep-alive"
+      cacheNodeClassName="pear-cache"
+    >
+      <div className="pear-main">{mainShow && outlet}</div>
+    </KeepAlive>
   )
 }
 

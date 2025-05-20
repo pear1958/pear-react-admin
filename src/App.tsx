@@ -12,23 +12,15 @@ import { RefreshProvider } from './context/refresh'
 import Router from './router'
 
 const App = () => {
-  const {
-    isDark,
-    primary,
-    componentSize,
-    compactAlgorithm,
-    borderRadius,
-    language,
-    setSystemState
-  } = useSystemStore(state => ({
-    isDark: state.isDark,
-    primary: state.primary,
-    componentSize: state.componentSize,
-    compactAlgorithm: state.compactAlgorithm,
-    borderRadius: state.borderRadius,
-    language: state.language,
-    setSystemState: state.setSystemState
-  }))
+  const { isDark, primary, componentSize, compactAlgorithm, language, setSystemState } =
+    useSystemStore(state => ({
+      isDark: state.isDark,
+      primary: state.primary,
+      componentSize: state.componentSize,
+      compactAlgorithm: state.compactAlgorithm,
+      language: state.language,
+      setSystemState: state.setSystemState
+    }))
 
   const getAlgorithm = () => {
     const algorithm = isDark ? [theme.darkAlgorithm] : [theme.defaultAlgorithm]
@@ -48,7 +40,7 @@ const App = () => {
       locale={language === 'zh' ? zhCN : enUS}
       componentSize={componentSize}
       theme={{
-        token: { colorPrimary: primary, borderRadius },
+        token: { colorPrimary: primary },
         algorithm: getAlgorithm()
       }}
     >

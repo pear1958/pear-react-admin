@@ -1,5 +1,13 @@
+.pear-cache.active {
+  animation: fadeTransformIn 0.2s;
+}
+
+.pear-cache.inactive {
+  animation: fadeTransformOut 0.2s;
+}
+
 .pear-main {
-  flex: 1;
+  height: calc(100vh - @headerHeight - @tabHeight);
   padding: 16px;
   box-sizing: border-box;
   overflow-y: auto;

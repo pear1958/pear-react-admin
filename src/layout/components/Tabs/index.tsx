@@ -12,10 +12,10 @@ type TargetKey = string | React.MouseEvent<Element, MouseEvent> | React.Keyboard
 const Tabs: React.FC = () => {
   // 自动重渲染
   const matches = useMatches()
-  const location = useLocation()
+  const { pathname, search } = useLocation()
   const navigate = useNavigate()
 
-  const path = location.pathname + location.search
+  const path = pathname + search
   const meta = matches[matches.length - 1].data || {}
   const { redirect, title = '' } = meta as Recordable
 
