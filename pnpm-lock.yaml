@@ -27,8 +27,8 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(react@19.1.0)
       ahooks:
-        specifier: ^3.8.4
-        version: 3.8.4(react@19.1.0)
+        specifier: ^3.8.5
+        version: 3.8.5(react@19.1.0)
       antd:
         specifier: ^5.25.0
         version: 5.25.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -882,11 +882,11 @@ packages:
   add-dom-event-listener@1.1.0:
     resolution: {integrity: sha512-WCxx1ixHT0GQU9hb0KI/mhgRQhnU+U3GvwY6ZvVjYq8rsihIGoaIOUbY0yMPBxLH5MDtr0kz3fisWGNcbWW7Jw==}
 
-  ahooks@3.8.4:
-    resolution: {integrity: sha512-39wDEw2ZHvypaT14EpMMk4AzosHWt0z9bulY0BeDsvc9PqJEV+Kjh/4TZfftSsotBMq52iYIOFPd3PR56e0ZJg==}
+  ahooks@3.8.5:
+    resolution: {integrity: sha512-Y+MLoJpBXVdjsnnBjE5rOSPkQ4DK+8i5aPDzLJdIOsCpo/fiAeXcBY1Y7oWgtOK0TpOz0gFa/XcyO1UGdoqLcw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   ansi-regex@2.1.1:
     resolution: {integrity: sha512-TIGnTpdo+E3+pCyAluZvtED5p5wCqLdezCyhPZzKPcxvFplEt4i+W7OONCKgeZFT3+y5NZZfOOS/Bdcanm1MYA==}
@@ -4143,7 +4143,7 @@ snapshots:
     dependencies:
       object-assign: 4.1.1
 
-  ahooks@3.8.4(react@19.1.0):
+  ahooks@3.8.5(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.1
       dayjs: 1.11.13
