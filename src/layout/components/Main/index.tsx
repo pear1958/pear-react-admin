@@ -1,7 +1,8 @@
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
 import KeepAlive, { useKeepAliveRef } from 'keepalive-for-react'
 import { RefreshContext } from '@/context/refresh'
+import { useTabsStore } from '@/store'
 import './index.less'
 
 const Main = () => {
@@ -9,23 +10,17 @@ const Main = () => {
   const { pathname, search } = useLocation()
   const { mainShow } = useContext(RefreshContext)
   const keepAliveRef = useKeepAliveRef()
+  const keepAliveList = useTabsStore(state => state.keepAliveList)
 
-  // 确定哪个路由组件处于活动状态
-  const currentKey = useMemo(() => pathname + search, [pathname, search])
-
-  const cacheKeys = ['/home', '/components/jsonForm']
-
-  // console.log('currentKey', currentKey)
-  // useEffect(() => {
-  //   console.log('keepAliveRef', keepAliveRef.current.getCacheNodes())
-  // })
+  // 确定哪个路由组件处于激活状态
+  const activeKey = useMemo(() => pathname + search, [pathname, search])
 
   return (
     <KeepAlive
       transition
       aliveRef={keepAliveRef}
-      activeCacheKey={currentKey}
-      include={cacheKeys}
+      activeCacheKey={activeKey}
+      include={keepAliveList}
       containerClassName="pear-keep-alive"
       cacheNodeClassName="pear-cache"
     >
