@@ -67,6 +67,7 @@ export type TabList = TabItem[]
 
 export interface TabsState {
   tabsList: TabList
+  keepAliveNameList: string[]
 }
 
 export interface TabsAction extends BaseAction {
@@ -75,6 +76,11 @@ export interface TabsAction extends BaseAction {
   removeTab: (path: string, isCurrent: boolean) => void
   removeTabsSide: (path: string, type: 'left' | 'right') => void
   closeMultipleTab: (path?: string) => void
+  findKeepAliveIndex: (name: string) => number
+  addKeepAliveName: (name: string) => void
+  removeKeepAliveName: (name: string) => void
+  removeLeftKeepAliveName: (name: string) => void
+  removeRightKeepAliveName: (name: string) => void
 }
 
 export type TabsStore = TabsState & TabsAction

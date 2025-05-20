@@ -8,14 +8,15 @@ import { TabsState, TabsStore } from '../types'
 import { HOME_URL } from '@/config/constant'
 
 const initialState = {
-  tabsList: []
+  tabsList: [],
+  keepAliveNameList: [] // 以 pathname + search 作为缓存的name
 }
 
 export const useTabsStore = createWithEqualityFn<TabsStore>()(
   devtools(
     immer(
       persist(
-        set => ({
+        (set, get) => ({
           ...initialState,
           setTabsList(tabsList) {
             set((draft: TabsState) => {
@@ -74,6 +75,33 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
                 return item.path === path || !item.closable
               })
               if (!path) window.$navigate(HOME_URL)
+            })
+          },
+          findKeepAliveIndex(name) {
+            return get().keepAliveNameList.findIndex(item => item === name)
+          },
+          addKeepAliveName(name) {
+            set((draft: TabsState) => {
+              if (!draft.keepAliveNameList.includes(name)) {
+                draft.keepAliveNameList.push(name)
+              }
+            })
+          },
+          removeKeepAliveName(name) {
+            set((draft: TabsState) => {
+              draft.keepAliveNameList = draft.keepAliveNameList.filter(item => item !== name)
+            })
+          },
+          removeLeftKeepAliveName(name) {
+            const delIndex = get().findKeepAliveIndex(name)
+            set((draft: TabsState) => {
+              draft.keepAliveNameList.splice(0, delIndex)
+            })
+          },
+          removeRightKeepAliveName(name) {
+            const delIndex = get().findKeepAliveIndex(name)
+            set((draft: TabsState) => {
+              draft.keepAliveNameList.splice(delIndex + 1)
             })
           },
           reset() {
