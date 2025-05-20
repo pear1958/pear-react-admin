@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { memo, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Dropdown, MenuProps } from 'antd'
 import {
@@ -18,11 +18,7 @@ const MoreButton = ({ path }) => {
   const { t } = useTranslation()
   const { updateMainShow } = useContext(RefreshContext)
   const setSystemState = useSystemStore(state => state.setSystemState)
-  const { removeTab, removeTabsSide, closeMultipleTab } = useTabsStore(state => ({
-    removeTab: state.removeTab,
-    removeTabsSide: state.removeTabsSide,
-    closeMultipleTab: state.closeMultipleTab
-  }))
+  const { removeTab, removeTabsSide, closeMultipleTab, removeKeepAlive } = useTabsStore()
 
   const items: MenuProps['items'] = [
     {
@@ -47,19 +43,28 @@ const MoreButton = ({ path }) => {
       key: 'closeCurrentTab',
       label: <span>{t('tabs.closeCurrent')}</span>,
       icon: <CloseOutlined />,
-      onClick: () => removeTab(path, true)
+      onClick: () => {
+        removeTab(path, true)
+        removeKeepAlive(path)
+      }
     },
     {
       key: 'closeLeftTab',
       label: <span>{t('tabs.closeLeft')}</span>,
       icon: <VerticalRightOutlined />,
-      onClick: () => removeTabsSide(path, 'left')
+      onClick: () => {
+        removeTabsSide(path, 'left')
+        removeKeepAlive(path, 'left')
+      }
     },
     {
       key: 'closeRightTab',
       label: <span>{t('tabs.closeRight')}</span>,
       icon: <VerticalLeftOutlined />,
-      onClick: () => removeTabsSide(path, 'right')
+      onClick: () => {
+        removeTabsSide(path, 'right')
+        removeKeepAlive(path, 'right')
+      }
     },
     {
       type: 'divider'
@@ -68,13 +73,19 @@ const MoreButton = ({ path }) => {
       key: 'closeOtherTab',
       label: <span>{t('tabs.closeOther')}</span>,
       icon: <ColumnWidthOutlined />,
-      onClick: () => closeMultipleTab(path)
+      onClick: () => {
+        closeMultipleTab(path)
+        removeKeepAlive(path, 'other')
+      }
     },
     {
       key: 'closeAllTab',
       label: <span>{t('tabs.closeAll')}</span>,
       icon: <MinusOutlined />,
-      onClick: () => closeMultipleTab()
+      onClick: () => {
+        closeMultipleTab()
+        removeKeepAlive(path, 'all')
+      }
     }
   ]
 
@@ -87,4 +98,4 @@ const MoreButton = ({ path }) => {
   )
 }
 
-export default MoreButton
+export default memo(MoreButton)

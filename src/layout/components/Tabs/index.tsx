@@ -1,37 +1,30 @@
 import { useLocation, useMatches, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Tabs as AntdTabs } from 'antd'
-import { useUpdateEffect } from 'ahooks'
 import { useAuthStore, useTabsStore } from '@/store'
-import './index.less'
 import useDragTab from './useDragTab'
 import MoreButton from './MoreButton'
-
-type TargetKey = string | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
+import './index.less'
 
 const Tabs: React.FC = () => {
   // 自动重渲染
   const matches = useMatches()
   const { pathname, search } = useLocation()
   const navigate = useNavigate()
+  const flatMenuList = useAuthStore(state => state.flatMenuList)
+  const { tabsList, addTab, removeTab, addKeepAlive, removeKeepAlive } = useTabsStore()
 
   const path = pathname + search
+
   const meta = matches[matches.length - 1].data || {}
-  const { redirect, title = '' } = meta as Recordable
+  const { redirect, title = '', keepAlive } = meta as Recordable
 
-  const flatMenuList = useAuthStore(state => state.flatMenuList)
-  const { tabsList, addTab, removeTab } = useTabsStore(state => ({
-    tabsList: state.tabsList,
-    addTab: state.addTab,
-    removeTab: state.removeTab
-  }))
+  useEffect(() => initAffixTabs(), [])
 
-  useEffect(() => initTabs(), [])
-
-  const initTabs = () => {
+  const initAffixTabs = () => {
     flatMenuList.forEach(item => {
       // 添加需要固定的Tab
-      if (item.meta?.isAffix && !item.meta.showInMenu && !item.meta.isFull) {
+      if (item.meta?.isAffix && !item.meta.isFull) {
         addTab({
           title: item.meta?.title || '',
           path: item.path,
@@ -39,22 +32,16 @@ const Tabs: React.FC = () => {
         })
       }
     })
-
-    addTab({
-      title,
-      path,
-      closable: true
-    })
   }
 
-  // 监听路由改变 忽略首次执行，只在依赖更新时执行
-  useUpdateEffect(() => {
+  useEffect(() => {
     if (redirect) return
     addTab({
       title,
       path,
       closable: true
     })
+    if (keepAlive !== false) addKeepAlive(path)
   }, [matches])
 
   const items = tabsList.map(item => ({
@@ -70,10 +57,11 @@ const Tabs: React.FC = () => {
   }
 
   // 新增或编辑
-  const onEdit = (targetKey: TargetKey, action: 'add' | 'remove') => {
+  const onEdit = (targetKey: string, action: 'add' | 'remove') => {
     if (action === 'remove') {
       const isCurrent = targetKey == path
-      removeTab(targetKey as string, isCurrent)
+      removeTab(targetKey, isCurrent)
+      removeKeepAlive(targetKey)
     }
   }
 

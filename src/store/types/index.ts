@@ -67,20 +67,20 @@ export type TabList = TabItem[]
 
 export interface TabsState {
   tabsList: TabList
-  keepAliveNameList: string[]
+  keepAliveList: string[]
 }
+
+export type Side = 'left' | 'right'
 
 export interface TabsAction extends BaseAction {
   setTabsList: (tabsList: TabsState['tabsList']) => void
   addTab: (tab: TabItem) => void
   removeTab: (path: string, isCurrent: boolean) => void
-  removeTabsSide: (path: string, type: 'left' | 'right') => void
+  removeTabsSide: (path: string, type: Side) => void
   closeMultipleTab: (path?: string) => void
   findKeepAliveIndex: (name: string) => number
-  addKeepAliveName: (name: string) => void
-  removeKeepAliveName: (name: string) => void
-  removeLeftKeepAliveName: (name: string) => void
-  removeRightKeepAliveName: (name: string) => void
+  addKeepAlive: (name: string) => void
+  removeKeepAlive: (name: string, type?: Side | 'other' | 'all') => void
 }
 
 export type TabsStore = TabsState & TabsAction

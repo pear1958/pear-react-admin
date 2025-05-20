@@ -9,7 +9,7 @@ import { HOME_URL } from '@/config/constant'
 
 const initialState = {
   tabsList: [],
-  keepAliveNameList: [] // 以 pathname + search 作为缓存的name
+  keepAliveList: [] // 以 pathname + search 作为缓存的name
 }
 
 export const useTabsStore = createWithEqualityFn<TabsStore>()(
@@ -78,30 +78,35 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
             })
           },
           findKeepAliveIndex(name) {
-            return get().keepAliveNameList.findIndex(item => item === name)
+            return get().keepAliveList.findIndex(item => item === name)
           },
-          addKeepAliveName(name) {
+          addKeepAlive(name) {
             set((draft: TabsState) => {
-              if (!draft.keepAliveNameList.includes(name)) {
-                draft.keepAliveNameList.push(name)
+              if (!draft.keepAliveList.includes(name)) {
+                draft.keepAliveList.push(name)
               }
             })
           },
-          removeKeepAliveName(name) {
-            set((draft: TabsState) => {
-              draft.keepAliveNameList = draft.keepAliveNameList.filter(item => item !== name)
-            })
-          },
-          removeLeftKeepAliveName(name) {
+          removeKeepAlive(name, type) {
             const delIndex = get().findKeepAliveIndex(name)
             set((draft: TabsState) => {
-              draft.keepAliveNameList.splice(0, delIndex)
-            })
-          },
-          removeRightKeepAliveName(name) {
-            const delIndex = get().findKeepAliveIndex(name)
-            set((draft: TabsState) => {
-              draft.keepAliveNameList.splice(delIndex + 1)
+              switch (type) {
+                case 'left':
+                  draft.keepAliveList.splice(0, delIndex)
+                  break
+                case 'right':
+                  draft.keepAliveList.splice(delIndex + 1)
+                  break
+                case 'other':
+                  draft.keepAliveList = draft.keepAliveList.filter(item => item === name)
+                  break
+                case 'all':
+                  draft.keepAliveList.splice(0)
+                  break
+                default:
+                  draft.keepAliveList = draft.keepAliveList.filter(item => item !== name)
+                  break
+              }
             })
           },
           reset() {
