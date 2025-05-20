@@ -3,6 +3,7 @@ import { useLocation, useOutlet } from 'react-router-dom'
 import KeepAlive, { useKeepAliveRef } from 'keepalive-for-react'
 import { RefreshContext } from '@/context/refresh'
 import { useTabsStore } from '@/store'
+import MemoScroll from './MemoScroll'
 import './index.less'
 
 const Main = () => {
@@ -24,7 +25,7 @@ const Main = () => {
       containerClassName="pear-keep-alive"
       cacheNodeClassName="pear-cache"
     >
-      <div className="pear-main">{mainShow && outlet}</div>
+      <MemoScroll className="pear-main">{mainShow && outlet}</MemoScroll>
     </KeepAlive>
   )
 }
