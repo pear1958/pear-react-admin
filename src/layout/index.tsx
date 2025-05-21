@@ -10,7 +10,7 @@ const Layout: React.FC = () => {
   return (
     <Watermark
       zIndex={1001}
-      content={watermark ? [userInfo.name || '', userInfo.mobile || ''] : ['Pear-Admin']}
+      content={watermark ? [userInfo?.userName || '', userInfo?.mobile || ''] : ['Pear-Admin']}
     >
       <LayoutClassic />
       <SettingDrawer />

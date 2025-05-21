@@ -12,7 +12,10 @@ import Setting from './components/Setting'
 import './index.less'
 
 const Header: React.FC = () => {
-  const logout = useUserStore(state => state.logout)
+  const { logout, userInfo } = useUserStore(state => ({
+    logout: state.logout,
+    userInfo: state.userInfo
+  }))
 
   const handleLogout = () => {
     modal.confirm({
@@ -55,7 +58,9 @@ const Header: React.FC = () => {
         <Dropdown menu={{ items }}>
           <div className="pl-[18px] pr-4 cursor-pointer flex-c outline-none">
             <Avatar size={26} src={avatarUrl} />
-            <span className="pl-[5px] inline-block max-w-[100px] ellipsis">Admin</span>
+            <span className="pl-[5px] inline-block max-w-[100px] ellipsis">
+              {userInfo?.userName || ''}
+            </span>
           </div>
         </Dropdown>
         <Setting />

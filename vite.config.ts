@@ -11,6 +11,10 @@ export default defineConfig({
       '@': resolve(__dirname, './src')
     }
   },
+  server: {
+    host: '0.0.0.0',
+    open: true
+  },
   css: {
     preprocessorOptions: {
       less: {
@@ -35,9 +39,5 @@ export default defineConfig({
   optimizeDeps: {
     include, // 启动时 预加载这些包
     exclude
-  },
-  server: {
-    host: '0.0.0.0',
-    open: true
   }
 })
