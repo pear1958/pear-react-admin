@@ -1,18 +1,25 @@
-.pear-cache {
-  &.active {
-    animation: fadeTransformIn 0.2s;
+.pear {
+  &-keep-alive {
+    height: auto !important;
   }
-  &.inactive {
-    animation: fadeTransformOut 0.2s;
-  }
-}
 
-.pear-main {
-  height: calc(100vh - @headerHeight - @tabHeight);
-  padding: 16px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  background-color: var(--pear-main-bg);
+  &-cache {
+    height: auto !important;
+    &.active {
+      animation: fadeTransformIn 0.2s;
+    }
+    &.inactive {
+      animation: fadeTransformOut 0.2s;
+    }
+  }
+
+  &-main {
+    height: calc(100vh - @headerHeight - @tabHeight);
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: var(--pear-main-bg);
+  }
 }
 
 .dark .pear-main {
