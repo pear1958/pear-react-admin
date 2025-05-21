@@ -25,6 +25,7 @@ const Menu = () => {
 
   // 当前展开的 SubMenu 菜单项 key 数组
   const [openKeys, setOpenKeys] = useState<string[]>([])
+
   // 当前选中的菜单项 key 数组
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
 

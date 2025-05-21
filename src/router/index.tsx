@@ -4,8 +4,8 @@ import useTheme from '@/hooks/useTheme'
 import useMessage from '@/hooks/useMessage'
 import useAuth from '@/hooks/useAuth'
 import { useAuthStore } from '@/store'
-import { getFormatRouter } from './utils'
 import { staticRouter } from './modules/staticRouter'
+import formatRouter from './utils/formatRouter'
 import { getToken } from '@/utils/auth'
 import { ERROR_404_URL } from '@/config/constant'
 
@@ -34,7 +34,7 @@ const Router: FC = () => {
     }
 
     // 获取到数据以后继续执行以下逻辑
-    const dynamicRouter = getFormatRouter(flatMenuList)
+    const dynamicRouter = formatRouter(flatMenuList)
 
     const allRouter = [...staticRouter, ...dynamicRouter]
 
