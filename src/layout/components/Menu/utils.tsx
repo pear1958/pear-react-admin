@@ -6,7 +6,8 @@ export const formatMenuList = (menuList: MenuList) =>
       label: item.meta?.title,
       icon: item.meta?.icon ? <Icon icon={item.meta.icon} /> : null,
       key: item.path,
-      type: item.type
+      type: item.type,
+      popupClassName: 'pear-menu-sub-box'
     }
     const menuItem = !item?.children?.length
       ? temp

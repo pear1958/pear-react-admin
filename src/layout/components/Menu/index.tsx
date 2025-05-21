@@ -29,9 +29,7 @@ const Menu = () => {
   // 当前选中的菜单项 key 数组
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
 
-  const antdMenuList = useMemo(() => {
-    return formatMenuList(showMenuList)
-  }, [showMenuList])
+  const antdMenuList = useMemo(() => formatMenuList(showMenuList), [showMenuList])
 
   const handleMenuClick = ({ key }) => {
     const menuItem = flatMenuList.find(item => item.path === key)

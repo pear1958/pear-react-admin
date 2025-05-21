@@ -24,7 +24,7 @@ const Home = () => {
     <div className="page-box">
       <div>
         <Button onClick={handleClick} type="primary">
-          测试
+          测试1
         </Button>
         <Button onClick={handleClick2} type="primary" className="ml-3">
           测试2
