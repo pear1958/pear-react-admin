@@ -6,17 +6,18 @@ import commonTheme from '@/config/theme'
 const useTheme = () => {
   const { token } = theme.useToken()
 
-  const { isDark, primary, grayMode, weakMode, compactAlgorithm } = useSystemStore(state => ({
-    isDark: state.isDark,
-    primary: state.primary,
-    grayMode: state.grayMode,
-    weakMode: state.weakMode,
-    compactAlgorithm: state.compactAlgorithm
-  }))
+  const { isDark, primary, grayMode, weakMode, compactAlgorithm, setSystemState } = useSystemStore(
+    state => ({
+      isDark: state.isDark,
+      primary: state.primary,
+      grayMode: state.grayMode,
+      weakMode: state.weakMode,
+      compactAlgorithm: state.compactAlgorithm,
+      setSystemState: state.setSystemState
+    })
+  )
 
   useEffect(() => changeDark(isDark), [isDark])
-
-  // useEffect(() => changePrimary(), [primary, compactAlgorithm])
 
   const changeDark = (dark: boolean) => {
     const html = document.documentElement as HTMLElement
