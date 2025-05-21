@@ -5,7 +5,7 @@ import { shallow } from 'zustand/vanilla/shallow'
 import { cloneDeep } from 'lodash-es'
 import { getFlatArr } from 'pear-common-utils'
 import { AuthState, AuthStore } from '../types'
-import { filterMenuList } from '@/router/utils'
+import { filterMenuList } from '../utils'
 
 const initialState = {
   // 菜单权限
