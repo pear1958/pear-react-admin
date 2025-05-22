@@ -4,6 +4,7 @@ import { Menu as AntdMenu, ConfigProvider } from 'antd'
 import { useAuthStore, useSystemStore } from '@/store'
 import { formatMenuList, getOpenKeys } from './utils'
 import './index.less'
+import Scrollbar from '@/components/Scrollbar'
 
 const Menu = () => {
   const matches = useMatches()
@@ -66,23 +67,25 @@ const Menu = () => {
 
   return (
     <div className="pear-menu" style={{ width: width + 'px' }}>
-      <ConfigProvider
-        theme={{
-          components: {
-            Menu: { collapsedWidth: width }
-          }
-        }}
-      >
-        <AntdMenu
-          mode="inline"
-          theme="dark"
-          items={antdMenuList}
-          selectedKeys={selectedKeys}
-          onClick={handleMenuClick}
-          inlineCollapsed={isCollapse}
-          {...(accordion && { openKeys, onOpenChange })}
-        />
-      </ConfigProvider>
+      <Scrollbar>
+        <ConfigProvider
+          theme={{
+            components: {
+              Menu: { collapsedWidth: width }
+            }
+          }}
+        >
+          <AntdMenu
+            mode="inline"
+            theme="dark"
+            items={antdMenuList}
+            selectedKeys={selectedKeys}
+            onClick={handleMenuClick}
+            inlineCollapsed={isCollapse}
+            {...(accordion && { openKeys, onOpenChange })}
+          />
+        </ConfigProvider>
+      </Scrollbar>
     </div>
   )
 }

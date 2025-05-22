@@ -9,8 +9,8 @@ const config = {
     'sub-menu-bg': '#0c2135',
     'main-color': '#303133',
     'page-bg': '#ffffff',
-    'menu-scrollbar-thumb-bg': '#334353',
-    'menu-scrollbar-thumb-hover-bg': '#485461'
+    'menu-scrollbar-thumb-bg': '#909399b3', // 0.3
+    'menu-scrollbar-thumb-hover-bg': '#909399'
   },
   dark: {
     'header-bg': '#141414',

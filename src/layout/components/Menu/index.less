@@ -1,34 +1,34 @@
 .pear-menu {
-  height: 100%;
-  overflow-y: auto;
+  height: calc(100vh - 64px);
   background-color: var(--pear-menu-bg);
   transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   z-index: 800;
-
-  // 修改默认的滚动条颜色
-  &::-webkit-scrollbar {
-    width: 6px; // 垂直滚动条宽度
-    height: 6px; // 水平滚动条高度
+  // 修改垂直滚动条轨道 track 的宽度
+  .simplebar-vertical {
+    width: 7px !important;
   }
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--pear-menu-scrollbar-thumb-bg);
-    border-radius: 20px;
+  // 修改垂直滚动条滑块 thumb 的宽度
+  .simplebar-scrollbar::before {
+    width: 7px !important; // 与轨道宽度一致
+    left: 0; // 确保滑块与轨道左对齐
   }
-  &::-webkit-scrollbar-track {
-    background: transparent; // 轨道背景
+  // 滚动条颜色
+  .simplebar-scrollbar::before {
+    background-color: var(--pear-menu-scrollbar-thumb-bg) !important;
   }
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--pear-menu-scrollbar-thumb-hover-bg); // 悬停时滑块颜色
+  // 悬停时的颜色
+  .simplebar-scrollbar:hover::before {
+    background-color: var(--pear-menu-scrollbar-thumb-hover-bg) !important;
   }
-  &::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
-
   .ant-menu {
     background-color: var(--pear-menu-bg) !important;
   }
+  .ant-menu-sub {
+    background-color: var(--pear-sub-menu-bg) !important;
+  }
 }
 
+// 收起时的子菜单颜色
 .pear-menu-sub-box .ant-menu-sub {
   background-color: var(--pear-sub-menu-bg) !important;
 }
