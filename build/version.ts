@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite'
 import fs from 'fs'
 import path from 'path'
 
-const createVersionFile = (): PluginOption => {
+const createVersion = (): PluginOption => {
   let outDir = ''
   return {
     name: 'version-update',
@@ -25,4 +25,4 @@ const createVersionFile = (): PluginOption => {
   }
 }
 
-export default createVersionFile
+export default createVersion

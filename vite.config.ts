@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import svgr from 'vite-plugin-svgr'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { exclude, include } from './build/optimize'
-import createVersionFile from './build/version'
+import createVersion from './build/version'
 
 export default defineConfig({
   // 自动将所有静态资源路径调整为包含该前缀, 包括 HTML、CSS、JavaScript 和图片等
@@ -42,7 +42,7 @@ export default defineConfig({
       iconDirs: [resolve(process.cwd(), 'src/assets/svg')],
       symbolId: 'icon-[dir]-[name]'
     }),
-    createVersionFile()
+    createVersion()
   ],
   // 解决 Vite 启动完之后首页加载慢的问题
   optimizeDeps: {
