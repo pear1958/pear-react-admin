@@ -5,7 +5,9 @@ import Lazy from '@/components/Lazy'
 import Layout from '@/layout'
 import RouterGuard from './RouterGuard'
 
-const modules = import.meta.glob('@/views/**/*.tsx') as Recordable<Parameters<typeof lazy>[number]>
+const modules = import.meta.glob(['@/views/**/*.tsx', '!@/views/login/**/*.tsx']) as Recordable<
+  Parameters<typeof lazy>[number]
+>
 
 const formatRouter = (flatMenuList: MenuList) => {
   const dynamicRouter: Recordable[] = [{ element: <Layout />, children: [] }]
