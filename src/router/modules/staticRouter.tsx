@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom'
 import { Loading } from '@/components/Loading'
 import { HOME_URL, LOGIN_URL } from '@/config/constant'
-import Login from '@/views/login'
 import RouterGuard from '../utils/RouterGuard'
+import Login from '@/views/login'
 
 export const list = [
   {
@@ -21,7 +21,7 @@ export const list = [
     path: '*',
     element: (
       <div className="h-screen">
-        <Loading nprogress />
+        <Loading />
       </div>
     )
   }
