@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Button, Space } from 'antd'
-import { notification } from './useMessage'
+import { notification } from '@/hooks/useMessage'
 import { isDev } from '@/utils'
 
 /*
@@ -33,7 +33,7 @@ const useCheckVersion = () => {
   }
 
   useEffect(() => {
-    // 监听到版本号不一样
+    // 监测到版本号不一样
     document.body.addEventListener('plugin_web_update_notice', e => {
       console.log('监听到更新', e.detail)
       // 避免同一时间显示多个notification
