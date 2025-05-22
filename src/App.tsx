@@ -10,6 +10,7 @@ import { useSystemStore } from './store'
 import i18n from './languages'
 import { RefreshProvider } from './context/refresh'
 import Router from './router'
+import useCheckVersion from './hooks/useCheckVersion'
 
 const App = () => {
   const { isDark, primary, componentSize, compactAlgorithm, language, setSystemState } =
@@ -34,6 +35,8 @@ const App = () => {
     i18n.changeLanguage(language)
     dayjs.locale(language === 'zh' ? 'zh-cn' : 'en')
   }, [language])
+
+  useCheckVersion()
 
   return (
     <ConfigProvider

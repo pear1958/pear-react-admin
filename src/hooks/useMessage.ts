@@ -7,6 +7,7 @@ let message: MessageInstance
 let notification: NotificationInstance
 let modal: Omit<ModalStaticFunctions, 'warn'>
 
+// 进入系统前, 路由拦截器会执行此函数
 export default () => {
   const staticFunction = App.useApp()
   message = staticFunction.message
