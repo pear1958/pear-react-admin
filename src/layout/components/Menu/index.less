@@ -7,13 +7,12 @@
   .simplebar-vertical {
     width: 7px !important;
   }
-  // 修改垂直滚动条滑块 thumb 的宽度
   .simplebar-scrollbar::before {
-    width: 7px !important; // 与轨道宽度一致
-    left: 0; // 确保滑块与轨道左对齐
-  }
-  // 滚动条颜色
-  .simplebar-scrollbar::before {
+    // 修改垂直滚动条滑块 thumb 的宽度 与轨道宽度一致
+    width: 7px !important;
+    // 确保滑块与轨道左对齐
+    left: 0;
+    // 滚动条颜色
     background-color: var(--pear-menu-scrollbar-thumb-bg) !important;
   }
   // 悬停时的颜色
