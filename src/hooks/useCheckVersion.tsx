@@ -3,6 +3,9 @@ import { Button, Space } from 'antd'
 import { notification } from './useMessage'
 import { isDev } from '@/utils'
 
+/*
+ * https://github.com/GreatAuk/plugin-web-update-notification/blob/main/README.zh-CN.md
+ */
 const useCheckVersion = () => {
   const key = `${Date.now()}`
   const detected = useRef<boolean>(false)
@@ -30,6 +33,7 @@ const useCheckVersion = () => {
   }
 
   useEffect(() => {
+    // 监听到版本号不一样
     document.body.addEventListener('plugin_web_update_notice', e => {
       console.log('监听到更新', e.detail)
       // 避免同一时间显示多个notification
