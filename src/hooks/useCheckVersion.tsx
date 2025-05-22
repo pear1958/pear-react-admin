@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Button, Space } from 'antd'
 import { notification } from './useMessage'
 import { isDev } from '@/utils'
 
 const useCheckVersion = () => {
   const key = `${Date.now()}`
+  const detected = useRef<boolean>(false)
 
-  const notify = () => {
+  const showNotice = () => {
     notification.open({
       key,
       message: '检测到新版本',
@@ -21,20 +22,26 @@ const useCheckVersion = () => {
             刷新
           </Button>
         </Space>
-      )
+      ),
+      onClose: () => {
+        detected.current = false
+      }
     })
   }
 
-  document.body.addEventListener('plugin_web_update_notice', e => {
-    const { version, options } = e.detail
-    console.log('监听到更新', e.detail)
-    notify()
-  })
-
   useEffect(() => {
+    document.body.addEventListener('plugin_web_update_notice', e => {
+      console.log('监听到更新', e.detail)
+      // 避免同一时间显示多个notification
+      if (detected.current) return
+      detected.current = true
+      showNotice()
+    })
+
     // 本地运行 获取不到 window.pluginWebUpdateNotice_，部署到线上可以获取
-    if (!isDev) window.pluginWebUpdateNotice_.checkUpdate()
-    console.log('window.pluginWebUpdateNotice_', window.pluginWebUpdateNotice_)
+    if (!isDev) {
+      window.pluginWebUpdateNotice_.checkUpdate()
+    }
   }, [])
 }
 
