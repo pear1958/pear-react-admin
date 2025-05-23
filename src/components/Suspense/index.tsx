@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { PageLoading } from '../Loading'
 
-const Lazy = (Component: React.LazyExoticComponent<React.ComponentType>) => {
+const SuspenseCompo = (Component: React.LazyExoticComponent<React.ComponentType>) => {
   return (
     <Suspense fallback={<PageLoading />}>
       <Component />
@@ -9,4 +9,4 @@ const Lazy = (Component: React.LazyExoticComponent<React.ComponentType>) => {
   )
 }
 
-export default Lazy
+export default SuspenseCompo

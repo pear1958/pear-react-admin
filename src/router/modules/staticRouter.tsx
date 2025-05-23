@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
-import { Loading } from '@/components/Loading'
 import { HOME_URL, LOGIN_URL } from '@/config/constant'
 import RouterGuard from '../utils/RouterGuard'
+import ProgressStart from '@/components/Loading/ProgressStart'
 import Login from '@/views/login'
 
 export const list = [
@@ -17,13 +17,10 @@ export const list = [
     }
   },
   // 动态路由还在请求的时候, 显示Loading
+  // 后面会被动态路由替换, 重定向到真正的404
   {
     path: '*',
-    element: (
-      <div className="h-screen">
-        <Loading />
-      </div>
-    )
+    element: <ProgressStart />
   }
 ]
 
