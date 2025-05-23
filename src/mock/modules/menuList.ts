@@ -91,6 +91,24 @@ export const menuList = [
     ]
   },
   {
+    path: '/smart-city',
+    redirect: '/smart-city/area',
+    meta: {
+      icon: 'ant-design:environment-outlined',
+      title: '智慧城市'
+    },
+    children: [
+      {
+        path: '/smart-city/area',
+        element: '/smartCity/index',
+        meta: {
+          name: 'SmartArea',
+          title: '智慧园区'
+        }
+      }
+    ]
+  },
+  {
     path: '/map',
     redirect: '/map/ol',
     meta: {
