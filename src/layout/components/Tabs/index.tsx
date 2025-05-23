@@ -5,6 +5,7 @@ import { useAuthStore, useTabsStore } from '@/store'
 import useDragTab from './useDragTab'
 import MoreButton from './MoreButton'
 import './index.less'
+import { ERROR_404_NAME, ERROR_404_URL } from '@/config/constant'
 
 const Tabs: React.FC = () => {
   // 自动重渲染
@@ -17,7 +18,7 @@ const Tabs: React.FC = () => {
   const path = pathname + search
 
   const meta = matches[matches.length - 1].data || {}
-  const { redirect, title = '', keepAlive } = meta as Recordable
+  const { redirect, title = '', keepAlive, name } = meta as Recordable
 
   useEffect(() => initAffixTabs(), [])
 
@@ -35,12 +36,18 @@ const Tabs: React.FC = () => {
   }
 
   useEffect(() => {
+    if (name !== ERROR_404_NAME) {
+      removeTab(ERROR_404_URL, false)
+    }
+
     if (redirect) return
+
     addTab({
       title,
       path,
       closable: true
     })
+
     if (keepAlive !== false) addKeepAlive(path)
   }, [matches])
 

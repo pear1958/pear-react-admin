@@ -3,6 +3,7 @@ import { getButtonData, getMenuList } from '@/api/modules/auth'
 import { getUserInfo } from '@/api/modules/user'
 import { notification } from '@/hooks/useMessage'
 import { removeToken } from '@/utils/auth'
+import { ROUTER_404 } from '@/config/constant'
 
 const useAuth = () => {
   const { setMenuList, setButtonData } = useAuthStore(state => ({
@@ -30,6 +31,7 @@ const useAuth = () => {
           if (menuList?.length && buttonData && userInfo) {
             setButtonData(buttonData)
             setUserInfo(userInfo)
+            menuList.push(ROUTER_404)
             setMenuList(menuList)
             resolve(true)
           } else {

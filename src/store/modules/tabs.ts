@@ -32,6 +32,9 @@ export const useTabsStore = createWithEqualityFn<TabsStore>()(
           },
           removeTab(path, isCurrent) {
             set((draft: TabsState) => {
+              // 此tab不存在
+              if (!draft.tabsList.some(item => item.path === path)) return
+
               const tempList = cloneDeep(draft.tabsList)
               // 此tab不能删除
               if (!draft.tabsList.find(item => item.path === path)?.closable) return

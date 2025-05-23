@@ -301,7 +301,7 @@ export const menuList = [
             meta: {
               name: 'systemManageAccountPage1',
               title: '子页面1',
-              showInMenu: false
+              hidden: true
             },
             children: [
               {
@@ -310,7 +310,7 @@ export const menuList = [
                 meta: {
                   name: 'systemManageAccountPageOuter',
                   title: '嵌套最外层子页面-Outer',
-                  showInMenu: false
+                  hidden: true
                 }
               }
             ]
@@ -415,32 +415,6 @@ export const menuList = [
         meta: {
           name: 'menu3',
           title: '菜单3'
-        }
-      }
-    ]
-  },
-  {
-    path: '/error',
-    redirect: '/error/403',
-    meta: {
-      title: '错误页面',
-      icon: 'ri:information-line'
-    },
-    children: [
-      {
-        path: '/error/403',
-        element: '/error/403',
-        meta: {
-          name: 'Error403',
-          title: '403'
-        }
-      },
-      {
-        path: '/error/404',
-        element: '/error/404',
-        meta: {
-          name: 'Error404',
-          title: '404'
         }
       }
     ]
