@@ -287,36 +287,36 @@ export const menuList = [
       icon: 'ep:setting'
     },
     children: [
-      {
-        path: '/systemManage/account',
-        element: '/systemManage/account/index',
-        meta: {
-          name: 'systemManageAccount',
-          title: '账号管理'
-        },
-        children: [
-          {
-            path: '/systemManage/account/page1',
-            element: '/systemManage/account/childs/page1',
-            meta: {
-              name: 'systemManageAccountPage1',
-              title: '子页面1',
-              hidden: true
-            },
-            children: [
-              {
-                path: '/systemManage/account/pageOuter',
-                element: '/systemManage/account/childs/pageOuter',
-                meta: {
-                  name: 'systemManageAccountPageOuter',
-                  title: '嵌套最外层子页面-Outer',
-                  hidden: true
-                }
-              }
-            ]
-          }
-        ]
-      },
+      // {
+      //   path: '/systemManage/account',
+      //   element: '/systemManage/account/index',
+      //   meta: {
+      //     name: 'systemManageAccount',
+      //     title: '账号管理'
+      //   },
+      //   children: [
+      //     {
+      //       path: '/systemManage/account/page1',
+      //       element: '/systemManage/account/childs/page1',
+      //       meta: {
+      //         name: 'systemManageAccountPage1',
+      //         title: '子页面1',
+      //         hidden: true
+      //       },
+      //       children: [
+      //         {
+      //           path: '/systemManage/account/pageOuter',
+      //           element: '/systemManage/account/childs/pageOuter',
+      //           meta: {
+      //             name: 'systemManageAccountPageOuter',
+      //             title: '嵌套最外层子页面-Outer',
+      //             hidden: true
+      //           }
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // },
       {
         path: '/systemManage/user',
         element: '/systemManage/user/index',
