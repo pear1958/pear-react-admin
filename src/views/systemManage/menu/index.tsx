@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import type { ActionType } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
 import useColumns from './useColumns'
-import { getInsuranceList } from '@/api/modules/insurance'
+import { getMenuList } from '@/api/modules/system'
 
 const JsonTable = () => {
   const { columns } = useColumns()
@@ -21,27 +21,14 @@ const JsonTable = () => {
       actionRef={actionRef}
       cardBordered
       request={async params => {
-        const res = await getInsuranceList(params)
+        const res = await getMenuList(params)
         return {
           data: res.list,
           total: res.total,
           success: true
         }
       }}
-      editable={{
-        type: 'multiple'
-      }}
-      columnsState={{
-        persistenceKey: 'pro-table-singe-demos',
-        persistenceType: 'localStorage',
-        defaultValue: {
-          option: { fixed: 'right', disable: true }
-        },
-        onChange(value) {
-          // console.log('value: ', value)
-        }
-      }}
-      rowKey="id"
+      rowKey="path"
       search={{
         labelWidth: 'auto'
       }}
@@ -66,7 +53,7 @@ const JsonTable = () => {
         pageSize: 10
       }}
       dateFormatter="string"
-      headerTitle="保险列表"
+      headerTitle="菜单列表"
       toolBarRender={() => [
         <Button key="button" icon={<PlusOutlined />} type="primary" onClick={handleAdd}>
           新增

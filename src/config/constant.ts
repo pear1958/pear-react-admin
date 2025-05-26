@@ -16,7 +16,7 @@ export const ROUTER_404 = {
   meta: {
     name: ERROR_404_NAME,
     title: '404',
-    hidden: true,
+    show: false,
     keepAlive: false
   }
 }

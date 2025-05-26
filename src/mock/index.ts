@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter'
 import http from '@/api'
-import { getMockInsData } from './modules/insurance'
+import { getMockMenuData } from './modules/menu'
 import { userInfo } from './modules/userInfo'
 import { menuList } from './modules/menuList'
 import { buttonData } from './modules/buttonData'
@@ -44,15 +44,15 @@ export const startMock = () => {
     data: userInfo
   })
 
-  mock.onGet('/insurance/list').reply(({ params }) => {
+  mock.onGet('/menu/list').reply(({ params }) => {
     return [
       200, // http-status
       {
         code: 200,
         msg: 'ok',
         data: {
-          list: getMockInsData(params),
-          total: 158
+          list: getMockMenuData(params),
+          total: 10
         }
       }
     ]

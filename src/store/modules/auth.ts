@@ -11,7 +11,7 @@ const initialState = {
   // 菜单权限
   menuList: [],
   flatMenuList: [],
-  // 菜单权限列表 ==> 左侧菜单栏渲染, 需要剔除 hidden == true
+  // 菜单权限列表 ==> 左侧菜单栏渲染, 需要剔除 show == false('0')
   showMenuList: [],
   // 用户所有的按钮权限
   buttonData: {},
