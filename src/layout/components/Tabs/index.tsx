@@ -25,7 +25,7 @@ const Tabs: React.FC = () => {
   const initAffixTabs = () => {
     flatMenuList.forEach(item => {
       // 添加需要固定的Tab
-      if (item.meta?.isAffix && !item.meta.isFull) {
+      if (item.meta?.affix && !item.meta.fullscreen) {
         addTab({
           title: item.meta?.title || '',
           path: item.path,
@@ -48,7 +48,7 @@ const Tabs: React.FC = () => {
       closable: true
     })
 
-    if (keepAlive !== false) addKeepAlive(path)
+    if (keepAlive) addKeepAlive(path)
   }, [matches])
 
   const items = tabsList.map(item => ({

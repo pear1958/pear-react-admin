@@ -30,7 +30,7 @@ const formatRouter = (flatMenuList: MenuList) => {
   })
 
   newMenuList.forEach(item => {
-    if (item.meta?.isFull) {
+    if (item.meta?.fullscreen) {
       dynamicRouter.push(item)
     } else {
       dynamicRouter[0].children.push(item)

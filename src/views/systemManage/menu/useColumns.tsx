@@ -12,6 +12,8 @@ const useColumns = () => {
     {
       title: '图标',
       dataIndex: ['meta', 'icon'],
+      width: 50,
+      align: 'center',
       search: false,
       render: (_, record) => {
         if (!record.meta.icon) return '-'
@@ -20,21 +22,41 @@ const useColumns = () => {
     },
     {
       title: '排序',
-      dataIndex: ['meta', 'orderNum'],
+      dataIndex: ['meta', 'order'],
+      width: 50,
+      align: 'center',
       search: false
+    },
+    {
+      title: '类型',
+      dataIndex: 'type',
+      width: 80,
+      align: 'center',
+      search: false,
+      render: (_, record) => {
+        if (record.redirect) return <Tag color="warning">目录</Tag>
+        return <Tag color="success">菜单</Tag>
+      }
+    },
+    {
+      title: '路由路径',
+      dataIndex: 'path',
+      align: 'center',
+      search: false,
+      copyable: true
     },
     {
       title: '组件路径',
       dataIndex: 'element',
+      align: 'center',
       search: false,
-      render: (_, record) => {
-        if (record.redirect) return '--'
-        return record.element
-      }
+      copyable: true,
+      ellipsis: true
     },
     {
       title: '菜单状态',
       dataIndex: ['meta', 'status'],
+      align: 'center',
       tooltip: '停用则路由将不会出现在侧边栏，也不能被访问',
       valueEnum: {
         '0': {
@@ -50,6 +72,8 @@ const useColumns = () => {
     {
       title: '显示状态',
       dataIndex: ['meta', 'show'],
+      width: 100,
+      align: 'center',
       tooltip: '选择隐藏则路由将不会出现在侧边栏，但仍然可以访问',
       render: (_, record) => {
         const { status } = record.meta
@@ -69,14 +93,26 @@ const useColumns = () => {
       }
     },
     {
+      title: '是否缓存',
+      dataIndex: ['meta', 'keepAlive'],
+      width: 80,
+      align: 'center',
+      render: (_, record) => {
+        if (record.redirect) return '-'
+        return record.meta.keepAlive ? '是' : '否'
+      }
+    },
+    {
       title: '创建时间',
       dataIndex: 'created_at',
-      valueType: 'date'
+      align: 'center',
+      valueType: 'dateTime' // 'date'
     },
     {
       title: '更新时间',
       dataIndex: 'update_at',
-      valueType: 'date'
+      align: 'center',
+      valueType: 'dateTime'
     },
     {
       title: '操作',
