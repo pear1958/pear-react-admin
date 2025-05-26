@@ -9,3 +9,7 @@ export const formatDate = (date: string | undefined, format = 'YYYY-MM-DD HH:mm:
   if (!date) return '--'
   return dayjs(date).format(format)
 }
+
+export const setProperty = (key: string, val: string) => {
+  document.documentElement.style.setProperty(key, val)
+}

@@ -9,7 +9,7 @@ const Setting = () => {
     setSystemState('settingVisible', true)
   }
 
-  return <SettingOutlined onClick={openDrawer} className="primary" />
+  return <SettingOutlined onClick={openDrawer} className="pear-hover" />
 }
 
 export default memo(Setting)

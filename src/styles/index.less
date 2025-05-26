@@ -1,6 +1,7 @@
 @import './reset.less';
 @import './transition.less';
 @import './animation.less';
+@import './ant-design.less';
 
 body {
   font-size: 14px;
@@ -16,21 +17,30 @@ body {
   box-sizing: border-box;
 }
 
-.primary {
+.pear-hover {
   cursor: pointer;
   &:hover {
-    color: #e61010;
+    color: var(--pear-primary-color);
     transition: all 0.3s;
   }
 }
 
+.pear-primary {
+  color: var(--pear-primary-color);
+  cursor: pointer;
+  &:hover {
+    color: var(--pear-primary-color-2);
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+}
+
 #nprogress .bar {
-  background: #e61010 !important;
+  background: var(--pear-primary-color) !important;
 }
 #nprogress .spinner-icon {
-  border-top-color: #e61010 !important;
-  border-left-color: #e61010 !important;
+  border-top-color: var(--pear-primary-color) !important;
+  border-left-color: var(--pear-primary-color) !important;
 }
 #nprogress .peg {
-  box-shadow: 0 0 10px #e61010, 0 0 5px #e61010 !important;
+  box-shadow: 0 0 10px var(--pear-primary-color), 0 0 5px var(--pear-primary-color) !important;
 }

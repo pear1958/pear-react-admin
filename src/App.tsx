@@ -45,6 +45,11 @@ const App = () => {
       theme={{
         token: { colorPrimary: primary },
         algorithm: getAlgorithm()
+        // components: {
+        //   Button: {
+
+        //   }
+        // }
       }}
     >
       <AppProvider>

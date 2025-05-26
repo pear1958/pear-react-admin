@@ -30,7 +30,10 @@ const ThemeDrawer = () => {
         <ColorPicker
           value={primary}
           presets={presets}
-          onChangeComplete={val => setSystemState('primary', val?.toHex() || 'primary')}
+          onChangeComplete={val => {
+            const color = val?.toHex() ? `#${val.toHex()}` : primary
+            setSystemState('primary', color)
+          }}
         />
       </div>
 

@@ -1,4 +1,4 @@
-import { Space, Tag } from 'antd'
+import { Button, Space, Tag } from 'antd'
 import { ProColumns, TableDropdown } from '@ant-design/pro-components'
 
 const useColumns = () => {
@@ -64,19 +64,22 @@ const useColumns = () => {
       render: (text, record, index, action) => {
         // console.log('action', action)
         return (
-          <div className="flex-c gap-3">
-            <a
-              key="editable"
+          <div className="flex-c">
+            <Button
+              type="link"
+              className="pear-primary"
               onClick={() => {
                 action?.startEditable?.(record.id)
               }}
             >
               编辑
-            </a>
-            <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+            </Button>
+
+            <Button type="link" className="pear-primary">
               查看
-            </a>
-            <TableDropdown
+            </Button>
+
+            {/* <TableDropdown
               key="actionGroup"
               onSelect={() => action?.reload()}
               menus={[
@@ -85,7 +88,7 @@ const useColumns = () => {
               ]}
             >
               更多
-            </TableDropdown>
+            </TableDropdown> */}
           </div>
         )
       }
