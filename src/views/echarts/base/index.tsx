@@ -22,7 +22,7 @@ const EchartsBase = () => {
   }, 1500)
 
   return (
-    <div className="page-box">
+    <div className="pear-box">
       <div className="w-full h-[500px]">
         <Echarts ref={echartsRef} options={options} />
       </div>

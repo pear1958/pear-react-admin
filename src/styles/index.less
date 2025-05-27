@@ -9,28 +9,39 @@ body {
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
-.page-box {
-  padding: 16px;
-  border-radius: 6px;
-  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
-  background-color: var(--pear-page-bg);
-  box-sizing: border-box;
-}
-
-.pear-hover {
-  cursor: pointer;
-  &:hover {
-    color: var(--pear-primary-color);
-    transition: all 0.3s;
+.pear {
+  &-table {
+    .ant-table {
+      max-height: calc(
+        100vh - @headerHeight - @tabHeight - 32px - 80px - 16px - 16px - 104px - 12px
+      );
+      overflow-y: auto;
+    }
   }
-}
 
-.pear-primary {
-  color: var(--pear-primary-color);
-  cursor: pointer;
-  &:hover {
-    color: var(--pear-primary-color-2);
-    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  &-box {
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+    background-color: var(--pear-page-bg);
+    box-sizing: border-box;
+  }
+
+  &-hover {
+    cursor: pointer;
+    &:hover {
+      color: var(--pear-primary-color);
+      transition: all 0.3s;
+    }
+  }
+
+  &-primary {
+    color: var(--pear-primary-color);
+    cursor: pointer;
+    &:hover {
+      color: var(--pear-primary-color-2);
+      transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
   }
 }
 

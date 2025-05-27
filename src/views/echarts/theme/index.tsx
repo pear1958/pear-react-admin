@@ -10,7 +10,7 @@ const EchartsTheme = () => {
   echarts.registerTheme('wonderland', themeConfig)
 
   return (
-    <div className="page-box h-full">
+    <div className="pear-box h-full">
       <Echarts options={options} />
     </div>
   )

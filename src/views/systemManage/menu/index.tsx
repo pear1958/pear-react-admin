@@ -17,6 +17,7 @@ const JsonTable = () => {
 
   return (
     <ProTable
+      className="pear-table"
       columns={columns}
       actionRef={actionRef}
       cardBordered
@@ -33,25 +34,19 @@ const JsonTable = () => {
       search={{
         labelWidth: 'auto'
       }}
+      // 默认情况下，会显示 刷新、密度调整、列设置 等基础功能按钮
+      // 开发者可通过 options 自定义这些按钮的显隐或扩展功能
       options={{
+        fullScreen: true,
         setting: {
+          // 表格列设置面板最大高度
           listsHeight: 400
         }
       }}
-      form={{
-        // 由于转换是配置的，提交的参数与定义的参数不同，因此需要在这里对它们进行转换
-        syncToUrl: (values, type) => {
-          if (type === 'get') {
-            return {
-              ...values,
-              created_at: [values.startTime, values.endTime]
-            }
-          }
-          return values
-        }
-      }}
       pagination={{
-        pageSize: 10
+        pageSize: 10,
+        showSizeChanger: true,
+        pageSizeOptions: [2, 10, 20, 50, 100]
       }}
       dateFormatter="string"
       headerTitle="菜单列表"

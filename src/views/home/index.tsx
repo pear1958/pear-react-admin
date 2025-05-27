@@ -21,7 +21,7 @@ const Home = () => {
     .map(_ => Math.random())
 
   return (
-    <div className="page-box">
+    <div className="pear-box">
       <div>
         <Button onClick={handleClick} type="primary">
           测试1

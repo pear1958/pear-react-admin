@@ -15,7 +15,7 @@ const useColumns = () => {
     {
       title: '图标',
       dataIndex: ['meta', 'icon'],
-      width: 50,
+      width: 60,
       align: 'center',
       search: false,
       render: (_, record) => {
@@ -26,7 +26,7 @@ const useColumns = () => {
     {
       title: '排序',
       dataIndex: ['meta', 'order'],
-      width: 50,
+      width: 60,
       align: 'center',
       search: false
     },
@@ -57,6 +57,7 @@ const useColumns = () => {
     {
       title: '菜单状态',
       dataIndex: ['meta', 'status'],
+      width: 110,
       align: 'center',
       tooltip: '停用则路由将不会出现在侧边栏，也不能被访问',
       valueEnum: {
@@ -76,7 +77,7 @@ const useColumns = () => {
     {
       title: '显示状态',
       dataIndex: ['meta', 'show'],
-      width: 100,
+      width: 110,
       align: 'center',
       tooltip: '选择隐藏则路由将不会出现在侧边栏，但仍然可以访问',
       render: (_, record) => {
@@ -110,7 +111,7 @@ const useColumns = () => {
       title: '是否缓存',
       dataIndex: ['meta', 'keepAlive'],
       search: false,
-      width: 80,
+      width: 90,
       align: 'center',
       render: (_, record) => {
         if (record.redirect) return '-'
