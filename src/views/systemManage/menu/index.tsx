@@ -21,6 +21,7 @@ const JsonTable = () => {
       actionRef={actionRef}
       cardBordered
       request={async params => {
+        console.log('searchParams', params)
         const res = await getMenuList(params)
         return {
           data: res.list,

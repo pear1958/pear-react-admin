@@ -1,13 +1,16 @@
-import { Button, Tag } from 'antd'
+import { Button, Select, Tag } from 'antd'
 import { ProColumns, TableDropdown } from '@ant-design/pro-components'
 import { Icon } from '@iconify-icon/react'
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
 
 const useColumns = () => {
-  const columns: ProColumns<Recordable>[] = [
+  const columns: ProColumns[] = [
     {
       title: '菜单名称',
-      dataIndex: ['meta', 'title']
+      dataIndex: ['meta', 'title'],
+      formItemProps: {
+        name: 'title'
+      }
     },
     {
       title: '图标',
@@ -41,14 +44,12 @@ const useColumns = () => {
     {
       title: '路由路径',
       dataIndex: 'path',
-      align: 'center',
       search: false,
       copyable: true
     },
     {
       title: '组件路径',
       dataIndex: 'element',
-      align: 'center',
       search: false,
       copyable: true,
       ellipsis: true
@@ -67,6 +68,9 @@ const useColumns = () => {
           text: '启用',
           status: 'Success'
         }
+      },
+      formItemProps: {
+        name: 'status'
       }
     },
     {
@@ -77,24 +81,35 @@ const useColumns = () => {
       tooltip: '选择隐藏则路由将不会出现在侧边栏，但仍然可以访问',
       render: (_, record) => {
         const { status } = record.meta
-        if (!status) return '-'
-        const statusMap = {
-          '0': {
-            text: '隐藏',
-            color: 'red'
+        if (status === '0') return <Tag color="red">隐藏</Tag>
+        if (status === '1') return <Tag color="green">显示</Tag>
+        return '-'
+      },
+      fieldProps: {
+        placeholder: '请选择'
+      },
+      formItemProps: {
+        name: 'show'
+      },
+      initialValue: '1',
+      renderFormItem: () => {
+        const options = [
+          {
+            label: '隐藏',
+            value: '0'
           },
-          '1': {
-            text: '显示',
-            color: 'green'
+          {
+            label: '显示',
+            value: '1'
           }
-        }
-        const item = statusMap[status]
-        return <Tag color={item.color}>{item.text}</Tag>
+        ]
+        return <Select options={options} />
       }
     },
     {
       title: '是否缓存',
       dataIndex: ['meta', 'keepAlive'],
+      search: false,
       width: 80,
       align: 'center',
       render: (_, record) => {
@@ -105,19 +120,24 @@ const useColumns = () => {
     {
       title: '创建时间',
       dataIndex: 'created_at',
+      search: false,
       align: 'center',
       valueType: 'dateTime' // 'date'
     },
     {
       title: '更新时间',
       dataIndex: 'update_at',
+      search: false,
       align: 'center',
       valueType: 'dateTime'
     },
     {
       title: '操作',
       key: 'option',
+      search: false,
       align: 'center',
+      width: 240,
+      fixed: 'right',
       render: (text, record, index, action) => {
         // console.log('action', action)
         return (
@@ -140,7 +160,7 @@ const useColumns = () => {
               删除
             </Button>
 
-            {/* <TableDropdown
+            <TableDropdown
               key="actionGroup"
               onSelect={() => action?.reload()}
               menus={[
@@ -148,8 +168,8 @@ const useColumns = () => {
                 { key: 'delete', name: '删除' }
               ]}
             >
-              更多
-            </TableDropdown> */}
+              <Button type="link">更多</Button>
+            </TableDropdown>
           </div>
         )
       }
