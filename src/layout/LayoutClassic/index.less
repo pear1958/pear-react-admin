@@ -4,5 +4,10 @@
 
   .tabs-main {
     flex: 1; // 继承宽度
+    display: flex;
+    flex-direction: column;
+    // 解决窗口缩小时, tabs和main没有跟着缩小
+    // 以及初次加载时超出视口宽度的bug
+    overflow-x: hidden;
   }
 }

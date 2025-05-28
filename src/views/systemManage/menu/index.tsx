@@ -17,7 +17,7 @@ const JsonTable = () => {
 
   return (
     <ProTable
-      className="pear-table"
+      className="ant-pro-table-scroll"
       columns={columns}
       actionRef={actionRef}
       cardBordered
@@ -30,6 +30,7 @@ const JsonTable = () => {
           success: true
         }
       }}
+      scroll={{ x: 1000, y: '100%' }}
       rowKey="path"
       search={{
         labelWidth: 'auto'
@@ -37,11 +38,7 @@ const JsonTable = () => {
       // 默认情况下，会显示 刷新、密度调整、列设置 等基础功能按钮
       // 开发者可通过 options 自定义这些按钮的显隐或扩展功能
       options={{
-        fullScreen: true,
-        setting: {
-          // 表格列设置面板最大高度
-          listsHeight: 400
-        }
+        fullScreen: true // 会影响表格滚动
       }}
       pagination={{
         pageSize: 10,

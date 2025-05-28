@@ -10,7 +10,7 @@ const Collapse = ({ className }) => {
   }))
 
   return createElement(isCollapse ? MenuUnfoldOutlined : MenuFoldOutlined, {
-    className: classNames('primary', className),
+    className: classNames('pear-hover', className),
     onClick: () => {
       setCollapse(!isCollapse)
     }

@@ -10,7 +10,8 @@ const config = {
     'main-color': '#303133',
     'page-bg': '#ffffff',
     'menu-scrollbar-thumb-bg': '#909399b3', // 0.3
-    'menu-scrollbar-thumb-hover-bg': '#909399'
+    'menu-scrollbar-thumb-hover-bg': '#909399',
+    'table-border-color': '#f0f0f0'
   },
   dark: {
     'header-bg': '#141414',
@@ -21,7 +22,8 @@ const config = {
     'main-color': '#ffffffd9',
     'page-bg': '#1f1f1f',
     'menu-scrollbar-thumb-bg': '#505153',
-    'menu-scrollbar-thumb-hover-bg': '#68696D'
+    'menu-scrollbar-thumb-hover-bg': '#68696D',
+    'table-border-color': '#303030'
   }
 }
 

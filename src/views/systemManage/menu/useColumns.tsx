@@ -8,6 +8,7 @@ const useColumns = () => {
     {
       title: '菜单名称',
       dataIndex: ['meta', 'title'],
+      width: 200,
       formItemProps: {
         name: 'title'
       }
@@ -44,12 +45,14 @@ const useColumns = () => {
     {
       title: '路由路径',
       dataIndex: 'path',
+      width: 240,
       search: false,
       copyable: true
     },
     {
       title: '组件路径',
       dataIndex: 'element',
+      width: 150,
       search: false,
       copyable: true,
       ellipsis: true
@@ -121,14 +124,16 @@ const useColumns = () => {
     {
       title: '创建时间',
       dataIndex: 'created_at',
-      search: false,
+      width: 100,
+      // search: false,
       align: 'center',
       valueType: 'dateTime' // 'date'
     },
     {
       title: '更新时间',
       dataIndex: 'update_at',
-      search: false,
+      width: 100,
+      // search: false,
       align: 'center',
       valueType: 'dateTime'
     },
