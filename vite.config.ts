@@ -28,7 +28,6 @@ export default defineConfig({
       less: {
         additionalData: `
             @import "@/styles/mixin.less";
-            @import "@/styles/variable.less";
           `
       }
     }

@@ -14,8 +14,8 @@
   }
 
   &-main {
-    height: calc(100vh - @headerHeight - @tabHeight);
-    padding: 16px;
+    height: calc(100vh - var(--pear-header-height) - var(--pear-tab-height));
+    padding: var(--pear-main-padding);
     box-sizing: border-box;
     overflow-y: auto;
     background-color: var(--pear-main-bg);

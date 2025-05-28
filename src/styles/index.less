@@ -1,5 +1,4 @@
 @import './reset.less';
-@import './transition.less';
 @import './animation.less';
 @import './ant-design.less';
 
@@ -9,16 +8,23 @@ body {
     'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
+:root {
+  --pear-header-height: 64px;
+  --pear-tab-height: 40px;
+  --pear-main-padding: 16px;
+}
+
 .pear {
-  &-table {
-    // ant-table-small紧凑 ant-table-middle中等  宽松:无
-    .ant-table {
-      max-height: calc(
-        100vh - @headerHeight - @tabHeight - 32px - 80px - 16px - 16px - 104px - 12px
-      );
-      overflow-y: auto;
-    }
-  }
+  // &-table {
+  //   // ant-table-small紧凑 ant-table-middle中等  宽松:无
+  //   .ant-table {
+  //     max-height: calc(
+  //       100vh - var(--pear-header-height) - var(--pear-tab-height) - 32px - 80px - 16px - 16px -
+  //         104px - 12px
+  //     );
+  //     overflow-y: auto;
+  //   }
+  // }
 
   &-box {
     padding: 16px;
