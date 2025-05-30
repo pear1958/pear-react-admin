@@ -6,11 +6,13 @@ import { ProTable } from '@ant-design/pro-components'
 import useColumns from './useColumns'
 import { getMenuList } from '@/api/modules/system'
 import { useModal } from '@/context/modal'
+import useSpan from '@/hooks/useSpan'
 
 const JsonTable = () => {
   const { columns } = useColumns()
   const actionRef = useRef<ActionType>(undefined)
 
+  const { span, layout } = useSpan()
   const { showModal, closeModal } = useModal()
 
   const UserForm = () => {
@@ -65,16 +67,19 @@ const JsonTable = () => {
         scroll={{ x: 1000, y: '100%' }}
         rowKey="path"
         search={{
-          labelWidth: 'auto'
+          labelWidth: 'auto',
+          span,
+          layout
         }}
         // 默认情况下，会显示 刷新、密度调整、列设置 等基础功能按钮
         // 开发者可通过 options 自定义这些按钮的显隐或扩展功能
         options={{
-          fullScreen: true // 会影响表格滚动
+          fullScreen: true
         }}
         pagination={{
-          pageSize: 10,
+          size: 'default',
           showSizeChanger: true,
+          defaultPageSize: 10,
           pageSizeOptions: [2, 10, 20, 50, 100]
         }}
         dateFormatter="string"
