@@ -14,12 +14,10 @@ const JsonTable = () => {
   const { showModal, closeModal } = useModal()
 
   const UserForm = () => {
-    // console.log(message)
-
-    useEffect(() => {
-      console.log('我被挂载了')
-      return () => console.log('我被卸载了')
-    }, [])
+    // useEffect(() => {
+    //   console.log('我被挂载了')
+    //   return () => console.log('我被卸载了')
+    // }, [])
 
     return (
       <div>
