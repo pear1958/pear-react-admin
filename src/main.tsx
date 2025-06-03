@@ -14,7 +14,7 @@ import 'virtual:svg-icons-register'
 
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { persistor, store } from './redux'
+import store, { persistor } from './redux'
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
