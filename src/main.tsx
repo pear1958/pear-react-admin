@@ -12,6 +12,16 @@ import { startMock } from './mock/index.ts'
 
 import 'virtual:svg-icons-register'
 
-createRoot(document.getElementById('root')!).render(<App />)
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './redux'
+
+createRoot(document.getElementById('root')!).render(
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>
+)
 
 if (isDev) startMock()
