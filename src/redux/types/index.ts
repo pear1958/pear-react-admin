@@ -5,12 +5,12 @@ interface User {
   salary?: number
 }
 
-interface Engine {
+interface Device {
   name: string
   type: string
 }
 
 export interface DeviceState {
   users: User[]
-  engineList: Engine[]
+  deviceList: Device[]
 }

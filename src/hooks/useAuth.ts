@@ -1,5 +1,5 @@
 import { useAuthStore, useUserStore } from '@/store'
-import { getButtonData, getMenuList } from '@/api/modules/auth'
+import { getButtonData, getMenuList } from '@/api/modules/user'
 import { getUserInfo } from '@/api/modules/user'
 import { notification } from '@/hooks/useMessage'
 import { removeToken } from '@/utils/auth'
@@ -19,7 +19,7 @@ const useAuth = () => {
         reject(false)
       }
       Promise.all([getMenuList(), getButtonData(), getUserInfo()])
-        .then(([menuList, buttonData, userInfo]) => {
+        .then(([{ data: menuList }, { data: buttonData }, { data: userInfo }]) => {
           if (!menuList?.length) {
             notification.warning({
               message: '无权限访问',

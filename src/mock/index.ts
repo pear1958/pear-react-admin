@@ -44,7 +44,7 @@ export const startMock = () => {
     data: userInfo
   })
 
-  mock.onGet('/menu/list').reply(({ params }) => {
+  mock.onGet('/systemManage/menu/list').reply(({ params }) => {
     return [
       200, // http-status
       {
@@ -54,6 +54,21 @@ export const startMock = () => {
           list: getMockMenuData(params),
           total: 10
         }
+      }
+    ]
+  })
+
+  mock.onGet('/device/list').reply(200, {
+    code: 200,
+    msg: 'ok',
+    data: [
+      {
+        name: '111',
+        type: 'aaa'
+      },
+      {
+        name: '222',
+        type: 'bbb'
       }
     ]
   })

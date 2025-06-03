@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import type { ActionType } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
 import useColumns from './useColumns'
-import { getMenuList } from '@/api/modules/system'
+import { getMenuList } from '@/api/modules/systemManage'
 import { useModal } from '@/context/modal'
 import useSpan from '@/hooks/useSpan'
 
@@ -57,10 +57,10 @@ const JsonTable = () => {
         cardBordered
         request={async params => {
           console.log('searchParams', params)
-          const res = await getMenuList(params)
+          const { data } = await getMenuList(params)
           return {
-            data: res.list,
-            total: res.total,
+            data: data.list,
+            total: data.total,
             success: true
           }
         }}

@@ -11,3 +11,13 @@ export const logout = () => {
 export const getUserInfo = () => {
   return http.get('/user/info')
 }
+
+// 获取菜单权限列表
+export const getMenuList = () => {
+  return http.get('/auth/menu')
+}
+
+// 获取按钮权限列表
+export const getButtonData = () => {
+  return http.get('/auth/button')
+}

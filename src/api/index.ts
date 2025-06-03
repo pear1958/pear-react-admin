@@ -9,8 +9,7 @@ import { getToken, setToken } from '@/utils/auth'
 
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: httpResEnum.TIMEOUT,
-  fullRes: false
+  timeout: httpResEnum.TIMEOUT
   // headers: {
   //   adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
   // }
@@ -44,7 +43,6 @@ class Http {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
-        const config = response.config as Config
 
         hideFullScreenLoading()
 
@@ -70,10 +68,8 @@ class Http {
           return Promise.reject(data)
         }
 
-        if (config.fullRes) return data
-
         // 请求成功
-        return data.data
+        return data
       },
       (error: AxiosError) => {
         const { response: res } = error

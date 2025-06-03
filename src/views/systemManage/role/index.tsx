@@ -1,13 +1,17 @@
-import { useSelector } from 'react-redux'
 import { Button } from 'antd'
-import { selectOnlineUsers, selectUserById } from '@/redux/modules/device'
+import { useDispatch, useSelector } from '@/redux'
+import { fetchDevice, selectOnlineUsers, selectUserById } from '@/redux/modules/device'
 
 const RoleManage = () => {
   const onlineUsers = useSelector(selectOnlineUsers)
-  console.log('onlineUsers', onlineUsers)
+  // console.log('onlineUsers', onlineUsers)
 
   const people = useSelector(state => selectUserById(state, 'x111'))
-  console.log('people', people)
+  // console.log('people', people)
+
+  const dispatch = useDispatch()
+
+  dispatch(fetchDevice('dojwapd'))
 
   return (
     <div>
