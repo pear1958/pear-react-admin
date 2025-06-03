@@ -45,13 +45,10 @@ const deviceSlice = createSlice({
     setDeviceList(state: DeviceState, { payload }: PayloadAction<DeviceState['deviceList']>) {
       state.deviceList = payload
     }
-  },
-  selectors: {
-    // xxxxx
   }
 })
 
-// getters
+// getters 类似于计算属性
 const selectAllUsers = (state: State) => state.device.users
 
 export const selectOnlineUsers = createSelector([selectAllUsers], (users: DeviceState['users']) => {
