@@ -16,6 +16,7 @@ export const ModalProvider = ({ children }) => {
   })
 
   const showModal = (component: ReactElement, modalProps = {}) => {
+    modalProps = { footer: null, ...modalProps }
     setModal({
       open: true,
       content: component,

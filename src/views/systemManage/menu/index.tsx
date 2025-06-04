@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { Button, Input, Modal } from 'antd'
+import { useRef } from 'react'
+import { Button } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import type { ActionType } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
@@ -7,6 +7,7 @@ import useColumns from './useColumns'
 import { getMenuList } from '@/api/modules/systemManage'
 import { useModal } from '@/context/modal'
 import useSpan from '@/hooks/useSpan'
+import EditForm from './EditForm'
 
 const JsonTable = () => {
   const { columns } = useColumns()
@@ -15,27 +16,9 @@ const JsonTable = () => {
   const { span, layout } = useSpan()
   const { showModal, closeModal } = useModal()
 
-  const UserForm = () => {
-    // useEffect(() => {
-    //   console.log('我被挂载了')
-    //   return () => console.log('我被卸载了')
-    // }, [])
-
-    return (
-      <div>
-        <Input placeholder="请输入测试文字" />
-        <div>
-          <Button type="primary" onClick={closeModal}>
-            手动关闭
-          </Button>
-        </div>
-      </div>
-    )
-  }
-
   const openUserModal = () => {
-    showModal(<UserForm />, {
-      title: '用户信息',
+    showModal(<EditForm />, {
+      title: '新增菜单',
       width: 800
     })
   }
