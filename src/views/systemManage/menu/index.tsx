@@ -5,26 +5,17 @@ import type { ActionType } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
 import useColumns from './useColumns'
 import { getMenuList } from '@/api/modules/systemManage'
-import { useModal } from '@/context/modal'
 import useSpan from '@/hooks/useSpan'
-import EditForm from './EditForm'
+import EditModal from './EditModal'
 
 const JsonTable = () => {
   const { columns } = useColumns()
   const actionRef = useRef<ActionType>(undefined)
-
   const { span, layout } = useSpan()
-  const { showModal, closeModal } = useModal()
-
-  const openUserModal = () => {
-    showModal(<EditForm />, {
-      title: '新增菜单',
-      width: 800
-    })
-  }
+  const editModalRef = useRef(null)
 
   const handleAdd = () => {
-    openUserModal()
+    editModalRef.current.openModal()
   }
 
   const refresh = () => {
@@ -74,6 +65,7 @@ const JsonTable = () => {
           <Button>导出</Button>
         ]}
       />
+      <EditModal ref={editModalRef} onRefresh={refresh} />
     </div>
   )
 }

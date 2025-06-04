@@ -11,7 +11,6 @@ import i18n from './languages'
 import { RefreshProvider } from './context/refresh'
 import Router from './router'
 import useCheckVersion from './hooks/useCheckVersion'
-import { ModalProvider } from './context/modal'
 
 const App = () => {
   const { isDark, primary, componentSize, compactAlgorithm, language, setSystemState } =
@@ -49,13 +48,11 @@ const App = () => {
       }}
     >
       <AppProvider>
-        <ModalProvider>
-          <I18nextProvider i18n={i18n}>
-            <RefreshProvider>
-              <Router />
-            </RefreshProvider>
-          </I18nextProvider>
-        </ModalProvider>
+        <I18nextProvider i18n={i18n}>
+          <RefreshProvider>
+            <Router />
+          </RefreshProvider>
+        </I18nextProvider>
       </AppProvider>
     </ConfigProvider>
   )
