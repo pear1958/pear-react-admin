@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   device: deviceReducer
 })
 
-export type R = ReturnType<typeof rootReducer>
+type R = ReturnType<typeof rootReducer>
 
 const store = configureStore({
   reducer: persistReducer<R>(
