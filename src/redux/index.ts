@@ -18,10 +18,10 @@ const rootReducer = combineReducers({
   device: deviceReducer
 })
 
-export type RootState = ReturnType<typeof rootReducer>
+export type R = ReturnType<typeof rootReducer>
 
 const store = configureStore({
-  reducer: persistReducer<RootState>(
+  reducer: persistReducer<R>(
     {
       key: 'pear-redux',
       storage
