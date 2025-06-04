@@ -58,7 +58,7 @@ const EditForm = ({ ref, onRefresh }) => {
       }
     >
       <div className="pt-4">
-        <Form form={form} initialValues={{ type: 2 }}>
+        <Form form={form} initialValues={{ type: 2 }} preserve={false}>
           <Form.Item label="菜单类型" name="type">
             <Radio.Group options={menuOptions} />
           </Form.Item>
