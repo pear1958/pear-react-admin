@@ -11,24 +11,27 @@ import {
 } from 'react-redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import deviceReducer from './modules/device'
 import { isDev } from '@/utils'
+import deviceReducer from './modules/device'
+
+const rootReducer = combineReducers({
+  device: deviceReducer
+})
+
+export type RootState = ReturnType<typeof rootReducer>
 
 const store = configureStore({
-  reducer: persistReducer(
+  reducer: persistReducer<RootState>(
     {
       key: 'pear-redux',
       storage
       // blacklist: ['auth']
     },
-    combineReducers({
-      device: deviceReducer
-    })
+    rootReducer
   ),
   // Redux Toolkit 默认包含 redux-thunk 中间件
   middleware: getDefaultMiddleware => {
-    // 禁用状态序列化检查
-    return getDefaultMiddleware({ serializableCheck: false }).concat([])
+    return getDefaultMiddleware({ serializableCheck: false }).concat([]) // 禁用状态序列化检查
   },
   devTools: isDev
 })
