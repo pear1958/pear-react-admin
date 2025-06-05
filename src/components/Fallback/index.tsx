@@ -2,6 +2,9 @@ import { Button, Space } from 'antd'
 import type { FallbackProps } from 'react-error-boundary'
 import { isDev } from '@/utils'
 
+// 手动显示错误边界:
+// const { showBoundary } = useErrorBoundary()
+
 const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <Space direction="vertical">
