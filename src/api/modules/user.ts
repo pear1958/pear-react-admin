@@ -14,7 +14,7 @@ export const getUserInfo = () => {
 
 // 获取菜单权限列表
 export const getMenuList = () => {
-  return http.get('/auth/menu')
+  return http.get('/user/menu')
 }
 
 // 获取按钮权限列表

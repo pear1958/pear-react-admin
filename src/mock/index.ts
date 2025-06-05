@@ -6,7 +6,7 @@ import { menuList } from './modules/menuList'
 import { buttonData } from './modules/buttonData'
 
 export const startMock = () => {
-  const mock = new MockAdapter(http.service, { delayResponse: 1000 })
+  const mock = new MockAdapter(http.service, { delayResponse: 1000, onNoMatch: 'passthrough' })
 
   mock
     .onPost('/user/login', {
@@ -26,11 +26,11 @@ export const startMock = () => {
     data: true
   })
 
-  mock.onGet('/auth/menu').reply(200, {
-    code: 200,
-    msg: 'ok',
-    data: menuList
-  })
+  // mock.onGet('/auth/menu').reply(200, {
+  //   code: 200,
+  //   msg: 'ok',
+  //   data: menuList
+  // })
 
   mock.onGet('/auth/button').reply(200, {
     code: 200,
