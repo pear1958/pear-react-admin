@@ -48,7 +48,7 @@ const Tabs: React.FC = () => {
       closable: true
     })
 
-    if (keepAlive) addKeepAlive(path)
+    if (keepAlive !== false) addKeepAlive(path)
   }, [matches])
 
   const items = tabsList.map(item => ({

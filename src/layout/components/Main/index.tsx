@@ -1,9 +1,11 @@
 import { useContext, useEffect, useMemo } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
 import KeepAlive, { useKeepAliveRef } from 'keepalive-for-react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { RefreshContext } from '@/context/refresh'
 import { useSystemStore, useTabsStore } from '@/store'
 import MemoScroll from './MemoScroll'
+import Fallback from '@/components/Fallback'
 import './index.less'
 
 const Main = () => {
@@ -32,7 +34,9 @@ const Main = () => {
       containerClassName="pear-keep-alive"
       cacheNodeClassName="pear-cache"
     >
-      <MemoScroll className="pear-main">{mainShow && outlet}</MemoScroll>
+      <MemoScroll className="pear-main">
+        <ErrorBoundary FallbackComponent={Fallback}>{mainShow && outlet}</ErrorBoundary>
+      </MemoScroll>
     </KeepAlive>
   )
 }
