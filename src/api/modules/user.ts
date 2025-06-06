@@ -19,5 +19,5 @@ export const getMenuList = () => {
 
 // 获取按钮权限列表
 export const getButtonData = () => {
-  return http.get('/auth/button')
+  return http.get('/user/button')
 }
