@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useLoaderData, useLocation, useMatches, useNavigate } from 'react-router-dom'
 import { HOME_URL, LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/constant'
 import { getToken } from '@/utils/auth'
-import { useAuthStore } from '@/store'
 
 // 验证以下行为即可
 // 没有 token -> 访问 Login 页
@@ -16,10 +15,6 @@ const RouterGuard = ({ children }) => {
   const { pathname } = useLocation()
   const meta = useLoaderData()
   const token = getToken()
-  const setRouteName = useAuthStore(state => state.setRouteName)
-
-  const match = matches[matches.length - 1] as Recordable
-  setRouteName(match.data?.name)
 
   window.$navigate = navigate
 

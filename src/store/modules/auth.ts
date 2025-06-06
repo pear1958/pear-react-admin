@@ -14,9 +14,7 @@ const initialState = {
   // 菜单权限列表 ==> 左侧菜单栏渲染, 需要剔除 show == false('0')
   showMenuList: [],
   // 用户所有的按钮权限
-  buttonData: {},
-  // 当前页面的 route name, 用来做按钮权限筛选
-  routeName: ''
+  buttonData: {}
 }
 
 export const useAuthStore = createWithEqualityFn<AuthStore>()(
@@ -33,11 +31,6 @@ export const useAuthStore = createWithEqualityFn<AuthStore>()(
       setButtonData(data) {
         set((state: AuthState) => {
           state.buttonData = data
-        })
-      },
-      setRouteName(name) {
-        set((state: AuthState) => {
-          state.routeName = name
         })
       },
       reset() {
