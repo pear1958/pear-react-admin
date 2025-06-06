@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { Button, Input } from 'antd'
 import useAuthButton from '@/hooks/useAuthButton'
-import useRoute from '@/hooks/useRoute'
 
 const Home = () => {
   // const navigate = useNavigate()
-  // const { BUTTONS } = useAuthButton()
+  const { BUTTONS } = useAuthButton()
 
   const url = '/components/jsonForm'
 
