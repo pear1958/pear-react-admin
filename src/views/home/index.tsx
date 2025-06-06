@@ -1,21 +1,18 @@
-import { useLocation, useMatch, useMatches, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button, Input } from 'antd'
 import useAuthButton from '@/hooks/useAuthButton'
+import useRoute from '@/hooks/useRoute'
 
 const Home = () => {
-  const navigate = useNavigate()
-  const { BUTTONS } = useAuthButton()
-
-  const match = useMatches()
-  const location = useLocation()
-
-  // console.log('match', match)
-  // console.log('location', location)
+  // const navigate = useNavigate()
+  // const { BUTTONS } = useAuthButton()
 
   const url = '/components/jsonForm'
 
+  console.log('aaaaaaa')
+
   const handleClick = () => {
-    navigate(url)
+    // navigate(url)
   }
 
   const handleClick2 = () => {

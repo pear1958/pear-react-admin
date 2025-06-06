@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/store'
-import useStableRoute from './useStableRoute'
+import useRoute from './useRoute'
 
 interface Result {
   BUTTONS: { [key: string]: boolean }
@@ -8,19 +8,19 @@ interface Result {
 const useAuthButton = (): Result => {
   const BUTTONS = {}
   const buttonData = useAuthStore(state => state.buttonData)
-  const { matches } = useStableRoute()
-  const match = matches[matches.length - 1]
-  const routeName = (match.data as Recordable)?.name
+  // const { routeName } = useRoute()
+  const routeName = ''
 
-  if (!routeName) return
+  // routeName需要手动获取, 避免keep-alive切换路由时, 原组件重渲染
 
-  const pageAuthList = buttonData[routeName] || []
+  // console.log('重新执行')
 
-  pageAuthList.forEach(authName => {
-    BUTTONS[authName] = true
-  })
+  if (routeName) {
+    const pageAuthList = buttonData[routeName] || []
+    pageAuthList.forEach(authName => (BUTTONS[authName] = true))
+  }
 
-  console.log('BUTTONS', BUTTONS)
+  // console.log('BUTTONS', BUTTONS)
 
   return {
     BUTTONS
