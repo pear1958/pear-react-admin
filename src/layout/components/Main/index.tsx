@@ -33,6 +33,7 @@ const Main = () => {
       include={keepAliveList}
       containerClassName="pear-keep-alive"
       cacheNodeClassName="pear-cache"
+      max={10}
     >
       <MemoScroll className="pear-main">
         <ErrorBoundary FallbackComponent={Fallback}>{mainShow && outlet}</ErrorBoundary>
