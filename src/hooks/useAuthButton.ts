@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/store'
-import { getMenuByPath } from '@/utils'
+import { getMenuItemByPath } from '@/utils'
 
 interface Result {
   BUTTONS: { [key: string]: boolean }
@@ -10,7 +10,7 @@ const useAuthButton = (): Result => {
   const buttonData = useAuthStore(state => state.buttonData)
 
   // routeName需要手动获取, 避免keep-alive切换路由时, 原组件重渲染
-  const meta = getMenuByPath()?.meta ?? {}
+  const meta = getMenuItemByPath()?.meta ?? {}
   const routeName = meta.name
 
   if (routeName) {

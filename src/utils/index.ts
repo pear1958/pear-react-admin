@@ -17,7 +17,7 @@ export const setProperty = (key: string, val: string) => {
   document.documentElement.style.setProperty(key, val)
 }
 
-export function getUrlWithParams() {
+export function getPath() {
   const url = {
     hash: location.hash.substring(1),
     history: location.pathname + location.search
@@ -25,12 +25,15 @@ export function getUrlWithParams() {
   return url[mode]
 }
 
-export const getMenuByPath = (
+export const getMenuItemByPath = (
   menulist: Recordable[] = useAuthStore.getState().flatMenuList,
-  path: string = getUrlWithParams()
+  path: string = getPath()
 ) => {
   const menuItem = menulist.find(menu => {
-    const regex = new RegExp(`^${menu.path?.replace(/:.[^/]*/, '.*')}$`)
+    // eg: /users/:id/posts -> :id被替换成任意字符
+    const str = menu.path.replace(/:.[^/]*/, '.*')
+    const regex = new RegExp(`^${str}$`)
+    // 菜单path === 路由path
     return regex.test(path)
   })
   return menuItem || {}
