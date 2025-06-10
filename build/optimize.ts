@@ -7,7 +7,6 @@
  * 3.如果使用的第三方库是全局引入，也就是引入到 src/main.ts 文件里，就不需要再添加到 include 里了，因为 vite 会自动将它们缓存到 node_modules/.vite
  */
 export const include = [
-  // '@amap/amap-jsapi-loader',
   'axios',
   'dayjs',
   'echarts',
@@ -15,10 +14,18 @@ export const include = [
   'lodash-es',
   'zustand',
   'immer',
-  'use-immer'
-  // 'hotkeys-js',
-  // 'mitt',
-  // 'mqtt',
+  'use-immer',
+  'mitt',
+  'simplebar-react',
+  'pear-common-utils',
+  'keepalive-for-react',
+  'classnames',
+  'ahooks',
+  '@ant-design/icons',
+  '@ant-design/pro-components',
+  '@dnd-kit/core',
+  '@dnd-kit/sortable',
+  '@dnd-kit/utilities'
 ]
 
 export const exclude = []
