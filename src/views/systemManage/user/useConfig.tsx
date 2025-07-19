@@ -10,6 +10,7 @@ import { ActionType, ProColumns } from '@ant-design/pro-components'
 import { fallbackImg } from '@/config/constant'
 import { modal, message } from '@/hooks/useMessage'
 import { editUser, deleteUser } from '@/api/modules/systemManage'
+import EditForm from './EditForm'
 
 enum UserStatus {
   Disable = 0,
@@ -20,8 +21,13 @@ const useConfig = () => {
   // 获取表格实例
   const tableRef = useRef<ActionType>(null)
 
+  // 根据当前所有参数刷新表格
   const refresh = () => {
-    tableRef?.current?.reload()
+    tableRef.current.reload()
+  }
+
+  const reset = () => {
+    tableRef.current.reset()
   }
 
   const changeStatus = (row: Recordable) => {
@@ -37,6 +43,20 @@ const useConfig = () => {
           refresh()
           resolve()
         })
+    })
+  }
+
+  const handleAdd = () => {
+    modal.confirm({
+      icon: null,
+      title: '新增用户',
+      content: <EditForm />,
+      closable: true,
+      width: 600,
+      footer: null,
+      onOk: () => {
+        // xxxxxxxxx
+      }
     })
   }
 
@@ -174,7 +194,8 @@ const useConfig = () => {
   return {
     columns,
     tableRef,
-    refresh
+    refresh,
+    handleAdd
   }
 }
 
