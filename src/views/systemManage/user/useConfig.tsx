@@ -1,10 +1,15 @@
+import { useRef } from 'react'
 import { Button, Image, Space, Switch, Tag } from 'antd'
-import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons'
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExclamationCircleFilled,
+  InfoCircleFilled
+} from '@ant-design/icons'
 import { ActionType, ProColumns } from '@ant-design/pro-components'
 import { fallbackImg } from '@/config/constant'
 import { modal, message } from '@/hooks/useMessage'
-import { editUser } from '@/api/modules/systemManage'
-import { useRef } from 'react'
+import { editUser, deleteUser } from '@/api/modules/systemManage'
 
 enum UserStatus {
   Disable = 0,
@@ -19,15 +24,31 @@ const useConfig = () => {
     tableRef?.current?.reload()
   }
 
-  const changeStatus = async (row: Recordable) => {
+  const changeStatus = (row: Recordable) => {
     modal.confirm({
-      icon: <ExclamationCircleFilled />,
+      icon: <InfoCircleFilled style={{ color: '#1890ff' }} />,
       title: '确认',
       content: `确认要${row.status === UserStatus.Disable ? '启' : '禁'}用该用户`,
       closable: true,
       onOk: () =>
         new Promise<void>(async resolve => {
           await editUser({ ...row, status: +!row.status })
+          message.success('操作成功')
+          refresh()
+          resolve()
+        })
+    })
+  }
+
+  const delUser = (id: number) => {
+    modal.confirm({
+      icon: <ExclamationCircleFilled />,
+      title: '确认',
+      content: '确认要删除该用户',
+      closable: true,
+      onOk: () =>
+        new Promise<void>(async resolve => {
+          // await deleteUser(id)
           message.success('操作成功')
           refresh()
           resolve()
@@ -142,7 +163,7 @@ const useConfig = () => {
           <Button type="link" icon={<EditOutlined />}>
             编辑
           </Button>
-          <Button type="link" icon={<DeleteOutlined />}>
+          <Button type="link" icon={<DeleteOutlined />} onClick={() => delUser(row.id)}>
             删除
           </Button>
         </>
