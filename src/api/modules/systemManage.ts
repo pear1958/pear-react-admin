@@ -7,3 +7,7 @@ export const getMenuList = (params: Recordable) => {
 export const getUserList = (params: Recordable) => {
   return http.get('/system/user', params)
 }
+
+export const editUser = (params: Recordable) => {
+  return http.put(`/system/user/${params.id}`, params)
+}

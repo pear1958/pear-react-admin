@@ -1,5 +1,7 @@
 import { useAuthStore } from '@/store'
 import dayjs from 'dayjs'
+import { Response } from '@/api/types'
+import { REQUEST_CODE } from '@/enums/httpEnum'
 
 export const isDev = import.meta.env.MODE === 'development'
 
@@ -37,4 +39,13 @@ export const getMenuItemByPath = (
     return regex.test(path)
   })
   return menuItem || {}
+}
+
+export const formatResponse = (response: Response) => {
+  const { code, data } = response
+  return {
+    data: data.items || [],
+    total: data.meta?.totalItems || 0,
+    success: code === REQUEST_CODE.SUCCESS
+  }
 }

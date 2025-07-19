@@ -55,7 +55,7 @@ class Http {
         }
 
         // token过期
-        if (data.code == httpResEnum.OVERDUE) {
+        if (data?.code == httpResEnum.OVERDUE) {
           message.error(data.msg)
           setToken(null)
           window.$navigate(LOGIN_URL)
@@ -63,7 +63,7 @@ class Http {
         }
 
         // 全局错误信息拦截
-        if (!String(data.code).startsWith('2')) {
+        if (data && !String(data.code).startsWith('2')) {
           message.error(data.msg)
           return Promise.reject(data)
         }

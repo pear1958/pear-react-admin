@@ -16,3 +16,9 @@ export interface Config extends AxiosRequestConfig {
   showLoading?: boolean
   fullRes?: boolean
 }
+
+export type Response<T = any> = {
+  code: number
+  data: T
+  msg: string
+}

@@ -1,30 +1,25 @@
-import { useRef } from 'react'
-import { ActionType, ProTable } from '@ant-design/pro-components'
+import { ProTable } from '@ant-design/pro-components'
 import useConfig from './useConfig'
 import { getUserList } from '@/api/modules/systemManage'
+import { formatResponse } from '@/utils'
 
 const UserManage = () => {
-  // 获取表格实例
-  const tableRef = useRef<ActionType>(null)
-  const { columns } = useConfig()
+  const { columns, tableRef } = useConfig()
 
   return (
     <div>
       <ProTable
+        className="ant-pro-table-scroll"
         actionRef={tableRef}
-        columns={columns}
+        columns={columns.map(col => ({
+          ...col,
+          align: 'center'
+        }))}
         rowKey="id"
         request={async params => {
-          console.log('searchParams', params)
-          const {
-            data: { items, meta }
-          } = await getUserList(params)
-          return {
-            data: items,
-            total: meta.totalItems,
-            success: true
-          }
+          return formatResponse(await getUserList(params))
         }}
+        scroll={{ x: 1000, y: '100%' }}
       />
     </div>
   )
