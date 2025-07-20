@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Input, Radio, Select, Space } from 'antd'
-import { getRoleList } from '@/api/modules/systemManage'
 import { LabelValue } from 'pear-common-utils/es/types/global'
+import { getRoleList } from '@/api/modules/systemManage'
+import UploadFile from '@/components/UploadFile'
 
 const EditForm: React.FC = () => {
   const [form] = Form.useForm()
@@ -33,11 +34,20 @@ const EditForm: React.FC = () => {
       <Form
         name="userForm"
         form={form}
-        labelCol={{ span: 3 }}
-        wrapperCol={{ span: 21 }}
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
         initialValues={{ status: 1 }}
       >
-        <Form.Item label="所属角色" name="roleIds">
+        {/* 设置如何将 event 的值转换成字段值 */}
+        <Form.Item label="头像" name="avatar">
+          <UploadFile />
+        </Form.Item>
+
+        <Form.Item
+          label="所属角色"
+          name="roleIds"
+          rules={[{ required: true, message: '请选择角色' }]}
+        >
           <Select mode="multiple" options={roleList} allowClear placeholder="请选择角色" />
         </Form.Item>
 
