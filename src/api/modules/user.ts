@@ -5,7 +5,7 @@ export const login = (params: Recordable) => {
 }
 
 export const logout = () => {
-  return http.post('/system/user/logout')
+  return http.get('/account/logout')
 }
 
 export const getUserInfo = () => {
@@ -14,7 +14,7 @@ export const getUserInfo = () => {
 
 // 获取菜单权限列表
 export const getMenuList = () => {
-  return http.get('/system/user/menu')
+  return http.get('/system/user/react-admin-list')
 }
 
 // 获取按钮权限列表

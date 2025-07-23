@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Input, Radio, Select, Space } from 'antd'
+import { Button, Form, Input, Radio, Select, Space, TreeSelect } from 'antd'
+import { delay } from 'pear-common-utils'
 import { LabelValue } from 'pear-common-utils/es/types/global'
-import { getRoleList } from '@/api/modules/systemManage'
+import { getDeptList, getRoleList } from '@/api/modules/systemManage'
 import UploadFile from '@/components/UploadFile'
+import { convertToTree } from '@/utils'
+import { UserStatus } from './useConfig'
 
 const EditForm: React.FC = () => {
   const [form] = Form.useForm()
+  const [submitLoading, setSubmitLoading] = useState(false)
   const [roleList, setRoleList] = useState([])
-
-  const onFinish = (values: any) => {
-    console.log('values', values)
-  }
+  const [deptList, setDeptList] = useState([])
 
   const onReset = () => {
     form.resetFields()
@@ -18,15 +19,33 @@ const EditForm: React.FC = () => {
 
   useEffect(() => {
     getRoleOptions()
+    getDeptOptions()
   }, [])
 
   const getRoleOptions = async () => {
     const { data } = await getRoleList()
-    const list = (data.items || []).map((_: LabelValue) => ({
+    const list = (data?.items || []).map((_: LabelValue) => ({
       label: _.name,
       value: _.id
     }))
     setRoleList(list)
+  }
+
+  const getDeptOptions = async () => {
+    const { data = [] } = await getDeptList()
+    const list = convertToTree(data)
+    setDeptList(list)
+  }
+
+  const submit = async () => {
+    setSubmitLoading(true)
+    try {
+      const values = await form.validateFields()
+      console.log('表单数据：', values)
+      await delay(3000)
+    } finally {
+      setSubmitLoading(false)
+    }
   }
 
   return (
@@ -38,9 +57,26 @@ const EditForm: React.FC = () => {
         wrapperCol={{ span: 20 }}
         initialValues={{ status: 1 }}
       >
-        {/* 设置如何将 event 的值转换成字段值 */}
         <Form.Item label="头像" name="avatar">
           <UploadFile />
+        </Form.Item>
+
+        <Form.Item
+          label="所属部门"
+          name="deptId"
+          rules={[{ required: true, message: '请选择所属部门' }]}
+        >
+          <TreeSelect
+            style={{ width: '100%' }}
+            styles={{
+              popup: { root: { maxHeight: 400, overflow: 'auto' } }
+            }}
+            placeholder="请选择所属部门"
+            allowClear
+            treeData={deptList}
+            showSearch
+            treeNodeFilterProp="title"
+          />
         </Form.Item>
 
         <Form.Item
@@ -81,17 +117,15 @@ const EditForm: React.FC = () => {
 
         <Form.Item label="状态" name="status">
           <Radio.Group>
-            <Radio value={1}>启用</Radio>
-            <Radio value={0}>禁用</Radio>
+            <Radio value={UserStatus.Disable}>禁用</Radio>
+            <Radio value={UserStatus.Enabled}>启用</Radio>
           </Radio.Group>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ marginBottom: '12px' }}>
           <Space>
-            <Button htmlType="button" onClick={onReset}>
-              重置
-            </Button>
-            <Button type="primary" htmlType="submit">
+            <Button onClick={onReset}>重置</Button>
+            <Button type="primary" onClick={submit} loading={submitLoading}>
               提交
             </Button>
           </Space>

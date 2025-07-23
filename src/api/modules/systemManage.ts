@@ -19,3 +19,8 @@ export const deleteUser = (id: number) => {
 export const getRoleList = () => {
   return http.get('/system/role')
 }
+
+
+export const getDeptList = () => {
+  return http.get('/system/dept')
+}

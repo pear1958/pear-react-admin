@@ -12,7 +12,7 @@ import { modal, message } from '@/hooks/useMessage'
 import { editUser, deleteUser } from '@/api/modules/systemManage'
 import EditForm from './EditForm'
 
-enum UserStatus {
+export enum UserStatus {
   Disable = 0,
   Enabled = 1
 }

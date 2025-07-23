@@ -49,3 +49,21 @@ export const formatResponse = (response: Response) => {
     success: code === REQUEST_CODE.SUCCESS
   }
 }
+
+export const convertToTree = (data: Recordable[]) => {
+  const transformNode = (node: Recordable) => {
+    const transformed: Recordable = {
+      title: node.name,
+      value: node.id
+    }
+
+    // 如果有子节点，递归转换
+    if (node.children?.length > 0) {
+      transformed.children = node.children.map((item: Recordable) => transformNode(item))
+    }
+
+    return transformed
+  }
+
+  return data.map(item => transformNode(item))
+}

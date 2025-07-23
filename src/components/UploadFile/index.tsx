@@ -1,14 +1,33 @@
-import { FC, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import { Image, Upload, type UploadFile } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { RcFile, UploadProps } from 'antd/es/upload'
 import { message } from '@/hooks/useMessage'
 
-const UploadFile: FC<Recordable> = ({ onSuccess }) => {
+interface Props {
+  value?: string[]
+  onChange?: (value: string[]) => void
+}
+
+const UploadFile: FC<Props> = ({ value, onChange }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
 
+  useEffect(() => {
+    if (!value?.length) return
+    const result = value.map(
+      (item, index) =>
+        ({
+          uid: String(index),
+          name: item,
+          url: item,
+          status: 'done'
+        } as UploadFile)
+    )
+    setFileList(result)
+  }, [value])
+
   const handleChange: UploadProps['onChange'] = ({ file, fileList: newFileList }) => {
-    console.log('file.status', file.status)
+    // console.log('file.status', file.status)
 
     if (file.status === 'uploading') {
       setFileList(newFileList)
@@ -17,6 +36,7 @@ const UploadFile: FC<Recordable> = ({ onSuccess }) => {
 
     if (file.status === 'done') {
       const { code, data } = file.response || {}
+
       if (String(code)[0] === '2') {
         const filePath = data.filePaths[0]
         // file.url = filePath
@@ -24,8 +44,11 @@ const UploadFile: FC<Recordable> = ({ onSuccess }) => {
           'https://react.baiwumm.com/static/image/2023-08-31/2c0bdf2c-5182-41f2-9b31-8dbfc74530f9.png'
         // 预览: file.thumbUrl（优先） → file.url（备选） → 自动生成预览（如果是本地文件）
         setFileList([...newFileList])
-        onSuccess && onSuccess(filePath)
-        // console.log('newFileList', newFileList)
+
+        if (onChange) {
+          const urls = newFileList.map(item => item.url)
+          onChange(urls)
+        }
       }
     }
   }
@@ -103,4 +126,4 @@ const UploadFile: FC<Recordable> = ({ onSuccess }) => {
   )
 }
 
-export default UploadFile
+export default memo(UploadFile)
