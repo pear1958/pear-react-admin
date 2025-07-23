@@ -47,16 +47,13 @@ const useConfig = () => {
   }
 
   const handleAdd = () => {
-    modal.confirm({
+    const modalIns = modal.confirm({
       icon: null,
       title: '新增用户',
-      content: <EditForm />,
+      content: <EditForm refresh={refresh} close={() => modalIns.destroy()} />,
       closable: true,
       width: 600,
-      footer: null,
-      onOk: () => {
-        // xxxxxxxxx
-      }
+      footer: null
     })
   }
 
@@ -118,7 +115,7 @@ const useConfig = () => {
       title: '所属角色',
       render: (_, row) =>
         row.roles?.length ? (
-          <Space wrap>
+          <Space direction="vertical">
             {row.roles.map((item: Recordable) => (
               <Tag color="processing">{item.name}</Tag>
             ))}

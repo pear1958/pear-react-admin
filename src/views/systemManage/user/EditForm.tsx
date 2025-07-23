@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Button, Form, Input, Radio, Select, Space, TreeSelect } from 'antd'
 import { delay } from 'pear-common-utils'
 import { LabelValue } from 'pear-common-utils/es/types/global'
-import { getDeptList, getRoleList } from '@/api/modules/systemManage'
+import { createUser, getDeptList, getRoleList } from '@/api/modules/systemManage'
 import UploadFile from '@/components/UploadFile'
 import { convertToTree } from '@/utils'
 import { UserStatus } from './useConfig'
+import { message } from '@/hooks/useMessage'
 
-const EditForm: React.FC = () => {
+interface Props {
+  id?: number
+  refresh: () => void
+  close: () => void
+}
+
+const EditForm: FC<Props> = ({ id, refresh, close }) => {
   const [form] = Form.useForm()
   const [submitLoading, setSubmitLoading] = useState(false)
   const [roleList, setRoleList] = useState([])
@@ -40,10 +47,20 @@ const EditForm: React.FC = () => {
   const submit = async () => {
     setSubmitLoading(true)
     try {
-      const values = await form.validateFields()
-      console.log('表单数据：', values)
-      await delay(3000)
-    } finally {
+      const formState = await form.validateFields()
+
+      console.log('表单数据：', formState)
+
+      if (formState.avatar?.length) {
+        formState.avatar = formState.avatar.join(',')
+      }
+      await delay(2000)
+      await createUser(formState)
+      setSubmitLoading(false)
+      close()
+      message.success("操作成功")
+      refresh()
+    } catch (err) {
       setSubmitLoading(false)
     }
   }
@@ -117,8 +134,8 @@ const EditForm: React.FC = () => {
 
         <Form.Item label="状态" name="status">
           <Radio.Group>
-            <Radio value={UserStatus.Disable}>禁用</Radio>
             <Radio value={UserStatus.Enabled}>启用</Radio>
+            <Radio value={UserStatus.Disable}>禁用</Radio>
           </Radio.Group>
         </Form.Item>
 
