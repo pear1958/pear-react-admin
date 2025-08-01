@@ -6,9 +6,10 @@ import { cloneDeep } from 'lodash-es'
 import { UserState, UserStore } from '../types'
 import { useAuthStore } from './auth'
 import { useTabsStore } from './tabs'
-import { removeToken } from '@/utils/auth'
+import { removeToken, setToken } from '@/utils/auth'
 import { LOGIN_URL } from '@/config/constant'
 import { message } from '@/hooks/useMessage'
+import { login } from '@/api/modules/auth'
 
 const initialState = {
   userInfo: {}
@@ -18,6 +19,10 @@ export const useUserStore = createWithEqualityFn<UserStore>()(
   devtools(
     immer((set, get) => ({
       ...initialState,
+      async login(params: Recordable) {
+        const { data } = await login(params)
+        setToken(data.token)
+      },
       setUserInfo(userInfo) {
         set((state: UserState) => {
           state.userInfo = userInfo

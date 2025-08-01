@@ -1,9 +1,5 @@
 import http from '@/api'
 
-export const login = (params: Recordable) => {
-  return http.post('/system/user/login', params)
-}
-
 export const logout = () => {
   return http.get('/account/logout')
 }

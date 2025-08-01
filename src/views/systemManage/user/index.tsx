@@ -1,9 +1,9 @@
+import { Button } from 'antd'
 import { ProTable } from '@ant-design/pro-components'
+import { PlusOutlined } from '@ant-design/icons'
 import useConfig from './useConfig'
 import { getUserList } from '@/api/modules/systemManage'
 import { formatResponse } from '@/utils'
-import { PlusOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
 
 const UserManage = () => {
   const { columns, tableRef, refresh, handleAdd } = useConfig()

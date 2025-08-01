@@ -8,7 +8,11 @@ export const ERROR_404_NAME = 'Error404'
 
 export const ROUTER_WHITE_LIST: string[] = ['/xxx']
 
-export const TOKEN_KEY = 'user-token'
+export const TOKEN_KEY = 'ticket'
+
+export const PEAR_REMEMBER = 'pear_remember'
+
+export const PEAR_LOGIN_INFO = 'pear_login_info'
 
 export const ROUTER_404 = {
   path: ERROR_404_URL,

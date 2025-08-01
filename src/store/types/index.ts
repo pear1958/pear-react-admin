@@ -35,6 +35,7 @@ export interface UserState {
 }
 
 export interface UserAction extends BaseAction {
+  login: (params: Recordable) => Promise<void>
   setUserInfo: (userInfo: UserState['userInfo']) => void
   logout: () => void
 }
