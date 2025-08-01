@@ -1,21 +1,21 @@
+import { useNavigate } from 'react-router-dom'
 import { Avatar, Dropdown } from 'antd'
 import { ExclamationCircleOutlined, PoweroffOutlined, UserOutlined } from '@ant-design/icons'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 import { useUserStore } from '@/store'
-import { modal } from '@/hooks/useMessage'
-import { logout as logoutApi } from '@/api/modules/user'
+import { message, modal } from '@/hooks/useMessage'
 import Breadcrumb from './components/Breadcrumb'
 import Collapse from './components/Collapse'
 import DarkIcon from './components/DarkIcon'
 import Logo from '@/assets/imgs/logo.svg?react'
 import Setting from './components/Setting'
 import './index.less'
+import { LOGIN_URL } from '@/config/constant'
+import { title } from '@/utils'
 
 const Header: React.FC = () => {
-  const { logout, userInfo } = useUserStore(state => ({
-    logout: state.logout,
-    userInfo: state.userInfo
-  }))
+  const navigate = useNavigate()
+  const { logout, userInfo } = useUserStore()
 
   const handleLogout = () => {
     modal.confirm({
@@ -25,8 +25,9 @@ const Header: React.FC = () => {
       cancelText: '取消',
       maskClosable: true,
       onOk: async () => {
-        await logoutApi()
-        logout()
+        await logout()
+        navigate(LOGIN_URL, { replace: true })
+        message.success('退出成功')
       }
     })
   }
@@ -49,7 +50,7 @@ const Header: React.FC = () => {
     <div className="pear-header">
       <div className="flex-c">
         <Logo className="mt-[-3px]" />
-        <div className="title">梨子物联网管理平台</div>
+        <div className="title">{title}</div>
         <Collapse className="ml-6" />
         <Breadcrumb className="ml-4" />
       </div>

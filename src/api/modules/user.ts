@@ -1,9 +1,5 @@
 import http from '@/api'
 
-export const logout = () => {
-  return http.get('/account/logout')
-}
-
 export const getUserInfo = () => {
   return http.get('/system/user/info')
 }

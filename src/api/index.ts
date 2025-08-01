@@ -1,18 +1,20 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { genUUID, isObject } from 'pear-common-utils'
 import { message } from '@/hooks/useMessage'
 import { httpResEnum } from '@/enums/httpEnum'
 import { checkStatus } from './utils/checkStatus'
 import { Config, CustomAxiosRequestConfig } from './types'
 import { showFullScreenLoading, hideFullScreenLoading } from '@/components/Loading/fullScreen'
 import { LOGIN_URL } from '@/config/constant'
-import { getToken, setToken } from '@/utils/auth'
+import { getToken, removeToken, setToken } from '@/utils/auth'
 
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: httpResEnum.TIMEOUT
-  // headers: {
-  //   adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
-  // }
+  timeout: httpResEnum.TIMEOUT,
+  headers: {
+    'Content-Type': 'application/json',
+    'trace-id': genUUID()
+  }
 }
 
 class Http {
@@ -51,37 +53,40 @@ class Http {
 
         if (authStr && authStr.length > 0) {
           const token = authStr.substr(7)
-          localStorage.setItem('token', token)
+          setToken(token)
         }
 
         // token过期
-        if (data?.code == httpResEnum.OVERDUE) {
-          message.error(data.msg)
-          setToken(null)
+        if (isObject(data) && data?.code == httpResEnum.OVERDUE) {
+          message.error(data.message)
+          removeToken()
           window.$navigate(LOGIN_URL)
           return Promise.reject(data)
         }
 
         // 全局错误信息拦截
-        if (data && !String(data.code).startsWith('2')) {
-          message.error(data.msg)
+        if (isObject(data) && !String(data.code).startsWith('2')) {
+          message.error(data.message)
           return Promise.reject(data)
         }
 
-        // 请求成功
+        if (config.headers.fullResponse === 'true') return response
+
         return data
       },
       (error: AxiosError) => {
-        const { response: res } = error
-
         hideFullScreenLoading()
 
         // 请求超时 && 网络错误单独判断，没有 response
         if (error.message.indexOf('timeout') !== -1) message.error('请求超时！请您稍后重试')
         if (error.message.indexOf('Network Error') !== -1) message.error('网络错误！请您稍后重试')
 
+        // 接口请求失败, 同时接口返回了响应数据
+        const { message: msg } = (error.response?.data || {}) as Recordable
+        if (msg) message.error(msg)
+
         // 根据响应的错误状态码, 做不同的处理
-        if (res) checkStatus(res.status)
+        if (!msg && error.response) checkStatus(error.response.status)
 
         return Promise.reject(error)
       }

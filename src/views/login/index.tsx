@@ -37,17 +37,18 @@ const Login = () => {
   useEffect(() => {
     fillInfo()
     getCaptcha()
-  }, [])
+  }, [form])
 
   const fillInfo = () => {
     const remember = getRemember()
     if (!remember) return
+
     form.setFieldValue('remember', true)
 
-    const jsonData = getLoginInfo()
-    if (!jsonData) return
+    const localData = getLoginInfo()
+    if (!localData) return
 
-    const { username, password } = JSON.parse(jsonData)
+    const { username, password } = localData
     form.setFieldsValue({
       username,
       password
@@ -97,13 +98,7 @@ const Login = () => {
       <div className="login-form">
         <h2 className="title">{title}</h2>
 
-        <Form
-          name="login"
-          form={form}
-          initialValues={{ remember: true }}
-          style={{ maxWidth: 360 }}
-          onFinish={handleLogin}
-        >
+        <Form name="login" form={form} style={{ maxWidth: 360 }} onFinish={handleLogin}>
           <Form.Item name="username" rules={[{ required: true, message: '请输入用户名' }]}>
             <Input prefix={<UserOutlined />} placeholder="请输入用户名" size="large" />
           </Form.Item>
@@ -112,7 +107,7 @@ const Login = () => {
             <Input.Password prefix={<LockOutlined />} placeholder="请输入密码" size="large" />
           </Form.Item>
 
-          <Form.Item name="verifyCode">
+          <Form.Item name="verifyCode" rules={[{ required: true, message: '请输入验证码' }]}>
             <div className="w-full flex-c gap-3">
               <div className="flex-1">
                 <Input prefix={<SafetyCertificateOutlined />} placeholder="验证码" size="large" />
@@ -128,9 +123,12 @@ const Login = () => {
             </div>
           </Form.Item>
 
-          <Form.Item name="remember" valuePropName="checked">
+          <Form.Item>
             <Flex justify="space-between" align="center">
-              <Checkbox>记住我</Checkbox>
+              <Form.Item name="remember" valuePropName="checked" noStyle>
+                <Checkbox>记住我</Checkbox>
+              </Form.Item>
+
               <Button type="link" onClick={forget}>
                 忘记密码?
               </Button>

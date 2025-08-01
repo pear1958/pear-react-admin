@@ -7,9 +7,7 @@ import { UserState, UserStore } from '../types'
 import { useAuthStore } from './auth'
 import { useTabsStore } from './tabs'
 import { removeToken, setToken } from '@/utils/auth'
-import { LOGIN_URL } from '@/config/constant'
-import { message } from '@/hooks/useMessage'
-import { login } from '@/api/modules/auth'
+import { login, logout } from '@/api/modules/auth'
 
 const initialState = {
   userInfo: {}
@@ -28,15 +26,12 @@ export const useUserStore = createWithEqualityFn<UserStore>()(
           state.userInfo = userInfo
         })
       },
-      logout() {
+      async logout() {
+        await logout()
+        get().reset()
         removeToken()
-        window.$navigate(LOGIN_URL, { replace: true })
-        message.success('退出成功')
-        setTimeout(() => {
-          get().reset()
-          useAuthStore.getState().reset()
-          useTabsStore.getState().reset()
-        }, 100)
+        useAuthStore.getState().reset()
+        useTabsStore.getState().reset()
       },
       reset() {
         set(cloneDeep(initialState))
