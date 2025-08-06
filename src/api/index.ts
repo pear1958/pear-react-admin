@@ -85,7 +85,7 @@ class Http {
         const { message: msg } = (error.response?.data || {}) as Recordable
         if (msg) message.error(msg)
 
-        // 根据响应的错误状态码, 做不同的处理
+        // 根据响应的错误状态码, 做不同处理
         if (!msg && error.response) checkStatus(error.response.status)
 
         return Promise.reject(error)
