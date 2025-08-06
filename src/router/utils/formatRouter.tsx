@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import { cloneDeep } from 'lodash-es'
-import Suspense from '@/components/Suspense'
+import SuspenseCompo from '@/components/Suspense'
 import Layout from '@/layout'
 import RouterGuard from './RouterGuard'
 
@@ -20,7 +20,7 @@ const formatRouter = (flatMenuList: MenuList) => {
     if (item.redirect) item.element = <Navigate to={item.redirect} />
 
     if (item.element && typeof item.element == 'string') {
-      const Component = Suspense(lazy(modules['/src/views' + item.element + '.tsx']))
+      const Component = SuspenseCompo(lazy(modules['/src/views' + item.element + '.tsx']))
       item.element = <RouterGuard>{Component}</RouterGuard>
     }
 
