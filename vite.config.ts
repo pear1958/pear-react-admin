@@ -1,5 +1,6 @@
 import { ConfigEnv, loadEnv, UserConfigExport } from 'vite'
 import react from '@vitejs/plugin-react'
+import legacy from '@vitejs/plugin-legacy'
 import { resolve } from 'path'
 import svgr from 'vite-plugin-svgr'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -58,6 +59,21 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         logVersion: true,
         versionType: 'build_timestamp',
         hiddenDefaultNotification: true
+      }),
+      legacy({
+        // 基于代码按需生成 polyfill
+        // defaults: > 0.5%, last 2 versions, Firefox 的长期支持版本 等
+        targets: ['defaults', 'chrome 52', 'firefox 54', 'not IE 11'],
+        // 提供所有可供挑选的 polyfill
+        corejs: { version: 3, proposals: true },
+        // 补充  core-js 不包含的补丁
+        additionalLegacyPolyfills: [
+          'regenerator-runtime/runtime', // async/await 补丁 -> generator 函数
+          'whatwg-fetch', // fetch API
+          'url-search-params-polyfill', // URLSearchParams API
+          'request-idle-callback-polyfill', // 浏览器空闲任务: requestIdleCallback 补丁
+          'intersection-observer' // IntersectionObserver 补丁: 监听元素是否进入 / 离开视口
+        ]
       })
     ],
     // 解决 Vite 启动完之后首页加载慢的问题
