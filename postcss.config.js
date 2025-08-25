@@ -6,11 +6,12 @@ export default {
     tailwindcss: {},
     // 转换 现代CSS 为 旧浏览器 兼容版本（核心兼容性插件）
     'postcss-preset-env': {
-      // stage：指定需要转换的CSS特性阶段（0-4，数字越小包含越多实验性特性）
-      // stage:3 表示只转换已稳定的现代CSS特性（推荐）
+      // stage：指定需要转换的 CSS 特性阶段（0-4，数字越小包含越多实验性特性）
+      // stage:3 表示只转换已稳定的现代 CSS 特性（推荐）
       stage: 3,
       // 配置目标浏览器（与autoprefixer的overrideBrowserslist保持一致即可）
-      browsers: ['> 1%', 'last 2 versions', 'not dead']
+      browsers: ['> 1%', 'last 2 versions', 'not dead'],
+      autoprefixer: false // 禁用内置的 autoprefixer，避免重复处理
     },
     // 自动添加浏览器前缀（核心兼容性插件）
     autoprefixer: {
