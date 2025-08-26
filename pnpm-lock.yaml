@@ -107,9 +107,6 @@ importers:
       redux-thunk:
         specifier: ^3.1.0
         version: 3.1.0(redux@5.0.1)
-      regenerator-runtime:
-        specifier: ^0.14.1
-        version: 0.14.1
       simplebar-react:
         specifier: ^3.3.1
         version: 3.3.2(react@19.1.1)
@@ -129,6 +126,9 @@ importers:
         specifier: ^5.0.4
         version: 5.0.8(@types/react@19.1.11)(immer@10.1.1)(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1))
     devDependencies:
+      '@babel/preset-env':
+        specifier: ^7.28.3
+        version: 7.28.3(@babel/core@7.28.3)
       '@iconify-icon/react':
         specifier: ^3.0.0
         version: 3.0.0(react@19.1.1)
@@ -159,6 +159,9 @@ importers:
       autoprefixer:
         specifier: 10.4.16
         version: 10.4.16(postcss@8.5.6)
+      core-js:
+        specifier: ^3.45.1
+        version: 3.45.1
       cssnano:
         specifier: 6.0.1
         version: 6.0.1(postcss@8.5.6)
@@ -171,6 +174,9 @@ importers:
       postcss-preset-env:
         specifier: ^10.3.0
         version: 10.3.0(postcss@8.5.6)
+      regenerator-runtime:
+        specifier: ^0.14.1
+        version: 0.14.1
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
