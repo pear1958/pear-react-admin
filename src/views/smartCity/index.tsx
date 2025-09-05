@@ -1,16 +1,26 @@
 import { useEffect } from 'react'
-import * as THREE from 'three'
+import { useQuery } from '@tanstack/react-query'
 
 const SmartCity = () => {
-  useEffect(() => {
-    initZThree()
+  const { isPending, error, data, isFetching } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: async () => {
+      const response = await fetch('https://api.github.com/repos/TanStack/query')
+      return await response.json()
+    }
   })
 
-  const initZThree = () => {
-    // xxxxxxxxxx
-  }
+  if (isPending) return 'Loading...'
 
-  return <div>222</div>
+  if (error) return 'An error has occurred: ' + error.message
+
+  return (
+    <div>
+      <h1>{data.full_name}</h1>
+      <p>{data.description}</p>
+      <div>{isFetching ? 'Updating...' : ''}</div>
+    </div>
+  )
 }
 
 export default SmartCity
